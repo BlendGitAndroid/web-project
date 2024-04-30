@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* E > F 子元素选择器,匹配所有E元素的子元素F*/
+        .box>p {
+            color: red;
+        }
+
+        img {
+            width: 300px;
+        }
+
+        /* E + F	毗邻元素选择器，匹配所有紧随E元素之后的同级元素F */
+        img+span {
+            color: green;
+        }
+
+        /* E ~ F	匹配任何在E元素之后的同级F元素 */
+        h3~span {
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <p>我是段落</p>
+        <p>我是段落</p>
+        <div>
+            <p>我是段落</p>
+            <p>我是段落</p>
+        </div>
+        <p>我是段落</p>
+
+    </div>
+    <p>我是段落</p>
+    <p>我是段落</p>
+
+    <p>
+        <img src="images/0.jpg" alt="">
+        <span>这是北京故宫</span>
+    </p>
+    <p>
+        <img src="images/1.jpg" alt="">
+        <span>这是北京鸟巢</span>
+    </p>
+
+    <p>
+        <img src="images/1.jpg" alt="">
+        <div></div>
+        <span>这是北京鸟巢</span>
+    </p>
+
+    <span>你好</span>
+    <span>你好</span>
+
+    <h3>我是一个三级标题</h3>
+    <span>我是后面的span</span>
+    <span>我是后面的span</span>
+    <span>我是后面的span</span>
+    <span>我是后面的span</span>
+    <p>我是一个段落</p>
+    <span>我是后面的span</span>
+    <span>我是后面的span</span>
+    <div>
+        <span>多了一个级别span</span>
+        <span>多了一个级别span</span>
+    </div>
+</body>
+
+</html>

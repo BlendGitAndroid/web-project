@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 伪元素, 在元素之前插入生成的内容 */
+        a::before {
+            content: "■";
+        }
+
+        /* 伪元素, 在元素之后插入生成的内容 */
+        a::after {
+            content: "❤";
+        }
+
+        .box1 {
+            width: 400px;
+            height: 300px;
+            border: 1px solid #000;
+        }
+
+        /* 匹配用户当前选中的元素 */
+        .box1::selection {
+            /* 背景颜色 */
+            background-color: springgreen;
+            color: deeppink;
+        }
+
+        /* 匹配元素的第一个字母 */
+        .box1::first-letter {
+            font-size: 50px;
+        }
+
+        /* 匹配元素的第一行 */
+        .box1::first-line {
+            /* 添加下划线 */
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <p>
+        <a href="">我是超级链接</a>
+    </p>
+    <p>
+        <a href="">我是超级链接</a>
+    </p>
+    <p>
+        <a href="">我是超级链接</a>
+    </p>
+
+    <div class="box1">
+        文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字文字
+    </div>
+</body>
+
+</html>

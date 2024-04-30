@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 块级元素，不能并排显示，但是能设置宽高，width自动撑满，如div, section, header、h系列、li、ul等 */
+        /* 行内元素，能并排显示，不能设置宽高， width自动收缩，a、 span em, b, u、 i等*/
+        .djjr {
+            /* 转为块级元素，使用display:block;即可将元素转为块级元素 */
+            display: block;
+            background-color: blue;
+            width: 200px;
+            height: 60px;
+            color: white;
+            text-align: center;
+            line-height: 60px;
+            text-decoration: none;
+        }
+
+        span {
+            /* 转为行内块，使用display:inline-block;即可将元素转为行内块 */
+            display: inline-block;
+            background-color: purple;
+            padding: 8px 20px;
+            margin-top: 30px;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <a href="" class="djjr">点击进入</a>
+
+    <div>
+        <span>我是span</span>
+        <span>我是span</span>
+        <span>我是span</span>
+    </div>
+
+</body>
+
+</html>
