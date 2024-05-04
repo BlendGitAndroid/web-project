@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        div{
+            width: 400px;
+            height: 400px;
+            border: 1px solid #000;
+            margin: 40px auto;
+        }
+        p {
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            /* 相对定位的元素，会在“老家留坑”，本质上仍然是在原来的位置，只不过渲染在新的地方而已，渲染的图形可以比喻成“影子”，不会对页面其他元素产生任何影响 */
+            position: relative;
+            top: 100px; /* 相对于原来的位置向下移动100px */
+            left: 100px; /* 相对于原来的位置向右移动100px */
+        }
+    </style>
+</head>
+<body>
+    <div>
+        <p></p>
+        <h3>我是三级标题</h3>
+        <ul>
+            <li>列表</li>
+            <li>列表</li>
+            <li>列表</li>
+        </ul>
+    </div>
+</body>
+</html>

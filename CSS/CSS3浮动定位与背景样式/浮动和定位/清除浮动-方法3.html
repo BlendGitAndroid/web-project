@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        /* 这段代码的作用是在`.clearfix`类的元素内部的最后生成一个块级的空元素，然后清除这个元素前面的所有浮动，从而实现了清除浮动的效果。
+        这种方法的优点是不需要添加额外的标记，只需要给需要清除浮动的元素添加`.clearfix`类即可。 */
+        .clearfix::after {
+            content: '';
+            /*`clear: both;`这行代码是清除浮动的关键。`clear`属性用于控制元素是否允许浮动元素出现在其左侧、右侧或两侧。`both`值表示不允许浮
+            动元素出现在此元素的左侧或右侧，这样就可以清除前面的所有浮动。  */
+            clear: both;
+            /* 转为块级元素，只有块级元素才能使用clean属性 */
+            display: block;
+        }
+
+        div {
+            margin-bottom: 10px;
+        }
+
+        p {
+            float: left;
+            width: 100px;
+            height: 100px;
+            background-color: orange;
+            margin-right: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="clearfix">
+        <p></p>
+        <p></p>
+        <a href="">点击我</a>
+    </div>
+    <div class="clearfix">
+        <p></p>
+        <p></p>
+    </div>
+</body>
+
+</html>

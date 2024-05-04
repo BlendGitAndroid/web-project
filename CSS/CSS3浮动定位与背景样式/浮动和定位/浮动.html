@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 浮动就是用来进行并排的，子盒子会按顺序进行贴靠，女如果没有足够空间，则会寻找再前一个兄弟元素，
+        浮动的元素不再区分块级元素、行内元素，已经脱离了标准文档流，一律能够设置宽度和高度，即使它是span或者a标签等 */
+        .box {
+            width: 600px;
+            height: 200px;
+            border: 1px solid #000;
+        }
+
+        .box .c1 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            float: left;
+        }
+
+        .box .c3 {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="c1"></div>
+        <div class="c2"></div>
+        <div class="c3"></div>
+    </div>
+</body>
+
+</html>

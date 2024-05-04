@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* BFC(Box Formatting Context，块级格式化上下文)是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然 */
+        .box {
+            width: 400px;
+            border: 10px solid #000;
+            /* 让盒子相称BFC的方法 */
+            overflow: hidden;   
+            /* 要浮动都浮动 */
+            /* float: left; */
+        }
+
+        .box .c1 {
+            width: 200px;
+            height: 200px;
+            background-color: orange;
+            float: left;
+        }
+
+        .box .c2 {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            float: left;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="c1"></div>
+        <div class="c2"></div>
+    </div>
+</body>
+
+</html>

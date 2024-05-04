@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 绝对定位的盒子并不是永远以浏览器作为基准点
+        绝对定位的盒子会以自己祖先元素中，离自己最近的拥有定位属性的盒子，当做基准点。这个盒子通常是相对定位的，所以这个性质也叫作“子绝父相” */
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            width: 402px;
+            height: 402px;
+            border: 1px solid #000;
+            padding: 100px;
+            margin: 0 auto;
+        }
+
+        .box2 {
+            width: 200px;
+            height: 200px;
+            padding: 100px;
+            border: 1px solid #000;
+            position: relative;
+        }
+
+        .box3 {
+            width: 98px;
+            height: 98px;
+            padding: 50px;
+            border: 1px solid #000;
+        }
+
+        p {
+            width: 50px;
+            height: 50px;
+            background-color: orange;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box1">
+        <div class="box2">
+            <div class="box3">
+                <p></p>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
