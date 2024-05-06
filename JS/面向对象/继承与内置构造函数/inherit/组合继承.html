@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 父类
+        function People(name, sex, age) {
+            this.name = name;
+            this.sex = sex;
+            this.age = age;
+        }
+        People.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name + '今年' + this.age + '岁了');
+        }
+        People.prototype.sleep = function () {
+            console.log(this.name + '正在睡觉');
+        }
+
+        // 子类
+        function Student(name, sex, age, school, sid) {
+            // 借助构造函数
+            People.call(this, name, sex, age);
+            this.school = school;
+            this.sid = sid;
+        }
+        // 实现继承，借助原型链
+        Student.prototype = new People();
+        Student.prototype.exam = function() {
+            console.log(this.name + '正在考试');
+        };
+        Student.prototype.sayHello = function() {
+            console.log('敬礼！你好，我是' + this.name + '今年' + this.age + '岁了，我是' + this.school + '学校的学生');
+        };
+        
+        var xiaoming = new Student('小明', '男', 12, '小慕学校', 100666);
+        xiaoming.sayHello();
+        xiaoming.sleep();
+        xiaoming.exam();
+    </script>
+</body>
+</html>

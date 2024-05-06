@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组的内置构造函数，任何的数组字面量都可以看做是Array的实例
+        console.log([1, 2] instanceof Array);
+        console.log([] instanceof Array);
+
+        var arr = new Array(5);
+        console.log(arr);
+        console.log(arr.length);
+
+        // 函数的内置构造函数，任何的函数字面量都可以看做是Function的实例
+        function fun() {
+
+        }
+        function add(a, b) {
+            return a + b;
+        }
+        console.log(fun instanceof Function);
+        console.log(add instanceof Function);
+
+        var jianfa = new Function('a', 'b', 'return a - b');
+        console.log(jianfa(8, 3));
+
+        // 对象的内置构造函数
+        console.log({a: 1} instanceof Object);
+        console.log({} instanceof Object);
+
+        var o = new Object();
+        o.a = 2;
+        o.b = 6;
+        console.log(o);
+    </script>
+</body>
+</html>

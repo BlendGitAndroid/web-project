@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        var o1 = {
+            name: '小明',
+            age: 12,
+            sex: '男'
+        };
+
+        var o2 = {
+            name: '小红',
+            age: 11,
+            sex: '女'
+        };
+
+        // 寄生式继承
+        function f(o) {
+            // 以o为原型创建出新对象
+            var p = Object.create(o);
+            // 补充方法
+            p.sayHello = function () {
+                console.log('你好，我是' + this.name + '今年' + this.age + '岁了');
+            }
+            p.sleep = function () {
+                console.log(this.name + '正在睡觉');
+            }
+
+            return p;
+        }
+
+        var p1 = f(o1);
+        p1.sayHello();
+
+        var p2 = f(o2);
+        p2.sayHello();
+
+        console.log(p1.sayHello == p2.sayHello);
+    </script>
+</body>
+
+</html>

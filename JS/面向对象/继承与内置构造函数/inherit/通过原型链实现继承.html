@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        // 父类：People类
+        function People(name, age, sex) {
+            // this.arr = [33, 44, 55];
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+        }
+        People.prototype.sayHello = function () {
+            console.log('你好，我是' + this.name + '我今年' + this.age + '岁了');
+        };
+        People.prototype.sleep = function () {
+            console.log(this.name + '正在睡觉');
+        };
+        // 子类：Student类
+        function Student(name, age, sex, school, sid) {
+            this.name = name;
+            this.age = age;
+            this.sex = sex;
+            this.school = school;
+            this.sid = sid;
+        }
+        // 实现继承的非常重要的语句。让子类的prototype指向父类的一个实例。
+        Student.prototype = new People();
+        // 追加方法
+        Student.prototype.exam = function () {
+            console.log(this.name + '正在考试');
+        };
+        Student.prototype.study = function () {
+            console.log(this.name + '正在学习');
+        };
+        // 子类可以更改父类的方法，术语叫做override“改写”、“重写”
+        Student.prototype.sayHello = function () {
+            console.log('敬礼！您好，我是' + this.name + '，我是' + this.school + '的学生，我' + this.age + '岁了');
+        };
+        
+        var xiaoming = new Student('小明', 12, '男', '小慕学校', 100666);
+        xiaoming.exam();
+        xiaoming.study();
+        xiaoming.sayHello();
+        xiaoming.sleep();
+        // xiaoming.arr.push(123);
+        // console.log(xiaoming.arr);
+
+        var xiaohong = new Student('小红', 11, '女', '小慕学校', 100667);
+        xiaohong.exam();
+        xiaohong.study();
+        xiaohong.sayHello();
+        xiaohong.sleep();
+        // console.log(xiaohong.arr);
+
+        var laowang = new People('老王', 56, '男');
+        laowang.sayHello();
+    </script>
+</body>
+
+</html>

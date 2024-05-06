@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        console.log(Array.prototype.hasOwnProperty('push'));
+        console.log(Array.prototype.hasOwnProperty('pop'));
+        console.log(Array.prototype.hasOwnProperty('splice'));
+
+        // 拓展qiuhe方法
+        Array.prototype.qiuhe = function () {
+            // this表示调用qiuhe()方法的数组
+            var arr = this;
+            // 累加器
+            var sum = 0;
+            for (var i = 0; i < arr.length; i++) {
+                sum += arr[i];
+            }
+            // 返回结果
+            return sum;
+        };
+
+        var arr = [3, 6, 2, 1, 3];
+        var result = arr.qiuhe();
+        console.log(result);
+
+        var arr2 = [3, 8];
+        var result2 = arr2.qiuhe();
+        console.log(result2);
+    </script>
+</body>
+
+</html>
