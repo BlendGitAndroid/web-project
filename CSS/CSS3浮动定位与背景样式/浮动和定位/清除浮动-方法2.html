@@ -11,13 +11,24 @@
             padding: 0;
         }
 
+        .box1 {
+            border: 1px solid green;
+            margin-top: 30px;
+        }
+
         .box2 {
+            border: 1px solid red;
+            /* 这里的marginTop没有作用的原因是：这里的marginTop是相对于上一个上一个div而言的，但是由于中间有一个浮动是100px的，所以就没有起作用 */
             margin-top: 20px;
-             /* 清除浮动， */
+             /* 清除浮动，box2的两侧不允许有浮动，使第二个div在下面一行
+             为达到撑起父元素高度的目的，使用clear清除浮动的方法还是有适用范围的，因为并没有撑起父元素的高度
+             */
             clear: both;
         }
 
         p {
+            /* 文档流的排版方式是：块级元素垂直排布，行内元素和行内块级水平排布。不脱离就是按照这种方式排版,从左到右，从上到下。 */
+            /* 浮动不会占用标准文档流 */
             float: left;
             width: 100px;
             height: 100px;
@@ -28,7 +39,9 @@
 </head>
 
 <body>
-    <div>
+    <h1>使用clear清除浮动</h1>
+    <!-- 这里的高度为0 -->
+    <div class="box1">
         <p></p>
         <p></p>
     </div>

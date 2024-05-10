@@ -1,5 +1,5 @@
 /* 
- * 轮播图特效 
+ * 轮播图特效，使用IFFE包裹起来，防止污染全局变量 
  * 日期：****年**月**日
  * 姓名：小慕工程师
  */
@@ -43,7 +43,7 @@
             setTimeout(function () {
                 // 去掉过渡
                 carousel_list.style.transition = 'none';
-                // 删除transform属性
+                // 删除transform属性，直接回到了第一张
                 carousel_list.style.transform = 'none';
                 // 全局图片序号变为0
                 idx = 0;
@@ -67,7 +67,7 @@
 
         // 左按钮很特殊，要先写if语句，而不是idx--。
         if (idx == 0) {
-            // 瞬间拉动到最后
+            // 去掉过渡，瞬间拉动到最后
             carousel_list.style.transition = 'none';
             // 拉到最后（瞬间移动）
             carousel_list.style.transform = 'translateX(' + -16.66 * 5 + '%)';

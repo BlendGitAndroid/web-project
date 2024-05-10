@@ -31,12 +31,21 @@
         </div>
     </div>
     <script>
+        // box3最内层元素，就不区分捕获和冒泡了，谁先书写谁先执行
         var oBox1 = document.getElementById('box1');
         var oBox2 = document.getElementById('box2');
         var oBox3 = document.getElementById('box3');
 
-      
+        // onclick事件是冒泡事件，和addEventListener的冒泡事件是一样的，谁先书写谁先执行
+        oBox1.onclick = function () {
+            console.log('我是box1的onclick');
+        };
 
+        oBox2.onclick = function () {
+            console.log('我是box2的onclick');
+        };
+      
+        // 第二个参数为true表示捕获阶段，为false表示冒泡阶段
         oBox2.addEventListener('click', function() {
             console.log('我是box2的冒泡阶段');
         }, false);
@@ -65,14 +74,6 @@
         oBox1.addEventListener('click', function() {
             console.log('我是box1的捕获阶段');
         }, true);
-
-        oBox1.onclick = function () {
-            console.log('我是box1的onclick');
-        };
-
-        oBox2.onclick = function () {
-            console.log('我是box2的onclick');
-        };
 
      
     </script>

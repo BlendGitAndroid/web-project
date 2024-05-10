@@ -8,6 +8,13 @@
 </head>
 <body>
     <script>
+        // 就是将原型链继承和构造函数继承组合在一起,继承两个优点,也做伪经典继承
+        // 通过调用父类构造函数，继承父类的属性并保留传参的优点，
+        // 然后再通过将父类实例作为子类原型，实现函数复用
+        // 组合继承是]avaScript中最常用的继承模式
+
+        // 缺点：组合继承最大的问题就是无论什么情况下，都会调用两次超类的构造函数一次是在创建子类原型的时候，另一次是在子类构造函数的内部
+
         // 父类
         function People(name, sex, age) {
             this.name = name;
@@ -28,7 +35,7 @@
             this.school = school;
             this.sid = sid;
         }
-        // 实现继承，借助原型链
+        // 实现继承，借助原型链实现函数复用
         Student.prototype = new People();
         Student.prototype.exam = function() {
             console.log(this.name + '正在考试');

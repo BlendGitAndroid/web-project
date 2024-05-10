@@ -16,7 +16,9 @@
                 console.log(this.a + this.b);
             }
         };
-
+        // IE9+开始支持0bject.create()方法，可以根据指定的对象为原型创建出新对象
+        // Object.create() 方法创建一个新对象，使用现有的对象来提供新创建的对象的 __proto__。
+        // 这个方法接受两个参数：第一个参数是要用作原型的对象，第二个参数是一个可选的属性描述符对象。
         var obj2 = Object.create(obj1, {
             d: {
                 value: 99

@@ -12,7 +12,7 @@ a {
 }
 /* 使用继承性，给body标签设置字体 */
 body {
-    font: normal 14px/25px '微软雅黑';
+    font: normal 14px/25px '微软雅黑';  /* 14px是字体大小，25px是行高 */
 }
 /* 头部 */
 header {
@@ -35,6 +35,7 @@ header .header-top .logo {
 header .header-top .logo h1 {
     width: 221px;
     height: 63px;
+    /* 很巧妙，使用图片显示，但是文字不显示 */
     background-image:url(../images/logo.png);
     /* 将段首缩进这个属性，设置为负数，是一个很巧妙的做法，可以隐藏文字 */
     text-indent: -999em;
@@ -92,7 +93,7 @@ header .header-top .tool .r2 button {
     /* 边框去掉 */
     border: none;
     /* 去掉鼠标点击时候的蓝色框 */
-    outline: none;
+    /* outline: none; */
     /* 设置触碰时候的鼠标指针的样式 */
     cursor: pointer;
     /* 相对定位来微调位置 */
@@ -109,7 +110,8 @@ header .main-nav {
 header .main-nav ul {
     width: 1200px;
     height: 60px;
-    margin: 0 auto;
+    /* 居中展示 */
+    margin: 0 auto; 
 }
 header .main-nav ul li {
     float: left;
@@ -158,6 +160,7 @@ header .main-nav ul li a:hover {
     margin-top: -37px;
     width: 56px;
     height: 74px;
+    /* 使用了精灵 */
     background: url(../images/icons.png) no-repeat -42px -31px;
     border-radius: 6px;
 }

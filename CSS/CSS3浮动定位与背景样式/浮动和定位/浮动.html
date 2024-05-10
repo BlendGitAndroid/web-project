@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* 浮动就是用来进行并排的，子盒子会按顺序进行贴靠，女如果没有足够空间，则会寻找再前一个兄弟元素，
+        /* 浮动就是用来进行并排的，子盒子会按顺序进行贴靠，如果没有足够空间，则会寻找再前一个兄弟元素，
         浮动的元素不再区分块级元素、行内元素，已经脱离了标准文档流，一律能够设置宽度和高度，即使它是span或者a标签等 */
         .box {
             width: 600px;
@@ -18,6 +18,13 @@
             width: 200px;
             height: 200px;
             background-color: orange;
+            float: left;
+        }
+
+        .box .c2 {
+            width: 200px;
+            height: 200px;
+            background-color: red;
             float: left;
         }
 

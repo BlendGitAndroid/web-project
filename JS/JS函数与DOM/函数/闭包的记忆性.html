@@ -9,6 +9,7 @@
 
 <body>
     <script>
+        // 这段代码的主要目的是展示闭包的记忆性，即闭包能够记住并访问其所在的外部函数的变量，即使外部函数已经执行完毕。
         function createCheckTemp(standardTemp) {
             function checkTemp(n) {
                 if (n <= standardTemp) {

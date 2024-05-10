@@ -10,6 +10,9 @@
 
 <body>
     <script>
+        // 缺点：
+        // 问题1:如果父类的属性中有引用类型值，则这个属性会被所有子类的实例共享;
+        // 问题2:子类的构造函数中，往往需要重复定义很多超类定义过的属性。即子类的构造函数写的不够优雅;
         // 父类：People类
         function People(name, age, sex) {
             // this.arr = [33, 44, 55];
@@ -50,6 +53,7 @@
         xiaoming.study();
         xiaoming.sayHello();
         xiaoming.sleep();
+        console.log(xiaoming);
         // xiaoming.arr.push(123);
         // console.log(xiaoming.arr);
 

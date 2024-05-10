@@ -21,7 +21,7 @@
 
     <script>
         function setColorToRed() {
-            // 备份上下文
+            // 备份上下文，因为在setTimeout中this指向window
             var self = this;
             setTimeout(function() {
                 self.style.backgroundColor = 'red';

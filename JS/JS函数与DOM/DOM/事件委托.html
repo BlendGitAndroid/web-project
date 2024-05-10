@@ -15,6 +15,11 @@
         <li>列表项</li>
     </ul>
     <script>
+        /*
+        事件委托的优点是，你不需要为每个子元素单独设置事件监听器，只需要在父元素上设置一个监听器就可以了。这不仅可以减少事
+        件监听器的数量，提高性能，而且还可以处理动态添加的元素。因为即使在事件监听器设置之后添加的元素，只要它是 oList 的
+        子元素，点击它也会触发这个事件监听器。
+         */
         var oList = document.getElementById('list');
         var oBtn = document.getElementById('btn');
 

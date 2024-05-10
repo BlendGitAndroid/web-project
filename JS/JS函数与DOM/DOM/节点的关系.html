@@ -16,16 +16,17 @@
         var box = document.getElementById('box');
         var para = document.getElementById('para');
 
-        // 所有子节点
-        console.log(box.childNodes);
+        // 所有子节点，包含文本节点
+        console.log(box.childNodes); // NodeList
         // 所有的元素子节点（IE9开始兼容）
-        console.log(box.children);
+        console.log(box.children);  // HTMLCollection，不包含文本节点
         
         // 第一个子节点
         console.log(box.firstChild);
-        console.log(box.firstChild.nodeType);
+        console.log(box.firstChild.nodeType);   // 3，表示文本节点
         // 第一个元素子节点（IE9开始兼容）
         console.log(box.firstElementChild);
+        console.log(box.firstElementChild.nodeType);    // 1，表示元素节点
         
         // 最后一个子节点
         console.log(box.lastChild);
@@ -34,6 +35,7 @@
         console.log(box.lastElementChild);
 
         // 父节点
+        console.log("父节点：");
         console.log(para.parentNode);
         
         // 前一个兄弟节点

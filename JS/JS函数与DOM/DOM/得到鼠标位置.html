@@ -9,11 +9,18 @@
             margin: 0;
             padding: 0;
         }
+
+        body{
+            height: 2000px;
+
+        }
+
         #box{
             width: 200px;
             height: 200px;
             background-color: #333;
             margin: 100px;
+            margin-top: 1000px;
         }
         body{
             height: 2000px;
@@ -34,6 +41,10 @@
         var oBox = document.getElementById('box');
         var oInfo = document.getElementById('info');
 
+        // offsetLeft 和 offsetTop 属性返回元素的左边缘和上边缘相对于包含元素的左内边缘和上内边缘的距离。
+        // clientX 和 clientY 属性返回鼠标指针的位置，相对于浏览器的左上角。
+        // pageX 和 pageY 属性返回鼠标指针的位置，相对于文档的左上角。
+        // 当没有滚动条时，offsetX/Y 和 clientX/Y 是一样的。
         oBox.onmousemove = function (e) {
             oInfo.innerHTML = 'offsetX/Y：' + e.offsetX + ',' + e.offsetY + '<br>'
                             + 'clientX/Y：' + e.clientX + ',' + e.clientY + '<br>'

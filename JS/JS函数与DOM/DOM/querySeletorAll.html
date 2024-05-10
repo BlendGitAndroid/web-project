@@ -21,9 +21,11 @@
         <li>我是li</li>
     </ul>
     <script>
+        // querySelectorAll 方法与 querySelector 方法类似，都是用来根据 CSS 选择器获取元素。
+        // 但是，querySelectorAll 方法返回的是一个 NodeList 对象，这个对象包含了所有匹配指定 CSS 选择器的元素。
         var lis_inlist1 = document.querySelectorAll('#list1 li');
 
-        console.log(lis_inlist1);
+        console.log(lis_inlist1);   // NodeList(5) [li, li, li, li, li]
     </script>
 </body>
 </html>

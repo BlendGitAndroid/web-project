@@ -22,30 +22,41 @@
             width: 6000px;
             position: relative;
             left: 0px;
+            /* <!-- 过渡效果 --> */
             transition: left .5s ease 0s;
         }
         .carousel ul li {
             float: left;
         }
-        .carousel .leftbtn {
+
+        .carousel .btn {
             position: absolute;
-            left: 20px;
+            width: 40px;
+            height: 40px;
+            margin-top: -20px;
             top: 50%;
-            margin-top: -25px;
-            width: 50px;
-            height: 50px;
-            background-color: rgb(28, 180, 226);
             border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            background-color: rgba(28, 180, 226, .5);
+            cursor: pointer;
+            font-family: consolas;
+            font-size: 26px;
+            text-decoration: none;
+        }
+
+        .carousel .btn:hover {
+            background-color: gold;
+            color: white;
+        }
+
+        .carousel .leftbtn {
+            /* 绝对定位left的值 */
+            left: 20px;
         }
         .carousel .rightbtn {
-            position: absolute;
+            /* 绝对定位right的值 */
             right: 20px;
-            top: 50%;
-            margin-top: -25px;
-            width: 50px;
-            height: 50px;
-            background-color: rgb(28, 180, 226);
-            border-radius: 50%;
         }
     </style>
 </head>
@@ -58,8 +69,9 @@
             <li><img src="images/beijing/3.jpg" alt=""></li>
             <li><img src="images/beijing/4.jpg" alt=""></li>
         </ul>
-        <a href="javascript:;" class="leftbtn" id="leftbtn"></a>
-        <a href="javascript:;" class="rightbtn" id="rightbtn"></a>
+        <!-- javascript:; 是一个在 HTML 中常见的 JavaScript 伪协议。它通常用在 href 属性中，表示链接的目标是一个 JavaScript 代码块，而不是一个 URL。 -->
+        <a href="javascript:;" class="btn leftbtn" id="leftbtn">&lt;</a>
+        <a href="javascript:;" class="btn rightbtn" id="rightbtn">&gt;</a>
     </div>
     <script>
         // 得到按钮和ul，ul整体进行运动
@@ -67,7 +79,7 @@
         var rightbtn = document.getElementById('rightbtn');
         var list = document.getElementById('list');
 
-        // 克隆第一张图片
+        // 克隆第一张图片，为了实现无缝滚动
         var cloneli = list.firstElementChild.cloneNode(true);
         list.appendChild(cloneli);
 

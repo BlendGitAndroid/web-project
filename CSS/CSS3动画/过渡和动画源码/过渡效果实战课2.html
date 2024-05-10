@@ -30,8 +30,10 @@
             position: relative;
         }
 
+        /* 伪元素，在li之前插入内容 */
         .box ul li::before {
             content: '';
+            /* 变成块级元素 */
             display: block;
             width: 107px;
             height: 107px;

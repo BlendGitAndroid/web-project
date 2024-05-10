@@ -32,6 +32,7 @@
         oBtn.onclick = function (e) {
             // 阻止事件继续传播到document身上
             e.stopPropagation();
+            // 这里修饰的div本来就是块级元素，这里就是叫他显示出来
             oModal.style.display = 'block';
         };
 

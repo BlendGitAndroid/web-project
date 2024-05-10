@@ -26,6 +26,7 @@
                         </li>
                         <li class="have-menu">
                             <a href="">社区</a>
+                            <!-- 箭头，使用遮盖 -->
                             <em class="arrow">
                                 <b></b>
                                 <i></i>
@@ -96,12 +97,14 @@
                 </div>
             </div>
         </div>
+        <!-- 两个div实现居中 -->
         <nav class="main-nav">
             <div class="center-wrap">
                 <ul>
                     <li class="have-menu">
                         <a href="">机酒自由行</a>
                         <div class="menu jjzyxmenu">
+                            <!-- 使用组合标签 -->
                             <dl>
                                 <dt>全部</dt>
                                 <dd>
@@ -216,7 +219,9 @@
                 <img src="images/banner5.jpg" alt="">
             </li>
         </ul>
+        <!-- 制作小圆点 -->
         <ol class="circles" id="circle_ol">
+            <!-- 使用事件委托 -->
             <li data-n="0" class="current"></li>
             <li data-n="1"></li>
             <li data-n="2"></li>
@@ -228,6 +233,7 @@
             <a href="javascript:;" id="right_btn" class="rightbtn"></a>
             <nav class="banner-nav" id="banner-nav">
                 <ul id="banner-nav-ul">
+                    <!-- 使用Attribute属性 -->
                     <li class="hot" data-t="hot">
                         <dl>
                             <dt>热门出发地</dt>
@@ -625,7 +631,7 @@
     <script src="js/carousel.js"></script>
     <script src="js/menu.js"></script>
 
-    <!-- 热门广告 -->
+    <!-- 热门广告，让盒子形成BFC -->
     <section class="hot-ads clearfix">
         <div class="center-wrap">
             <ul>
@@ -662,6 +668,7 @@
             </div>
             <ul>
                 <li>
+                    <!-- a标签下面可以写任意的标签 -->
                     <a href="">
                         <div class="picbox">
                             <img src="images/xxsw1.png" alt="">
@@ -745,10 +752,11 @@
         </div>
     </section>
 
-    <!-- 机酒自由行 -->
+    <!-- 机酒自由行,这里的css样式，可以自由组合 -->
     <section class="jjzyx content-part common-style">
         <div class="center-wrap">
             <div class="hd clearfix">
+                <!-- 这里h2的样式，是由 .content-part .h2 和 .common-style .h2共同控制的 -->
                 <h2>机酒自由行</h2>
                 <em>挑选全球机票、酒店、邮轮等旅行产品</em>
                 <nav>
@@ -839,7 +847,8 @@
                         <a href="">
                             <p>查看更多</p>
                             <p>机酒自由行产品</p>
-                            <span class="iconfont">&#xe619;</span>
+                            <!-- 这里的 -->
+                            <span class="iconfont iconfont-arrow">&#xe619;</span>
                             <ul>
                                 <li>机票</li>
                                 <li>酒店</li>
@@ -876,7 +885,7 @@
                     <div class="bigpicbox">
                         <img src="images/ddwl1.png" alt="">
                         <div class="info">
-                            <p class="proname">
+                            <p>
                                 [亲子佳选]泰国清迈夜间动物园/Night Safari（可选接送；导游；长颈鹿餐厅）
                             </p>
                             <div class="bottom clearfix">
@@ -943,7 +952,7 @@
                         <a href="">
                             <p>查看更多</p>
                             <p>机酒自由行产品</p>
-                            <span class="iconfont">&#xe619;</span>
+                            <span class="iconfont iconfont-arrow">&#xe619;</span>
                             <ul>
                                 <li>WiFi/电话卡</li>
                                 <li>交通票券</li>
@@ -1115,7 +1124,7 @@
                         <a href="">
                             <p>查看更多</p>
                             <p>深度旅行产品</p>
-                            <span class="iconfont">&#xe619;</span>
+                            <span class="iconfont iconfont-arrow">&#xe619;</span>
                             <ul>
                                 <li>日游</li>
                                 <li>周末</li>
@@ -1211,7 +1220,7 @@
                         <a href="">
                             <p>查看更多</p>
                             <p>精品跟团/半自助游</p>
-                            <span class="iconfont">&#xe619;</span>
+                            <span class="iconfont iconfont-arrow">&#xe619;</span>
                             <ul>
                                 <li>跟团游</li>
                                 <li>半自助游</li>
@@ -1274,7 +1283,7 @@
                     </ul>
                 </div>
                 <div class="copyrights">
-                    &copy; 2020 imooc.com  京ICP备 12003892号-11 京公网安备11010802030151号 <a href="">营业执照</a>
+                    &copy; 2024 imooc.com  京ICP备 12003892号-11 京公网安备11010802030151号 <a href="">营业执照</a>
                 </div>
             </div>
         </div>
@@ -1285,6 +1294,7 @@
         返回<br>顶部
     </a>
 
+    <!-- 引入js文件 -->
     <script src="js/backtotop.js"></script>
 </body>
 

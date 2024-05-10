@@ -35,10 +35,12 @@
         // 绑定监听
         TrafficLight.prototype.bindEvent = function() {
             // 备份上下文，这里的this指的是JS的实例
-            var self = this;
+            // 为什么要备份上下文呢？因为在事件处理函数中，this指的是触发事件的元素，而我们要让this指的是JS的实例
+            var self = this;    // TrafficLight的实例
             // 当自己的dom被点击的时候
             this.dom.onclick = function () {
                 // 当被点击的时候，调用自己的changeColor方法
+                console.log(this);  // this指的是触发事件的元素,即this指的是img
                 self.changeColor();
             };
         }

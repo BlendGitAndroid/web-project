@@ -11,8 +11,12 @@
             return a + b;
         }
 
+        //  JavaScript 中打印出一个函数的原型对象。
         console.log(sum.prototype);
+
         console.log(typeof sum.prototype);
+
+        // 在 JavaScript 中，每个函数都有一个 prototype 属性，这是一个对象，包含一个 constructor 属性。这个 constructor 属性指向函数本身。
         console.log(sum.prototype.constructor === sum);
     </script>
 </body>

@@ -11,10 +11,13 @@
     <script>
         var m = 1;
 
+        // 局部变量的函数提升
         function fun() {
+            console.log(m); // undefined
             m++;
+            console.log(m); // NaN
             var m = 4;
-            console.log(m);
+            console.log(m); // 4
         }
 
         fun();

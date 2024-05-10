@@ -30,11 +30,13 @@
             position: absolute;
             top: 0;
             left: 0;
+            /* 左上角为旋转点 */
             transform-origin: 0 0;
             transition: transform 1s ease 0s;
         }
 
         .box:hover img.dog {
+            /* 以Y轴作为旋转轴 */
             transform: rotateY(-180deg);
         }
 

@@ -9,8 +9,18 @@
 
 <body>
     <script>
+        /*
+        这段代码涉及到了 JavaScript 中的变量提升（Hoisting）和函数提升的概念。
+        在 JavaScript 中，变量和函数声明会被提升到它们所在的作用域的顶部。但是，函数声明的提升优先级高于变量声明。
+        这就是为什么在这段代码中，尽管 fun 函数的声明看起来是在调用它之后，但实际上在 JavaScript 解析代码时，fun 函数的声明已经被提升到了顶部。
+        所以，当第一次调用 fun() 时，实际上调用的是函数声明 function fun() { alert('B'); }，所以会弹出 'B'。
+        */
         fun();
 
+        /*
+        然后，var fun = function () { alert('A'); }; 这行代码会覆盖之前的 fun 函数。注意，这里的函数是一个函数表达式，它不会被提升，只有 fun 变
+        量名会被提升，但赋值操作会在这行代码执行时才进行。
+        */
         var fun = function () {
             alert('A');
         };
@@ -18,6 +28,10 @@
         function fun() {
             alert('B');
         }
+
+        /*
+          所以，当再次调用 fun() 时，调用的是新的 fun 函数，即 function () { alert('A'); }，所以会弹出 'A'
+         */
 
         fun();
     </script>

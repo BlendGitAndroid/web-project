@@ -1,15 +1,15 @@
-(function() {
+(function () {
     var backtotop = document.getElementById('backtotop');
 
     var timer;
 
     // 返回顶部按钮的监听
-    backtotop.onclick = function() {
+    backtotop.onclick = function () {
         // 设表先关
         clearInterval(timer);
         // 设置定时器
-        timer = setInterval(function() {
-            document.documentElement.scrollTop -= 100;
+        timer = setInterval(function () {
+            document.documentElement.scrollTop -= 100;  // 每20毫秒卷动100px
 
             if (document.documentElement.scrollTop <= 0) {
                 clearInterval(timer);

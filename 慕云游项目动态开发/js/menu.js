@@ -7,6 +7,7 @@
     // 事件委托，必须使用onmouseover事件，而不是onmouseenter，我们基础课上讲过，
     // onmouseover冒泡，onmouseenter不冒泡
     bannerNavUl.onmouseover = function (e) {
+        // 如果是li元素，才执行
         if (e.target.tagName.toLowerCase() == 'li') {
             // 得到触碰的这个li元素身上的data-t属性
             var t = e.target.getAttribute('data-t');
@@ -14,7 +15,7 @@
             for(var i = 0; i < bannerLis.length; i++) {
                 bannerLis[i].className = bannerLis[i].getAttribute('data-t');
             }
-            // 当前碰到的这个li，要加current类
+            // 当前碰到的这个li，要加current类，实现高光效果
             e.target.className += ' current';
             // 寻找匹配的menu
             var themenu = document.querySelector('.menus-box .menu[data-t=' + t + ']');

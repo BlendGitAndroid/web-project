@@ -1,29 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        #box1{
+        #box1 {
             width: 202px;
             height: 202px;
             border: 1px solid #000;
             padding: 50px;
         }
-        #box2{
+
+        #box2 {
             width: 100px;
             height: 100px;
             border: 1px solid #000;
             padding: 50px;
         }
-        #box3{
+
+        #box3 {
             width: 100px;
             height: 100px;
             border: 1px solid #000;
         }
     </style>
 </head>
+
 <body>
     <div id="box1">
         <div id="box2">
@@ -35,21 +39,25 @@
         var oBox2 = document.getElementById('box2');
         var oBox3 = document.getElementById('box3');
 
+        // 与 onclick 属性不同，addEventListener 方法允许为同一元素的同一事件添加多个监听器，而且这些监听器不会相互覆盖。
+        // 这意味着，当你点击 oBox2 元素时，会先后弹出包含 'C' 和 'D' 的警告框。
+        oBox2.addEventListener('click', function () {
+            alert('C');
+        }, false);
+
+        oBox2.addEventListener('click', function () {
+            alert('D');
+        }, false);
+
         oBox2.onclick = function () {
             alert('A');
         };
 
+        // 第二个处理函数会覆盖第一个处理函数
         oBox2.onclick = function () {
             alert('B');
         };
-
-        oBox2.addEventListener('click', function() {
-            alert('C');
-        }, false);
-
-        oBox2.addEventListener('click', function() {
-            alert('D');
-        }, false);
     </script>
 </body>
+
 </html>

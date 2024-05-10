@@ -15,6 +15,7 @@
             this.arr = [33, 44, 55];
         }
         function Student(name, sex, age, school, sid) {
+            // 借助构造函数，通过this传递
             People.call(this, name, sex, age);
             this.school = school;
             this.sid = sid;

@@ -7,6 +7,17 @@
     <title>Document</title>
     <style>
         /* 块级元素，不能并排显示，但是能设置宽高，width自动撑满，如div, section, header、h系列、li、ul等 */
+        /* display 是一个 CSS 属性，它决定了一个元素应该如何在网页上显示。这个属性有许多可能的值，包括 block，inline，none，flex，grid 等。
+        例如，如果你想让一个元素像块级元素一样显示（例如 div，p，h1 等），你可以设置 display: block;。块级元素会在其前后创建新的行，占据尽可
+        能多的水平空间。如果你想让一个元素像行内元素一样显示（例如 span，a，img 等），你可以设置 display: inline;。行内元素不会在其前后创建
+        新的行，只占据它们内容所需要的空间。如果你想隐藏一个元素，你可以设置 display: none;。这会使元素及其内容完全消失，不占据任何空间，也不影
+        响页面的布局。 
+        block 和 inline-block 是 CSS 的 display 属性的两个值，它们决定了元素如何在页面上显示。
+        block：元素会作为块级元素显示，占据其父元素的整个宽度，即使你设置了元素的宽度，它仍然会在其前后创建新的行。块级元素可以设置宽度和高度。
+        例如，div 和 p 默认就是块级元素。
+        inline-block：元素会作为行内块级元素显示，这意味着元素可以和其他元素在同一行显示，不会在其前后创建新的行，但同时它又可以设置宽度和高度，
+        这是普通的行内元素（如 span 和 a）所不能做的。
+        */
         /* 行内元素，能并排显示，不能设置宽高， width自动收缩，a、 span em, b, u、 i等*/
         .djjr {
             /* 转为块级元素，使用display:block;即可将元素转为块级元素 */
@@ -22,6 +33,8 @@
 
         span {
             /* 转为行内块，使用display:inline-block;即可将元素转为行内块 */
+            /* 当你将一个元素的 display 属性设置为 inline-block 时，这个元素会
+            像行内元素一样，与其他元素在同一行显示，不会在其前后创建新的行。但是，与 inline 元素不同的是，inline-block 元素可以设置宽度和高度 */
             display: inline-block;
             background-color: purple;
             padding: 8px 20px;

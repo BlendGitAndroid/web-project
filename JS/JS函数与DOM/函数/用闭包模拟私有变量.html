@@ -11,7 +11,7 @@
     <script>
         // 封装一个函数，这个函数的功能就是私有化变量
         function fun() {
-            // 定义一个局部变量a
+            // 定义一个局部变量a，函数的局部变量只能在函数内部使用
             var a = 0;
 
             return {
@@ -37,6 +37,8 @@
         console.log(obj.getA());
         obj.pow();
         console.log(obj.getA());
+
+        console.log(obj.a); // undefined
     </script>
 </body>
 

@@ -19,10 +19,14 @@
         var oField2 = document.getElementById('field2');
         var oInfo2 = document.getElementById('info2');
 
+        // 字符码（charCode）是按下的键所代表的字符的 Unicode 编码。它只在 keypress 事件中有效。
+        // 例如，字符 "a" 的字符码是 97，字符 "A" 的字符码是 65。注意，字符码是区分大小写的。
         oField1.onkeypress = function (e) {
             oInfo1.innerText = '你输入的字符的字符码是' + e.charCode;
         };
 
+        // 键码（keyCode）是按下的键的键盘码。它在 keydown 和 keyup 事件中有效。例如，键 "Enter" 的
+        // 键码是 13，键 "Esc" 的键码是 27，键 "A" 和 "a" 的键码都是 65。注意，键码不区分大小写。
         oField2.onkeydown = function (e) {
             oInfo2.innerText = '你按下的按键的键码是' + e.keyCode;
         };

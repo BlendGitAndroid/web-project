@@ -31,6 +31,7 @@
             this.studentNumber = studentNumber;
         }
         // 关键语句，实现继承
+        // 通过原型链实现继承
         Student.prototype = new People();
 
         Student.prototype.study = function () {
@@ -53,6 +54,8 @@
 
         var laozhang = new People('老张', 66, '男');
         laozhang.sayHello();
+
+        console.log(hanmeimei);
     </script>
 </body>
 

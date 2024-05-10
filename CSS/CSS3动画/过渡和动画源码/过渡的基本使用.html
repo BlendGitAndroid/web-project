@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* transition一般和:hover结合使用 */
         * {
             margin: 0;
             padding: 0;
@@ -89,6 +90,7 @@
             width: 200px;
             height: 200px;
             background-color: orange;
+            /* 对transform进行更改 */
             transition: transform 1s linear 0s;
         }
 
@@ -101,6 +103,7 @@
             height: 200px;
             background-color: orange;
             border-radius: 0;
+            /* all，所有的属性都在改变 */
             transition: all 1s linear 0s;
         }
         .box7:hover {

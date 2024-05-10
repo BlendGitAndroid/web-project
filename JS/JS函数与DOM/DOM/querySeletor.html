@@ -12,8 +12,10 @@
         <p>我是段落</p>
     </div>
     <script>
+        // querySelector 是一个非常强大的 DOM（文档对象模型）方法，它允许你使用 CSS 选择器来获取页面上的元素。
+        // 这个方法返回匹配指定 CSS 选择器的文档中的第一个 Element。如果没有找到任何匹配的元素，它将返回 null。
         var the_p = document.querySelector('#box p:nth-child(1)');
-        console.log(the_p);
+        console.log(the_p); // 打印出来就是：<p>我是段落</p>
         
     </script>
 </body>

@@ -22,8 +22,8 @@
     <script>
         // 先得到box1
         var box1 = document.getElementById('box1');
-        // 得到box1中的p标签的数组
-        var ps_inbox1 = box1.getElementsByTagName('p');
+        // 得到box1中的p标签的数组，通过box1对象得到的
+        var ps_inbox1 = box1.getElementsByTagName('p'); // 得到的是一个数组
 
         console.log(ps_inbox1);
     </script>

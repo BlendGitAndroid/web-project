@@ -24,7 +24,8 @@
             width: 40px;
             height: 40px;
             margin-top: -20px;
-            top: 50%;
+            /* 使用%50来确定高度 */
+            top: 50%;   
             /* 圆形 */
             border-radius: 50%;
             text-align: center;
@@ -74,8 +75,9 @@
 <body>
     <div class="carousel">
         <img src="images/0.jpg" alt="">
-        <a class="leftbtn btn">&lt;</a>
-        <a class="rightbtn btn">&gt;</a>
+        <!-- 用空格分隔开，表示被赋予这两个选择器 -->
+        <a class="btn leftbtn">&lt;</a>
+        <a class="btn rightbtn">&gt;</a>
         <ol>
             <li></li>
             <li></li>

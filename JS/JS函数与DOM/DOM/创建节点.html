@@ -15,6 +15,7 @@
     </div>
     <script>
         var oBox = document.getElementById('box');
+        // 用于从文档中选择具有特定标签名的所有元素。这个方法返回一个包含所有匹配元素的 NodeList。
         var oPs = oBox.getElementsByTagName('p');
 
         // 创建孤儿节点
@@ -23,8 +24,10 @@
         oP.innerText = '我是新来的';
         
         // 上树
-        // oBox.appendChild(oP);
-        oBox.insertBefore(oP, oPs[0]);
+        oBox.appendChild(oP);
+
+        // 在第一个段落之前插入
+        // oBox.insertBefore(oP, oPs[0]);
     </script>
 </body>
 

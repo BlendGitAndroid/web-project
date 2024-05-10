@@ -27,18 +27,19 @@
         // };
 
         // oBtn.onclick = function (e) {
-        //     阻止事件继续传播
+        //     // 阻止事件继续传播，因为onclick是在冒泡阶段触发的，所以这里阻止冒泡，就不会触发盒子的点击事件
         //     e.stopPropagation();
         //     console.log('我是按钮');
         // };
 
         oBox.addEventListener('click', function(e) {
-            // 阻止事件继续传播
+            // 阻止事件继续传播，在捕获阶段触发，所以btn的捕获阶段不会触发
             e.stopPropagation();
             console.log('我是盒子');
         }, true);
 
         oBtn.addEventListener('click', function() {
+            // 这里的log不会被打印
             console.log('我是按钮');
         }, true);
     </script>
