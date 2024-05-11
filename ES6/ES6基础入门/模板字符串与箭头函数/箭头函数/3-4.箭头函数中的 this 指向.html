@@ -1,35 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>箭头函数中的 this 指向</title>
-  </head>
-  <body>
-    <script>
-      // 1.箭头函数中的 this 指向
-      // 箭头函数没有自己的 this
-      // const calc = {
-      //   add: () => {
-      //     console.log(this);
-      //   }
-      // };
-      // calc.add(); // window
 
-      // 2.练习
-      // 'use strict';
-      const calc = {
-        add: function () {
-          // this
-          const adder = () => {
-            console.log(this);
-          };
-          adder();
-        }
-      };
-      // calc.add(); // calc
+<head>
+  <meta charset="UTF-8" />
+  <title>箭头函数中的 this 指向</title>
+</head>
 
-      const addFn = calc.add;
-      addFn(); // undefined->window
-    </script>
-  </body>
+<body>
+  <script>
+    // 在JavaScript中，对象本身并没有this。this是在函数中使用的一个关键字，它的值取决于函数是如何被调用的，分为普通函数和箭头函数，this是在函数中使用。
+    // 在java中，this是一个关键字，代表当前对象的引用，this是一个指向对象的指针，它指向调用当前方法的对象，也是在类中使用的。
+
+    // 1.箭头函数中的 this 指向
+    // 箭头函数没有自己的 this，它的 this 是继承自外层作用域的，箭头函数的this寻值行为与普通变量相同，在作用域中逐级寻找
+    // 箭头函数没有绑定this，它的this取决于该函数外部非箭头函数的this 值
+    const calc = {
+      add: () => {
+        console.log(this);
+      }
+    };
+    calc.add(); // window
+
+    // 如果你想让 this 指向 calc 对象，你需要使用一个普通函数，而不是箭头函数：
+    // 在函数执行的过程中，this 的值是由调用函数的方式决定的，而不是由创建函数的方式决定的
+    const calc1 = {
+      add: function () {
+        console.log(this);
+      }
+    };
+    calc1.add(); // calc
+    let addFn = calc1.add;
+    addFn(); // undefined->window
+
+    const myObject = {
+      myMethod: function () {
+        const myArrowFunction = () => {
+          console.log(this);  // myObject
+        };
+        myArrowFunction();
+        console.log(this);  // myObject
+      }
+    };
+
+    myObject.myMethod(); // myObject
+
+    console.log("-----------------------------------------------------")
+
+    // 2.练习
+    // 'use strict';
+    const calc11 = {
+      add: function () {
+        // this
+        const adder = () => {
+          console.log(this);
+        };
+        adder();
+      }
+    };
+    calc11.add(); // calc
+
+    const addFn11 = calc11.add;
+    addFn11(); // undefined->window
+  </script>
+</body>
+
 </html>

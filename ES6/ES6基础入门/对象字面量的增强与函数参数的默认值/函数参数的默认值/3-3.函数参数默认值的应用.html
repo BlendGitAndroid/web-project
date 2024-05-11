@@ -1,36 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>函数参数默认值的应用</title>
-  </head>
-  <body>
-    <script>
-      // 1.接收很多参数的时候
-      // const logUser = (username = 'ZhangSan', age = 0, sex = 'male') =>
-      //   console.log(username, age, sex);
-      // logUser('Alex', 18, 'male');
-      // logUser();
 
-      // 2.接收一个对象作为参数
-      // const logUser = options =>
-      // console.log(options.username, options.age, options.sex);
+<head>
+  <meta charset="UTF-8" />
+  <title>函数参数默认值的应用</title>
+</head>
 
-      const logUser = ({ username = 'zhangsan', age = 0, sex = 'male' } = {}) =>
-        console.log(username, age, sex);
-      // logUser({
-      //   username: 'alex',
-      //   age: 18,
-      //   sex: 'male'
-      // });
-      // logUser({ username: 'alex' });
-      // { username = 'zhangsan', age = 0, sex = 'male' } = { username: 'alex' }
+<body>
+  <script>
+    // 1.接收很多参数的时候
+    // const logUser = (username = 'ZhangSan', age = 0, sex = 'male') =>
+    //   console.log(username, age, sex);
+    // logUser('Alex', 18, 'male');
+    // logUser();
 
-      // logUser({});
-      logUser();
-      // { username = 'zhangsan', age = 0, sex = 'male' } = {}
+    // 2.接收一个对象作为参数
+    // const logUser = options =>
+    // console.log(options.username, options.age, options.sex);
 
-      // { username = 'zhangsan', age = 0, sex = 'male' } = undefined
-    </script>
-  </body>
+    // 函数参数的默认值是 = {}，如果不传参数，那么入参就是undefined，就会走默认值，就是一个空对象
+    // 这个函数的参数使用了ES6的解构赋值语法，这意味着你可以直接从传入的对象中提取出username、age和sex这三个属性。
+    // 如果传入的对象中没有这些属性，那么它们将被赋予默认值：username的默认值是'zhangsan'，age的默认值是0，sex的默认值是'male'。
+
+    // 这个函数logUser的参数默认值和解构的默认值的执行过程如下：
+    // 1. 当你调用logUser函数时，如果没有提供参数，那么函数的参数默认值{}会被使用。这意味着，如果你这样调用函数：logUser()，那么在函数内部，
+    // 参数对象就是一个空对象{}。
+    // 2. 接下来，函数会尝试从这个参数对象中解构出username、age和sex这三个属性。在这个过程中，解构的默认值会被使用。这意味着，如果参数对象中
+    // 没有username、age或sex这些属性，那么它们会被赋予默认值：username的默认值是'zhangsan'，age的默认值是0，sex的默认值是'male'。
+    // 3. 最后，函数会将username、age和sex这三个变量的值打印到控制台。
+
+    // 所以，无论你是这样调用函数：logUser()，还是这样调用函数：logUser({ username: 'alex' })，或者这样调用函数：
+    // logUser({ username: 'alex', age: 18 })，函数都能正确地执行，并打印出预期的结果。
+    // 这部分涉及了函数的参数默认值，解构，解构默认值赋值的知识
+    const logUser = ({ username = 'zhangsan', age = 0, sex = 'male' } = {}) =>
+      console.log(username, age, sex);
+    // logUser({
+    //   username: 'alex',
+    //   age: 18,
+    //   sex: 'male'
+    // });
+    // logUser({ username: 'alex' });
+
+    // 给解构赋值一个默认值，类似于给函数传参
+    // { username = 'zhangsan', age = 0, sex = 'male' } = { username: 'alex' }
+
+    // logUser({});
+    logUser();
+    // { username = 'zhangsan', age = 0, sex = 'male' } = {}
+
+    // { username = 'zhangsan', age = 0, sex = 'male' } = undefined
+  </script>
+</body>
+
 </html>

@@ -1,39 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>属性和方法的简洁表示法</title>
-  </head>
-  <body>
-    <script>
-      // 1.对象字面量是什么
-      // 实例化构造函数生成对象
-      // const person = new Object();
-      // person.age = 18;
-      // person.speak = function () {};
 
-      // 对象字面量
-      // const person = {
-      //   age: 18,
-      //   speak: function () {}
-      // };
+<head>
+  <meta charset="UTF-8" />
+  <title>属性和方法的简洁表示法</title>
+</head>
 
-      // 2.属性的简洁表示法
-      // 键名和变量或常量名一样的时候，可以只写一个
-      // const age = 18;
-      // const person = {
-      //   // age: age
-      //   age
-      // };
-      // console.log(person);
+<body>
+  <script>
+    // 1.对象字面量是什么
 
-      // 3.方法的简洁表示法
-      // 方法可以省略冒号和 function 关键字
-      const person = {
-        // speak: function () {}
-        speak() {}
-      };
-      console.log(person);
-    </script>
-  </body>
+    // 实例化构造函数生成对象
+    // const person = new Object();
+    // person.age = 18;
+    // person.speak = function () {};
+
+    // 对象字面量
+    // const person = {
+    //   age: 18,
+    //   speak: function () {}
+    // };
+
+    // 2.属性的简洁表示法
+    // 键名和变量或常量名一样的时候，可以只写一个
+    // const age = 18;
+    // const person = {
+    //   // age: age
+    //   age
+    // };
+    // console.log(person);
+
+    console.log("-------------------------------------")
+
+    // 3.方法的简洁表示法，对象字面量里面的方法，本质上是一个匿名函数，然后这个函数赋值给了一个属性
+    // 方法可以省略冒号和 function 关键字
+    const person = {
+      // 这个speak是一个属性，属性值是一个函数
+      speak: function () {
+        console.log(this)
+      },  //属性之间用逗号隔开
+
+      speak1() {
+        console.log(this);  // 这个this指的是person对象，这里不是箭头函数
+      }
+    };
+    console.log(person);
+    person.speak()
+    person.speak1()
+    console.log("-------------------------------------")
+
+  </script>
+</body>
+
 </html>

@@ -28,17 +28,18 @@
       // 1.var
       // var btns = document.querySelectorAll('.btn');
 
+      // // 这个循环结束后，i 的值是 3，所以点击按钮时，打印的都是 3，而不是 0、1、2，这是因为 var 声明的变量是全局变量，而不是块级变量
       // for (var i = 0; i < btns.length; i++) {
       //   btns[i].addEventListener(
       //     'click',
-      //     function () {
-      //       console.log(i);
+      //     function () { 
+      //       console.log(i); // 这里的i是全局变量，所以是3
       //     },
       //     false
       //   );
       // }
 
-      // 2.闭包
+      // 2.闭包，解决 var 的问题
       // var btns = document.querySelectorAll('.btn');
 
       // for (var i = 0; i < btns.length; i++) {
@@ -54,8 +55,12 @@
       // }
 
       // 3.let/const
+      // let/const 声明的变量是块级变量，所以点击按钮时，打印的是 0、1、2，原因是每次循环都会生成一个新的块级作用域
       let btns = document.querySelectorAll('.btn');
 
+      // 这里的for循环是一个块级作用域，所以每次循环都会生成一个新的块级作用域
+      // 这个和android中的点击事件是不一样的，android中的点击事件，for循环后的点击事件是一个匿名内部类，所以i都是对的
+      // 在JavaScript中，let关键字提供了块级作用域，而在Java中，匿名内部类可以访问其外部类的final变量。
       for (let i = 0; i < btns.length; i++) {
         btns[i].addEventListener(
           'click',
