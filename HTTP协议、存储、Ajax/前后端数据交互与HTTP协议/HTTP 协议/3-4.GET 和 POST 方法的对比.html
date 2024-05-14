@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>GET 和 POST 方法的对比</title>
+  </head>
+  <body>
+    <script>
+      // 1.语义
+      // GET：获取数据
+      // POST：创建数据
+
+      // 2.发送数据
+      // GET 通过地址在请求头中携带数据
+      // 能携带的数据量和地址的长度有关系，一般最多就几K
+
+      // POST 既可以通过地址在请求头中携带数据，也可以通过请求体携带数据
+      // 能携带的数据量理论上是无限的
+
+      // 携带少量数据，可以使用 GET 请求，大量的数据可以使用 POST 请求
+
+      // 3.缓存
+      // GET 可以被缓存，POST 不会被缓存
+
+      // 4.安全性
+      // ?username=alex
+      // GET 和 POST 都不安全
+
+      // 发送密码或其他敏感信息时不要使用 GET，主要是避免直接被他人窥屏或通过历史记录找到你的密码
+    </script>
+  </body>
+</html>

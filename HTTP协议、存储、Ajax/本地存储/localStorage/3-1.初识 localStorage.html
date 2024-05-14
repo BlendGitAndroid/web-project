@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>初识 localStorage</title>
+  </head>
+  <body>
+    <form id="login" action="https://www.imooc.com" method="post">
+      <input type="text" name="username" />
+      <input type="password" name="password" />
+      <input type="submit" id="btn" value="登录" />
+    </form>
+
+    <script>
+      // 1.localStorage 是什么
+      // localStorage 也是一种浏览器存储数据的方式（本地存储），它只是存储在本地，不会发送到服务器端
+
+      // 单个域名下的 localStorage 总大小有限制
+
+      // 2.在浏览器中操作 localStorage
+
+      // 3.localStorage 的基本用法
+      // console.log(localStorage);
+
+      // // setItem()
+      // localStorage.setItem('username', 'alex');
+      // localStorage.setItem('username', 'zs');
+      // localStorage.setItem('age', 18);
+      // localStorage.setItem('sex', 'male');
+
+      // // length
+      // // console.log(localStorage.length);
+
+      // // getItem()
+      // // console.log(localStorage.getItem('username'));
+      // // console.log(localStorage.getItem('age'));
+
+      // // // 获取不存在的返回 null
+      // // console.log(localStorage.getItem('name'));
+
+      // // removeItem()
+      // // localStorage.removeItem('username');
+      // // localStorage.removeItem('age');
+
+      // // // 删除不存在的 key，不报错
+      // // localStorage.removeItem('name');
+
+      // // clear()
+      // localStorage.clear();
+
+      // console.log(localStorage);
+
+      // 4.使用 localStorage 实现自动填充
+      const loginForm = document.getElementById('login');
+      const btn = document.getElementById('btn');
+
+      const username = localStorage.getItem('username');
+      if (username) {
+        loginForm.username.value = username;
+      }
+
+      btn.addEventListener(
+        'click',
+        e => {
+          e.preventDefault();
+          // 数据验证
+
+          // console.log(loginForm.username.value);
+
+          localStorage.setItem('username', loginForm.username.value);
+
+          loginForm.submit();
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

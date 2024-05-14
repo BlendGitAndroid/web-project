@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Cookie 的基本用法</title>
+  </head>
+  <body>
+    <script>
+      // 1.写入 Cookie
+      // document.cookie = 'username=zs';
+      // document.cookie = 'age=18';
+
+      // 不能一起设置，只能一个一个设置
+      // document.cookie = 'username=zs; age=18';
+
+      // 2.读取 Cookie
+      console.log(document.cookie);
+
+      // 读取的是一个由名值对构成的字符串，每个名值对之间由“; ”（一个分号和一个空格）隔开
+      // username=zs; age=18
+    </script>
+  </body>
+</html>

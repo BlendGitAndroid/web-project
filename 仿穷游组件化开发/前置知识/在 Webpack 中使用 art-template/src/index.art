@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>首页</title>
+  </head>
+  <body>
+    <% include('./common/header.art',{header:'我是首页的头部'}) %>
+
+    <p>我是首页</p>
+
+    <% include('./common/footer.art',{footer:'我是首页的底部'}) %>
+
+    {{ page }}
+  </body>
+</html>

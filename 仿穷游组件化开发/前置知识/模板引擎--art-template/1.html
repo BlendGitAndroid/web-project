@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>模板引擎--art-template</title>
+  </head>
+  <body>
+    <p>学生信息表</p>
+    <ul id="list"></ul>
+
+    <script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
+
+    <script id="tpl-students" type="text/html">
+      {{each students}}
+        <li>{{$value.name}} {{$value.age}} {{$value.sex}}</li>
+      {{/each}}
+    </script>
+
+    <script>
+      // 学生数据
+      const students = [
+        {
+          name: 'Alex',
+          age: 18,
+          sex: 'male'
+        },
+        {
+          name: '张三',
+          age: 28,
+          sex: 'male'
+        },
+        {
+          name: '李四',
+          age: 20,
+          sex: 'female'
+        }
+      ];
+
+      // 1.使用模板字符串
+      // const list = document.getElementById('list');
+
+      // let html = '';
+
+      // for (const student of students) {
+      //   html += `<li>${student.name} ${student.sex} ${student.age}</li>`;
+      // }
+
+      // list.innerHTML = html;
+
+      // 2.使用模板引擎--art-template
+      // 2.1.引入 art-template
+
+      // 2.2.准备好模板
+
+      // 2.3.获取模板
+      // console.log(
+      //   template('tpl-students', {
+      //     students
+      //   })
+      // );
+      const list = document.getElementById('list');
+
+      // 模板引擎输出的是字符串，是填充了数据的字符串
+      list.innerHTML = template('tpl-students', {
+        students
+      });
+    </script>
+  </body>
+</html>

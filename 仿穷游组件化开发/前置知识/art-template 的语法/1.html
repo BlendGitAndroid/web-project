@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>art-template 的语法</title>
+  </head>
+  <body>
+    <div id="content"></div>
+    <br />
+    <div id="otherContent"></div>
+
+    <ul id="list"></ul>
+
+    <script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
+
+    <!-- 1.输出 -->
+    <script id="tpl-1" type="text/html">
+      {{value}}<br>
+      {{data}}<br>
+      {{data.key}}<br>
+      {{data['key']}}<br>
+
+      {{a+b}}<br>
+
+      {{$data}}<br>
+      {{$data.value}}<br>
+      {{$data.data}}<br>
+
+      {{text}}
+
+      {{@ text}}
+    </script>
+
+    <!-- 2.条件 -->
+    <script id="tpl-2" type="text/html">
+      {{if sex === 'male'}}
+        男
+      {{else if sex === 'female'}}
+        女
+      {{else}}
+        其他
+      {{/if}}
+    </script>
+
+    <!-- 3.循环 -->
+    <script id="tpl-3" type="text/html">
+      {{each students}}
+         <li>{{$value.name}} {{$value.age}} {{$value.sex}} {{$index}} {{$data}}</li>
+      {{/each}}
+    </script>
+
+    <!-- 4.子模板 -->
+    <script id="tpl-4" type="text/html">
+      {{include 'tpl-4-header'}}
+
+      <p>首页</p>
+
+      {{include 'tpl-4-footer'}}
+    </script>
+    <script id="tpl-4-header" type="text/html">
+      <header>我是公共头部</header>
+    </script>
+    <script id="tpl-4-footer" type="text/html">
+      <footer>我是公共底部</footer>
+    </script>
+
+    <!-- 向子模板传参 -->
+    <script id="tpl-4-2-header" type="text/html">
+      <header>我是{{page}}公共头部</header>
+    </script>
+    <script id="tpl-4-2-footer" type="text/html">
+      <footer>我是{{page}}公共底部</footer>
+    </script>
+    <script id="tpl-4-2-index" type="text/html">
+      {{include 'tpl-4-2-header'}}
+      <% include('tpl-4-2-header', {page:'首页'}) %>
+
+      <p>首页</p>
+
+      {{include 'tpl-4-2-footer'}}
+      <% include('tpl-4-2-footer', {page:'首页'}) %>
+    </script>
+    <script id="tpl-4-2-list" type="text/html">
+      <% include('tpl-4-2-header', {page:'列表页'}) %>
+
+      <p>列表页</p>
+
+      <% include('tpl-4-2-footer', {page:'列表页'}) %>
+    </script>
+
+    <script>
+      // 官方文档
+      // http://aui.github.io/art-template/zh-cn/docs/
+
+      // 1.输出
+      // const content = document.getElementById('content');
+
+      // // 参数要放在对象中，即使没有参数，也要传空对象
+      // content.innerHTML = template('tpl-1', {
+      //   value: 1,
+      //   data: {
+      //     key: 2
+      //   },
+      //   a: 3,
+      //   b: 4,
+
+      //   text: '<strong>重点内容</strong>'
+      // });
+
+      // console.log(
+      //   template('tpl-1', {
+      //     value: 1,
+      //     data: {
+      //       key: 2
+      //     },
+      //     a: 3,
+      //     b: 4,
+      //     // 原文输出语句不会对 HTML 内容进行转义处理
+      //     text: '<strong>重点内容</strong>'
+      //   })
+      // );
+
+      // 优先使用标准语法，标准语法不能解决的，再使用原始语法
+
+      // 2.条件
+      // const content = document.getElementById('content');
+      // content.innerHTML = template('tpl-2', {
+      //   // sex: 'male'
+      //   // sex: 'female'
+      //   sex: 'other'
+      // });
+
+      // 3.循环
+      // const students = [
+      //   {
+      //     name: 'Alex',
+      //     age: 18,
+      //     sex: 'male'
+      //   },
+      //   {
+      //     name: '张三',
+      //     age: 28,
+      //     sex: 'male'
+      //   },
+      //   {
+      //     name: '李四',
+      //     age: 20,
+      //     sex: 'female'
+      //   }
+      // ];
+      // const list = document.getElementById('list');
+      // list.innerHTML = template('tpl-3', {
+      //   // students: students
+      //   students
+      // });
+
+      // 4.子模板
+      // const content = document.getElementById('content');
+      // // 即使没有参数，也要传空对象
+      // content.innerHTML = template('tpl-4', {});
+
+      // 向子模板传参
+      // 如果需要向子模板传参，请使用原始语法
+      const content = document.getElementById('content');
+      content.innerHTML = template('tpl-4-2-index', {});
+      const otherContent = document.getElementById('otherContent');
+      otherContent.innerHTML = template('tpl-4-2-list', {});
+    </script>
+  </body>
+</html>
