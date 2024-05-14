@@ -10,6 +10,7 @@
     <p>3</p>
 
     <script>
+      // 解构出来的是一个数组
       const [p1, p2, p3] = document.querySelectorAll('p');
       // console.log(p1, p2, p3);
       // const m = new Map();
@@ -44,6 +45,7 @@
         ]
       ]);
 
+      // key是元素，value是样式对象
       m.forEach((propObj, elem) => {
         for (const p in propObj) {
           elem.style[p] = propObj[p];

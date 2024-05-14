@@ -8,14 +8,14 @@
     <script>
       // 1.判断重复的方式
       // const s = new Set([1, 2, 1]);
-      // const s = new Set([NaN, 2, NaN]);
+      const s = new Set([NaN, 2, NaN]);
 
-      // console.log(1 === 1);
-      // console.log(NaN === NaN);
+      console.log(1 === 1);
+      console.log(NaN === NaN);
 
       // Set 对重复值的判断基本遵循严格相等（===）
       // 但是对于 NaN 的判断与 === 不同，Set 中 NaN 等于 NaN
-      // console.log(s);
+      console.log(s);
 
       // const s = new Set();
       // s.add({}).add({});

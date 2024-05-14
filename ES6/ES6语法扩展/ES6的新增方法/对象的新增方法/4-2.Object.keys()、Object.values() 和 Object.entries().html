@@ -7,14 +7,14 @@
   <body>
     <script>
       // 1.基本用法
-      // const person = {
-      //   name: 'Alex',
-      //   age: 18
-      // };
+      const person1 = {
+        name: 'Alex',
+        age: 18
+      };
 
-      // console.log(Object.keys(person));
-      // console.log(Object.values(person));
-      // console.log(Object.entries(person));
+      console.log(Object.keys(person1));  // ["name", "age"]，返回一个数组，包含对象的所有可枚举属性的键名
+      console.log(Object.values(person1));
+      console.log(Object.entries(person1));
 
       // 2.与数组类似方法的区别
       // console.log([1, 2].keys());
@@ -22,7 +22,8 @@
       // console.log([1, 2].entries());
       // console.log(person.keys);
 
-      // 数组的 keys()、values()、entries() 等方法是实例方法，返回的都是 Iterator
+      // 数组的keys方法之类的和Object.keys()之类的方法是不一样的
+      // 数组的 keys()、values()、entries() 等方法是实例方法，返回的都是 Iterator，可以使用 for...of 循环遍历
       // 对象的 Object.keys()、Object.values()、Object.entries() 等方法是构造函数方法，返回的是数组
 
       // 3.使用 for...of 循环遍历对象

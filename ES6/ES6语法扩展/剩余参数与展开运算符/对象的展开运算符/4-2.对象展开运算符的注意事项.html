@@ -20,9 +20,9 @@
       // console.log({ ...true });
 
       // 如果展开运算符后面是字符串，它会自动转成一个类似数组的对象，因此返回的不是空对象
-      // console.log({ ...'alex' });
-      // console.log([...'alex']);
-      // console.log(...'alex');
+      console.log({ ...'alex' }); // {0: "a", 1: "l", 2: "e", 3: "x"}
+      console.log([...'alex']); // ["a", "l", "e", "x"]
+      console.log(...'alex'); // a l e x
 
       // console.log({ ...[1, 2, 3] });
 

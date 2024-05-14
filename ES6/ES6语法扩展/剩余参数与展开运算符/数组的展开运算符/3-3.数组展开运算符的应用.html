@@ -1,54 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>数组展开运算符的应用</title>
-  </head>
-  <body>
-    <p>1</p>
-    <p>2</p>
-    <p>3</p>
-    <script>
-      // 1.复制数组
-      // const a = [1, 2];
-      // // const b = a;
-      // // a[0] = 3;
-      // // console.log(b);
 
-      // const c = [...a];
-      // // const c = [1, 2];
-      // a[0] = 3;
-      // console.log(a);
-      // console.log(c);
+<head>
+  <meta charset="UTF-8" />
+  <title>数组展开运算符的应用</title>
+</head>
 
-      // 2.合并数组
-      // const a = [1, 2];
-      // const b = [3];
-      // const c = [4, 5];
+<body>
+  <p>1</p>
+  <p>2</p>
+  <p>3</p>
+  <script>
+    // 1.复制数组
+    const a = [1, 2];
+    // // const b = a;
+    // // a[0] = 3;
+    // // console.log(b);
 
-      // // console.log([...a, ...b, ...c]);
-      // // console.log([...b, ...a, ...c]);
-      // console.log([1, ...b, 2, ...a, ...c, 3]);
+    const c = [...a]; // 展开a数组，然后再赋值给c，这样c就是一个新的数组
+    // const c = [1, 2];
+    a[0] = 3;
+    console.log(a);
+    console.log(c);
 
-      // 3.字符串转为数组
-      // 字符串可以按照数组的形式展开
-      // console.log(...'alex');
-      // console.log('a', 'l', 'e', 'x');
-      // console.log([...'alex']);
-      // console.log('alex'.split(''));
-      // reverse
+    // 2.合并数组
+    // const a = [1, 2];
+    // const b = [3];
+    // const c = [4, 5];
 
-      // 4.常见的类数组转化为数组
-      // arguments
-      // function func() {
-      //   // console.log(arguments.push);
-      //   console.log([...arguments]);
-      // }
-      // func(1, 2);
+    // // console.log([...a, ...b, ...c]);
+    // // console.log([...b, ...a, ...c]);
+    // console.log([1, ...b, 2, ...a, ...c, 3]);
 
-      // NodeList
-      // console.log(document.querySelectorAll('p'));
-      // console.log([...document.querySelectorAll('p')].push);
-    </script>
-  </body>
+    // 3.字符串转为数组
+    // 字符串可以按照数组的形式展开
+    console.log(...'alex'); // a l e x
+    // console.log('a', 'l', 'e', 'x');
+    console.log([...'alex']); // ['a', 'l', 'e', 'x']，这样就把字符串转为了数组
+    console.log('alex'.split(''));  // ['a', 'l', 'e', 'x']，这样也可以把字符串转为数组
+    // reverse
+
+    // 4.常见的类数组转化为数组
+    // arguments
+    function func() {
+      // console.log(arguments.push);
+      console.log([...arguments]);  // [1, 2]，这样就把arguments转为了数组
+    }
+    func(1, 2);
+
+    // NodeList
+    console.log(document.querySelectorAll('p'));
+    console.log([...document.querySelectorAll('p')]);
+  </script>
+</body>
+
 </html>

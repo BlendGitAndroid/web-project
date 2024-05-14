@@ -7,6 +7,8 @@ a {
   text-decoration: none;
   outline: none;
 }
+
+/* 表示元素将与其所在行的顶部对齐。这意味着，如果元素的高度小于其所在行的高度，那么元素的顶部将与行的顶部对齐，元素的底部将有空白。 */
 img {
   vertical-align: top;
 }
@@ -33,6 +35,9 @@ img {
   float: left;
 }
 .slider-animation {
+  /* 这里是将transition的几个属性分开设置了 */
+  /* transition-property: transform;表示transform属性的变化将有过渡效果 */
   transition-property: transform;
+  /* transition-duration: 0ms;表示变化的持续时间为0ms */
   transition-duration: 0ms;
 }

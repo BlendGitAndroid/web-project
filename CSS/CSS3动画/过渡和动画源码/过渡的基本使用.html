@@ -6,6 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* transition 是一个 CSS 的简写属性，用于在一个属性值到另一个属性值之间生成过渡效果。它可以设置以下四个子属性：
+        transition-property：指定应用过渡效果的 CSS 属性的名称。例如，width 或 background-color。特殊的值 all 表示应用过渡效果到所有可过渡的属性。
+        transition-duration：指定过渡效果完成所需的时间。这是一个时间值，如 2s（2 秒）或 200ms（200 毫秒）。
+        transition-timing-function：定义过渡效果的速度曲线。这是一个用于描述时间和进度比例之间关系的函数，如 linear、ease-in、ease-out、ease-in-out 或一个 cubic-bezier 函数。
+        transition-delay：定义过渡效果开始前的延迟时间。这是一个时间值，如 1s（1 秒）或 50ms（50 毫秒）。 
+        div {
+            transition-property: width;
+            transition-duration: 2s;
+            transition-timing-function: linear;
+            transition-delay: 1s;
+        }
+        */
         /* transition一般和:hover结合使用 */
         * {
             margin: 0;
@@ -17,6 +29,7 @@
             height: 200px;
             background-color: orange;
             transition: width 5s linear 0s;
+            /* 属性，时间，速度曲线，延迟 */
             margin-bottom: 10px;
         }
 
@@ -106,6 +119,7 @@
             /* all，所有的属性都在改变 */
             transition: all 1s linear 0s;
         }
+
         .box7:hover {
             width: 400px;
             height: 160px;

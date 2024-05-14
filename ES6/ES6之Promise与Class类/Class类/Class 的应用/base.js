@@ -25,6 +25,7 @@ class BaseSlider {
 
         const slider = el;
         const sliderContent = slider.querySelector('.slider-content');
+        // 获取所有的 slider-item
         const sliderItems = sliderContent.querySelectorAll('.slider-item');
 
         // 添加到 this 上，为了在方法中使用
@@ -38,6 +39,7 @@ class BaseSlider {
 
         // 每个 slider-item 的宽度（每次移动的距离）
         this.itemWidth = sliderItems[0].offsetWidth;
+        console.log(this.itemWidth)
 
         this.init();
     }
@@ -76,9 +78,7 @@ class BaseSlider {
 
     // 为 slider-content 设置宽度
     setContentWidth() {
-        this.sliderContent.style.width = `${
-      this.itemWidth * this.sliderItems.length
-    }px`;
+        this.sliderContent.style.width = `${this.itemWidth * this.sliderItems.length}px`;
     }
 
     // 不带动画的移动
@@ -104,7 +104,10 @@ class BaseSlider {
 
     // 开启动画
     openAnimation() {
-        this.sliderContent.classList.add(SLIDER_ANIMATION_CLASSNAME);
+        // classList 属性返回元素的类名，作为 DOMTokenList 对象。
+        console.log(typeof this.sliderContent.classList);
+        console.log(this.sliderContent.classList)
+        this.sliderContent.classList.add(SLIDER_ANIMATION_CLASSNAME);   // 添加类名
     }
 
     // 关闭动画

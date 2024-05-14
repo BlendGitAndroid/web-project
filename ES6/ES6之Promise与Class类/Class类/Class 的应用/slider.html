@@ -1,67 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Class 的应用</title>
-    <link rel="stylesheet" href="./slider.css" />
-  </head>
-  <body>
-    <div class="slider-layout">
-      <div class="slider">
-        <div class="slider-content">
-          <div class="slider-item">
-            <a href="javascript:;"
-              ><img src="./imgs/1.jpg" alt="1" class="slider-img"
-            /></a>
-          </div>
-          <div class="slider-item">
-            <a href="javascript:;"
-              ><img src="./imgs/2.jpg" alt="1" class="slider-img"
-            /></a>
-          </div>
-          <div class="slider-item">
-            <a href="javascript:;"
-              ><img src="./imgs/3.jpg" alt="1" class="slider-img"
-            /></a>
-          </div>
-          <div class="slider-item">
-            <a href="javascript:;"
-              ><img src="./imgs/4.jpg" alt="1" class="slider-img"
-            /></a>
-          </div>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Class 的应用</title>
+  <link rel="stylesheet" href="./slider.css" />
+</head>
+
+<body>
+  <div class="slider-layout">
+    <div class="slider">
+      <div class="slider-content">
+        <div class="slider-item">
+          <a href="javascript:;"><img src="./imgs/1.jpg" alt="1" class="slider-img" /></a>
+        </div>
+        <div class="slider-item">
+          <a href="javascript:;"><img src="./imgs/2.jpg" alt="1" class="slider-img" /></a>
+        </div>
+        <div class="slider-item">
+          <a href="javascript:;"><img src="./imgs/3.jpg" alt="1" class="slider-img" /></a>
+        </div>
+        <div class="slider-item">
+          <a href="javascript:;"><img src="./imgs/4.jpg" alt="1" class="slider-img" /></a>
         </div>
       </div>
     </div>
+  </div>
 
-    <script src="./base.js"></script>
-    <script>
-      // console.log(BaseSlider);
+  <script src="./base.js"></script>
+  <script>
+    // console.log(BaseSlider);
 
-      class Slider extends BaseSlider {
-        constructor(el, options) {
-          super(el, options);
+    // 定义在全局的_bindEvent
+    function _bindEvent(){
+      console.log('这是全局的bind event');
+      console.log(this);
+    }
 
-          this._bindEvent();
-        }
+    class Slider extends BaseSlider {
+      constructor(el, options) {
+        super(el, options);
 
-        _bindEvent() {
-          document.addEventListener('keyup', ev => {
-            // console.log(ev.keyCode);
-            if (ev.keyCode === 37) {
-              // ←
-              this.prev();
-            } else if (ev.keyCode === 39) {
-              // →
-              this.next();
-            }
-          });
-        }
+        // 如果不加this,就会去找全局的_bindEvent
+        this._bindEvent();
       }
-      new Slider(document.querySelector('.slider'), {
-        initialIndex: 1,
-        animation: true,
-        speed: 1000
-      });
-    </script>
-  </body>
+
+      _bindEvent() {
+        document.addEventListener('keyup', ev => {
+          // console.log(ev.keyCode);
+          if (ev.keyCode === 37) {
+            // ←
+            this.prev();
+          } else if (ev.keyCode === 39) {
+            // →
+            this.next();
+          }
+        });
+      }
+    }
+
+    new Slider(document.querySelector('.slider'), {
+      initialIndex: 1,
+      animation: true,
+      speed: 1000
+    });
+  </script>
+</body>
+
 </html>
