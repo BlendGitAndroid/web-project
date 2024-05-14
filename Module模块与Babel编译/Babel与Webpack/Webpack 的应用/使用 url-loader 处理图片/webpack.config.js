@@ -30,7 +30,7 @@ module.exports = {
           options: {
             name: 'img/[name].[ext]',
             esModule: false,
-            limit: 3000
+            limit: 3000 // 3kb,表示小于3kb的图片会被转为base64,大于3kb的则会按照file-loader的方式进行打包
           }
         }
       }

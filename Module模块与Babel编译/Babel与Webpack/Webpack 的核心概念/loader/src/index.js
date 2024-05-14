@@ -1,4 +1,4 @@
-import 'core-js/stable';
+import 'core-js/stable'; // 引入core-js/stable
 
 let name = 'Alex';
 const age = 18;

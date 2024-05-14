@@ -14,10 +14,10 @@
 
       // 2.使用 Babel
       // ES6
-      let name = 'Alex';
-      const age = 18;
+      // let name = 'Alex';
+      // const age = 18;
 
-      const add = (x, y) => x + y;
+      // const add = (x, y) => x + y;
 
       // Set Map
 
@@ -36,11 +36,13 @@
       }
       new Person('Alex', 18);
 
-      import './index.js';
+      import './index.js'; // 放在了最后
 
-      // 使用 Babel 编译后
+      // 下面是使用 Babel 编译后的代码
+      // 通过 Babel 编译后，ES6 的代码就会转换成 ES6 之前的代码
       ('use strict');
 
+      // 将ES6中的import语法转换成CommonJS的require语法，编译后的代码会放在最前面
       require('./index.js');
 
       function _instanceof(left, right) {
@@ -61,6 +63,7 @@
         }
       }
 
+      // 将ES6中的let、const关键字转换成var关键字
       var name = 'Alex';
       var age = 18;
 
@@ -75,6 +78,7 @@
       });
       Array.from([1, 2]);
 
+      // 将ES6中的class关键字转换成构造函数
       var Person = function Person(name, age) {
         _classCallCheck(this, Person);
 
@@ -88,7 +92,8 @@
 
       // 3.解释编译结果
       // Babel 本身可以编译 ES6 的大部分语法，比如 let、const、箭头函数、类
-      // 但是对于 ES6 新增的 API，比如 Set、Map、Promise 等全局对象，以及一些定义在全局对象上的方法（比如 Object.assign/Array.from）都不能直接编译，需要借助其它的模块
+      // 但是对于 ES6 新增的 API，比如 Set、Map、Promise 等全局对象，以及一些定义在全局对象上的方法（比如 Object.assign/Array.from）都不能直接编译，
+      // 需要借助其它的模块
       // Babel 一般需要配合 Webpack 来编译模块语法
     </script>
   </body>

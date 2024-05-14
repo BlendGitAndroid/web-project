@@ -5,15 +5,18 @@
     <title>loader</title>
   </head>
   <body>
+    <!-- 源代码运行失败，报错找不到core-js声明文件，需要ts环境 -->
+    <!-- <script src="./src/index.js" type="module"></script> -->
+    <!-- 经过babel,corejs,webpack后的代码 -->
     <script src="./dist/index.js"></script>
     <script>
       // 1.什么是 loader
-      // webpack js/css/图片
-
+      // webpack可以处理js/css/图片，但是默认只能处理js文件
       // loader 让 webpack 能够去处理那些非 JS 文件的模块
 
-      // babel
-      // 2.babel-loader
+      // 在webpack中使用babel，先用babel-loader将ES6转换为ES5，再用webpack处理打包
+
+      // 2.babel-loader，在webpack中使用babel，起到一个桥梁的作用，其实真正的转换工作是还是babel做的（babel-loader和babel是不同的）
       // npm install --save-dev babel-loader@8.1.0
 
       // 3.安装 Babel
@@ -22,7 +25,7 @@
       // 4.配置 babel-loader
       // https://www.webpackjs.com/loaders/
 
-      // 5.引入 core-js
+      // 5.引入 core-js，将ES6的新语法转换为ES5，如Promise、Map、Set等
       // 编译新增 API
       // npm install --save-dev core-js@3.6.5
       // import "core-js/stable";

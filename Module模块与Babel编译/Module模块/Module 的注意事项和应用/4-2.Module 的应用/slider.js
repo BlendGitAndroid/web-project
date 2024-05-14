@@ -9,6 +9,7 @@ class Slider extends BaseSlider {
   }
 
   _bindEvent() {
+    // Keyboard就是一个对象，它有一个bindEvent方法
     Keyboard.bindEvent(this);
     // Mouse.bindEvent(this);
   }

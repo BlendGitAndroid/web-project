@@ -10,7 +10,7 @@
 
     <script type="module">
       // 1.模块顶层的 this 指向
-      // 模块中，顶层的 this 指向 undefined
+      // 模块中，顶层的 this 指向 undefined，因为模块中的顶层是一个独立的作用域，不是全局作用域
       // import './module.js';
 
       // 2.import 和 import()
@@ -34,12 +34,12 @@
       //   import('mobile.js').then().catch();
       // }
 
-      // 3.导入导出的复合写法
+      // 3.导入导出的复合写法，相当于将导入和导出写在一起
       // 复合写法导出的，无法在当前模块中使用
       export { age } from './module.js';
       // console.log(age);
 
-      // 等价于
+      // 等价于，但是下面的写法可以在当前模块中使用，上面的写法不可以
       // import { age } from './module.js';
       // export { age } from './module.js';
       // console.log(age);

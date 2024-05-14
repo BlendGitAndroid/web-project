@@ -29,10 +29,11 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'img/[name].[ext]',
-            esModule: false
+            esModule: false // 解决HTML中图片路径错误的问题,设置为false,不使用ES6模块语法
           }
         }
       },
+      // 处理 HTML 文件中的图片
       {
         test: /\.(htm|html)$/,
         loader: 'html-withimg-loader'

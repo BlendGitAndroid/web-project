@@ -1,3 +1,10 @@
 {
   "presets": ["@babel/preset-env"]
 }
+
+// 这段代码是一个 .babelrc 文件的内容，它是 Babel 的配置文件。Babel 是一个 JavaScript 编译器，用于将 ES6+ 的代码转换为 ES5 代码，
+// 以便在不支持最新 JavaScript 特性的环境中运行。
+// 在这个配置文件中，我们定义了一个 "presets" 属性，它是一个数组，包含了 "@babel/preset-env"。这是 Babel 的一个预设，预设是一组预
+// 先定义的插件集合。"@babel/preset-env" 是一个特殊的预设，它根据你的目标环境自动决定需要使用哪些 Babel 插件和 polyfills。
+// 例如，如果你的目标环境不支持 ES6 的箭头函数，"@babel/preset-env" 就会自动包含将箭头函数转换为 ES5 函数的插件。这样，你就不需要手
+// 动指定每一个需要的插件，大大简化了配置过程。
