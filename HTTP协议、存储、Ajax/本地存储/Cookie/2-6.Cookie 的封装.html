@@ -7,6 +7,8 @@
   <body>
     <button id="cn">中文</button>
     <button id="en">英文</button>
+    <button id="get">获取</button>
+    <button id="delete">删除</button>
 
     <script type="module">
       // import { set, get, remove } from './cookie.js';
@@ -29,9 +31,11 @@
       // console.log(get('sex'));
 
       // 使用封装好的 Cookie 实现网站语言切换
-      import { set } from './cookie.js';
+      import { set, get, remove } from './cookie.js';
       const cnBtn = document.getElementById('cn');
       const enBtn = document.getElementById('en');
+      const getBtn = document.getElementById('get');
+      const deleteBtn = document.getElementById('delete');
 
       cnBtn.addEventListener(
         'click',
@@ -39,16 +43,34 @@
           set('language', 'cn', {
             maxAge: 30 * 24 * 3600
           });
-          window.location = './2-6.Cookie 的封装.html';
+          window.location = './2-6.Cookie 的封装.html'; // 刷新页面
         },
         false
       );
+
       enBtn.addEventListener(
         'click',
         () => {
           set('language', 'en', {
             maxAge: 30 * 24 * 3600
           });
+          window.location = './2-6.Cookie 的封装.html';
+        },
+        false
+      );
+
+      getBtn.addEventListener(
+        'click',
+        () => {
+          console.log(get('language'));
+        },
+        false
+      );
+
+      deleteBtn.addEventListener(
+        'click',
+        () => {
+          remove('language');
           window.location = './2-6.Cookie 的封装.html';
         },
         false

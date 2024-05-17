@@ -4,13 +4,14 @@
 const serialize = param => {
   const results = [];
 
+  // Object.entries返回的是一个二维数组，解构出 key 和 value
   for (const [key, value] of Object.entries(param)) {
     results.push(`${encodeURIComponent(key)}=${encodeURIComponent(value)}`);
   }
 
   // ['username=alex', 'age=18'];
 
-  return results.join('&');
+  return results.join('&'); //通过&符号连接
 };
 
 // 数据序列化成 JSON 格式的字符串

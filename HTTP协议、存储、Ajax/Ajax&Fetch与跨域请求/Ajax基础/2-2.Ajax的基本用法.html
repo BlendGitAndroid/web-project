@@ -20,6 +20,7 @@
       // 2.2.监听事件，处理响应
       // 当获取到响应后，会触发 xhr 对象的 readystatechange 事件，可以在该事件中对响应进行处理
 
+      // addEventListener的第一个参数不加 on，比如 readystatechange 事件，就是 readystatechange，而不是 onreadystatechange
       // xhr.addEventListener('readystatechange', () => {}, fasle);
 
       // xhr.onreadystatechange = () => {
@@ -48,6 +49,7 @@
       // 4：完成。已经接收到全部响应数据，而且已经可以在浏览器中使用了
 
       // 2.3.准备发送请求
+      // open() 方法接受三个参数，分别是 HTTP 方法、请求地址 URL、是否异步发送请求
       // xhr.open(
       //   'HTTP 方法 GET、POST、PUT、DELETE',
       //   '地址 URL https://www.imooc.com/api/http/search/suggest?words=js ./index.html ./index.xml ./index.txt',
@@ -59,7 +61,7 @@
       // 2.3.发送请求
       // 调用 send() 正式发送请求
 
-      // send() 的参数是通过请求体携带的数据
+      // send() 的参数是通过请求体携带的数据，如果是 GET 请求，可以传入 null，如果是 POST 请求，可以传入字符串或者 FormData 对象
       // xhr.send(null);
 
       // 3.使用 Ajax 完成前后端通信
@@ -71,7 +73,7 @@
 
         if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
           console.log(xhr.responseText);
-          console.log(typeof xhr.responseText);
+          console.log(typeof xhr.responseText); // string
         }
       };
       xhr.open('GET', url, true);

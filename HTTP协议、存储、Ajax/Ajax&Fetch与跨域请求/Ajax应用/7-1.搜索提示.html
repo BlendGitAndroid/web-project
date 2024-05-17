@@ -44,7 +44,7 @@
       };
 
       let timer = null;
-      // IE9 开始支持
+      // IE9 开始支持，监听 input 事件
       searchInput.addEventListener(
         'input',
         () => {
@@ -53,7 +53,7 @@
           if (timer) {
             clearTimeout(timer);
           }
-          // jsa
+          // 防抖
           timer = setTimeout(handleInputEvent, 500);
         },
         false

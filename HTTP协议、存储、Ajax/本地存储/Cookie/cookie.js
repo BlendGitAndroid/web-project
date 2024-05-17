@@ -48,7 +48,7 @@ const get = name => {
 
 // 根据 name、domain 和 path 删除 Cookie
 const remove = (name, { domain, path } = {}) => {
-  set(name, '', { domain, path, maxAge: -1 });
+  set(name, '', { domain, path, maxAge: -1 });  // 设置 maxAge 为 -1，立即删除 cookie
 };
 
 export { set, get, remove };

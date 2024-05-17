@@ -13,9 +13,7 @@
       // document.cookie = 'username=alex';
 
       // document.cookie = `username=${encodeURIComponent('张三')}`;
-      // document.cookie = `${encodeURIComponent('用户名')}=${encodeURIComponent(
-      //   '张三'
-      // )}`;
+      // document.cookie = `${encodeURIComponent('用户名')}=${encodeURIComponent('张三')}`;
 
       // 一般名称使用英文字母，不要用中文，值可以用中文，但是要编码
 
@@ -27,11 +25,8 @@
       // document.cookie = 'username=alex';
 
       // 想长时间存在，设置 Expires 或 Max-Age
-      // expires
-      // 值为 Date 类型
-      // document.cookie = `username=alex; expires=${new Date(
-      //   '2100-1-01 00:00:00'
-      // )}`;
+      // expires值为 Date 类型
+      document.cookie = `username=alex; expires=${new Date('2100-1-01 00:00:00')}`;
 
       // max-age
       // 值为数字，表示当前时间 + 多少秒后过期，单位是秒

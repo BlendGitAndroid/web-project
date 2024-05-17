@@ -99,8 +99,9 @@
 
       const xhr = new XMLHttpRequest();
 
+      // 当 XHR 请求完成，并且 HTTP 响应状态码表示成功时，打印出服务器的响应内容。
       xhr.addEventListener(
-        'load',
+        'load', 
         () => {
           if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
             console.log(xhr.response);
@@ -108,6 +109,8 @@
         },
         false
       );
+
+      // 当 XHR 请求超时时，打印出 'timeout'。
       xhr.addEventListener(
         'timeout',
         () => {

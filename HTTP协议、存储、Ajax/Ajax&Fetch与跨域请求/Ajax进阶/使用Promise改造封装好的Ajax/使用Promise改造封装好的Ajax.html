@@ -6,6 +6,7 @@
   </head>
   <body>
     <script type="module">
+      // 之前的方式是通过回调函数来处理异步请求的结果，现在使用 Promise 来改造，只要是回调地域的代码都可以使用 Promise 来改造
       import { ajax, get, getJSON, post } from './ajax/index.js';
 
       const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
@@ -17,7 +18,7 @@
         // timeoutTime: 10
         // success(){},error(){}
       });
-      p.xhr.abort();
+      // p.xhr.abort();
 
       const { ERROR_HTTP_CODE, ERROR_REQUEST, ERROR_TIMEOUT, ERROR_ABORT } = p;
 

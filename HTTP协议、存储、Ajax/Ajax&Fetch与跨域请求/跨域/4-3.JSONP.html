@@ -1,56 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>JSONP</title>
-  </head>
-  <body>
-    <script>
-      // 1.JSONP 的原理
-      // script 标签跨域不会被浏览器阻止
-      // JSONP 主要就是利用 script 标签，加载跨域文件
 
-      // 2.使用 JSONP 实现跨域
-      // 服务器端准备好 JSONP 接口
-      // https://www.imooc.com/api/http/jsonp?callback=handleResponse
+<head>
+  <meta charset="UTF-8" />
+  <title>JSONP</title>
+</head>
 
-      // 手动加载 JSONP 接口或动态加载 JSONP 接口
-      const script = document.createElement('script');
-      script.src =
-        'https://www.imooc.com/api/http/jsonp?callback=handleResponse';
-      document.body.appendChild(script);
+<body>
+  <script>
+    // JSONP 是 "JSON with Padding" 的缩写，它是一种跨域数据交互的方法。由于同源策略的限制，一般的 AJAX 请求不能跨域获取数据，而 JSONP 则提供
+    // 了一种绕过这个限制的方式。
+    // JSONP 的基本思想是，网页通过添加一个 <script> 标签的方式，从其他源（域名、协议或端口不同）获取数据。这是因为 <script> 标签的 src 属性不受
+    // 同源策略的限制。服务器在接收到请求后，会将数据包装在一个指定的函数中返回。当这个 <script> 标签被加载执行时，函数就会被调用，数据就被处理了。
+    // 需要注意的是，JSONP 只能发送 GET 请求，不能发送 POST 或其他类型的 HTTP 请求。而且，由于它是通过插入 <script> 标签的方式获取数据，所以如果
+    // 服务器被恶意利用，可能会导致安全问题。因此，只有在信任的服务器上，才应该使用 JSONP。
+    // 1.JSONP 的原理
+    // script 标签跨域不会被浏览器阻止
+    // JSONP 主要就是利用 script 标签，加载跨域文件
 
-      // 声明函数
-      const handleResponse = data => {
-        console.log(data);
-      };
+    // 2.使用 JSONP 实现跨域
+    // 服务器端准备好 JSONP 接口
+    // https://www.imooc.com/api/http/jsonp?callback=handleResponse
 
-      // handleResponse({
-      //   code: 200,
-      //   data: [
-      //     {
-      //       word: 'jsp'
-      //     },
-      //     {
-      //       word: 'js'
-      //     },
-      //     {
-      //       word: 'json'
-      //     },
-      //     {
-      //       word: 'js 入门'
-      //     },
-      //     {
-      //       word: 'jstl'
-      //     }
-      //   ]
-      // });
+    // 手动加载 JSONP 接口或动态加载 JSONP 接口
+    const script = document.createElement('script');  // 创建 script 标签
+    script.src = 'https://www.imooc.com/api/http/jsonp?callback=handleResponse';
+    document.body.appendChild(script);
 
-      // 优先使用 CORS，如果浏览器不支持 CORS 的话，再使用 JSONP
-    </script>
-    <!-- <script src="https://www.imooc.com/api/http/jsonp?callback=handleResponse"></script> -->
-    <!-- 相当于 -->
-    <!-- <script>
+    // 声明函数
+    const handleResponse = data => {
+      console.log(data);
+    };
+
+    // handleResponse({
+    //   code: 200,
+    //   data: [
+    //     {
+    //       word: 'jsp'
+    //     },
+    //     {
+    //       word: 'js'
+    //     },
+    //     {
+    //       word: 'json'
+    //     },
+    //     {
+    //       word: 'js 入门'
+    //     },
+    //     {
+    //       word: 'jstl'
+    //     }
+    //   ]
+    // });
+
+    // 优先使用 CORS，如果浏览器不支持 CORS 的话，再使用 JSONP
+  </script>
+  <!-- <script src="https://www.imooc.com/api/http/jsonp?callback=handleResponse"></script> -->
+  <!-- 相当于 -->
+  <!-- <script>
       handleResponse({
         code: 200,
         data: [
@@ -72,5 +79,6 @@
         ]
       });
     </script> -->
-  </body>
+</body>
+
 </html>

@@ -53,7 +53,7 @@
       };
       xhr.open('POST', url, true);
 
-      // 请求头中的 Content-Type 字段用来告诉服务器，浏览器发送的数据是什么格式的
+      // 请求头中的 Content-Type 字段用来告诉服务器，浏览器发送的数据是什么格式的，只有在post请求中才有意义
       // xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
       xhr.setRequestHeader('Content-Type', 'application/json');
 

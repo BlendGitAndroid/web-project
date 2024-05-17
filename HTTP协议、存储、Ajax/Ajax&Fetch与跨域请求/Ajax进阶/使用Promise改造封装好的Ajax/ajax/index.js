@@ -49,8 +49,8 @@ const ajax = (url, options) => {
     }).getXHR();
   });
 
-  p.xhr = xhr;
-  p.ERROR_HTTP_CODE = ERROR_HTTP_CODE;
+  p.xhr = xhr;  // 给 promise 对象添加 xhr 属性
+  p.ERROR_HTTP_CODE = ERROR_HTTP_CODE;  // 给 promise 对象添加错误类型常量
   p.ERROR_REQUEST = ERROR_REQUEST;
   p.ERROR_TIMEOUT = ERROR_TIMEOUT;
   p.ERROR_ABORT = ERROR_ABORT;

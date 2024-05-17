@@ -6,6 +6,16 @@
   </head>
   <body>
     <script>
+      // Access-Control-Allow-Origin 是一个 HTTP 响应头，用于实现 CORS（跨源资源共享）策略。CORS 是一种机制，允许许多安全限制（例如同源策略）
+      // 在可能会导致不安全的跨源请求中得以绕过。
+      // 当浏览器发起跨源 HTTP 请求时，服务器可以通过在响应中包含 Access-Control-Allow-Origin 头来告诉浏览器，这个请求是被接受的。这个头的值
+      // 可以是发起请求的源（即协议、域名和端口），也可以是 "*" 表示接受任何源的请求。
+      // 例如，如果服务器返回的响应包含以下头：
+      // 那么只有来自 https://example.com 的请求才会被接受。如果是其他源的请求，浏览器会阻止访问响应。
+      // 如果服务器返回的响应包含以下头：
+      // 那么任何源的请求都会被接受。
+      // 注意，虽然 Access-Control-Allow-Origin 头可以允许跨源请求，但是是否真的可以成功访问响应，还需要考虑其他的 CORS 相关头，
+      // 例如 Access-Control-Allow-Credentials、Access-Control-Allow-Methods 等。
       // 1.CORS 是什么
       // const url = 'https://www.imooc.com';
 
