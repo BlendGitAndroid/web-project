@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>单指拖拽</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body style="height: 2000px">
+    <div id="box" class="box"></div>
+
+    <script>
+      const drag = $el => {
+        // 每次拖拽最开始的触摸点
+        const startPoint = {};
+        // 拖拽过程中移动到的点
+        const movePoint = {};
+        // 被拖拽元素的当前位置
+        const curPos = {
+          x: 0,
+          y: 0
+        };
+
+        $el.addEventListener('touchstart', startHandler, false);
+        $el.addEventListener('touchmove', moveHandler, false);
+        $el.addEventListener('touchend', endHandler, false);
+        $el.addEventListener('touchcancel', endHandler, false);
+
+        function startHandler(evt) {
+          evt.preventDefault();
+
+          const touch = evt.changedTouches[0];
+
+          startPoint.x = touch.pageX;
+          startPoint.y = touch.pageY;
+
+          // console.log(startPoint);
+        }
+        function moveHandler(evt) {
+          const touch = evt.changedTouches[0];
+
+          movePoint.x = curPos.x + touch.pageX - startPoint.x;
+          movePoint.y = curPos.y + touch.pageY - startPoint.y;
+
+          $el.style.transform = `translate3d(${movePoint.x}px,${movePoint.y}px,0)`;
+        }
+        function endHandler() {
+          curPos.x = movePoint.x;
+          curPos.y = movePoint.y;
+        }
+      };
+
+      drag(document.getElementById('box'));
+    </script>
+  </body>
+</html>

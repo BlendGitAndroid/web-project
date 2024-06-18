@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pointer 事件基础</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box" class="box"></div>
+
+    <script>
+      // 1.Pointer 事件的类型
+      // pointerover/pointerenter/pointerout/pointerleave/pointerdown/pointermove/pointerup/pointercancel
+
+      // 2.注意事项
+      // 2.1.Pointer 事件直接继承了鼠标事件，在此基础上又添加了其他一些内容，处理 Pointer 事件和处理鼠标事件几乎一致
+
+      // 2.2.Pointer 事件在 PC 端和移动端都会触发
+
+      // 2.3.触摸点移出目标元素，touchmove 事件依然会持续触发，pointermove 和 mousemove 事件不会再触发
+
+      // 3.Pointer 事件的特征检测（判断浏览器支不支持 Pointer 事件）
+      if ('onpointerdown' in window) {
+        console.log('支持 Pointer 事件');
+      }
+
+      const $box = document.getElementById('box');
+
+      // touch
+      // $box.addEventListener('touchstart', touchHandler, false);
+      // $box.addEventListener('touchmove', touchHandler, false);
+      // $box.addEventListener('touchend', touchHandler, false);
+      // $box.addEventListener('touchcancel', touchHandler, false);
+
+      // // mouse
+      // $box.addEventListener('mouseover', mouseHandler, false);
+      // $box.addEventListener('mouseenter', mouseHandler, false);
+      // $box.addEventListener('mousedown', mouseHandler, false);
+      // $box.addEventListener('mousemove', mouseHandler, false);
+      // $box.addEventListener('mouseup', mouseHandler, false);
+      // $box.addEventListener('mouseout', mouseHandler, false);
+      // $box.addEventListener('mouseleave', mouseHandler, false);
+      // $box.addEventListener('click', mouseHandler, false);
+
+      // pointer
+      $box.addEventListener('pointerover', pointerHandler, false);
+      $box.addEventListener('pointerenter', pointerHandler, false);
+      $box.addEventListener('pointerdown', pointerHandler, false);
+      $box.addEventListener('pointermove', pointerHandler, false);
+      $box.addEventListener('pointerup', pointerHandler, false);
+      $box.addEventListener('pointerout', pointerHandler, false);
+      $box.addEventListener('pointerleave', pointerHandler, false);
+
+      function mouseHandler(evt) {
+        console.log(evt.type);
+      }
+
+      function touchHandler(evt) {
+        console.log(evt.type);
+      }
+
+      function pointerHandler(evt) {
+        console.log(evt.type);
+      }
+    </script>
+  </body>
+</html>

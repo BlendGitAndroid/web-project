@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Touch 事件基础</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="box" class="box"></div>
+
+    <script>
+      // 1.Touch 事件的类型
+      // touchstart touchmove touchend touchcancel
+
+      // 2.注意事项
+      // 2.1.Touch 事件在 PC 端不会触发，鼠标事件在 PC 端和移动端都会触发
+
+      // 2.2.即使触摸点移出目标元素，touchmove 事件依然会持续触发，mousemove 事件不会再触发
+
+      // 3.Touch 事件的特征检测（判断浏览器支不支持 Touch 事件）
+      // window.onload
+      // window.addEventListener('load')
+      // console.log('onload' in window);
+
+      // console.log('ontouchstart' in window);
+      if ('ontouchstart' in window) {
+        console.log('支持');
+      }
+
+      const $box = document.getElementById('box');
+
+      $box.addEventListener('touchstart', startHandler, false);
+      $box.addEventListener('touchmove', moveHandler, false);
+      $box.addEventListener('touchend', endHandler, false);
+      $box.addEventListener('touchcancel', cancelHandler, false);
+
+      function startHandler() {
+        console.log('touchstart');
+      }
+      function moveHandler() {
+        console.log('touchmove');
+      }
+      function endHandler() {
+        console.log('touchend');
+      }
+      function cancelHandler() {
+        console.log('touchcancel');
+      }
+
+      $box.addEventListener('mouseover', mouseHandler, false);
+      $box.addEventListener('mouseenter', mouseHandler, false);
+      $box.addEventListener('mousedown', mouseHandler, false);
+      $box.addEventListener('mousemove', mouseHandler, false);
+      $box.addEventListener('mouseup', mouseHandler, false);
+      $box.addEventListener('mouseout', mouseHandler, false);
+      $box.addEventListener('mouseleave', mouseHandler, false);
+      $box.addEventListener('click', mouseHandler, false);
+
+      function mouseHandler(evt) {
+        console.log(evt.type);
+      }
+    </script>
+  </body>
+</html>

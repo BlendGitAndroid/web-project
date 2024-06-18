@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>媒体查询的语法</title>
+    <style>
+      /* 1.什么是媒体查询 Media querys */
+      /* 一套样式很难适应各种大小的屏幕 */
+      /* 针对各种大小的屏幕写样式，让我们的页面在不同大小的屏幕上都能正常显示 */
+
+      /* 是屏幕设备并且屏幕宽度 >= 320px（断点 Breakpoint） */
+      /* @media screen and (min-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* 2.媒体类型 */
+      /* all（所有设备 默认值） / screen（屏幕设备） / print（打印设备） / speech（屏幕阅读器，一般供残障人士使用） */
+      /* all 和 screen 比较常用 */
+      /* @media screen and (min-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* @media all and (min-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* @media (min-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* 3.媒体查询中的逻辑 */
+      /* 与( and )  / 或( , ) / 非( not ) */
+
+      /* 3.1.与( and ) */
+      /* 查询条件全部为真时生效 */
+
+      /* screen 并且屏幕宽度 >=320px 且 <= 375px */
+      /* @media screen and (min-width: 320px) and (max-width: 375px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* 3.2.或( , ) */
+      /* 查询条件中的任意一个为真时生效 */
+
+      /* (screen 并且屏幕宽度 >= 375px) 或 (屏幕宽度 <= 320px) */
+      /* @media screen and (min-width: 375px), (max-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* (screen 并且屏幕宽度 >=375px) 或 (all 并且屏幕宽度 <= 320px) */
+      /* @media screen and (min-width: 375px), all and (max-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* 3.3.非( not ) */
+      /* 对当前查询条件取反 */
+
+      /* 当 not 与 and 同时出现，not 对整个媒体查询生效 */
+      /* 取反(screen 并且屏幕宽度 >=320px 且 <= 375px) */
+      /* @media not screen and (min-width: 320px) and (max-width: 375px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* not 与逗号分隔的多个媒体查询同时存在时，not 只对它所在的那个查询生效 */
+      /* 取反(screen 并且屏幕宽度 >=375px) 或 (all 并且屏幕宽度 <= 320px) */
+      /* @media not screen and (min-width: 375px), all and (max-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* 4.媒体特性 */
+      /* width / max-width / min-width */
+      /* -webkit-device-pixel-ratio / -webkit-max-device-pixel-ratio / -webkit-min-pixel-ratio */
+      /* orientation: landscape / portrait */
+      /* @media screen and (min-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* @media screen and (width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* dpr <= 2 且屏幕水平方向 */
+      @media (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
+        body {
+          background-color: red;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <script>
+      // 获取 dpr
+      // console.log(window.devicePixelRatio);
+    </script>
+  </body>
+</html>

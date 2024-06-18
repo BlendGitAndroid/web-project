@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Touch 事件的 event 对象</title>
+    <style>
+      .box {
+        width: 200px;
+        height: 200px;
+        background-color: red;
+
+        /* 处理所有触摸操作 */
+        /* touch-action: auto; */
+
+        /* touch-action: none; */
+
+        /* 平移 */
+        /* touch-action: pan-x; */
+        /* touch-action: pan-y; */
+
+        /* 只允许进行滚动和持续缩放操作，不允许双击缩放 */
+        /* touch-action: manipulation; */
+      }
+    </style>
+  </head>
+  <body style="height: 2000px">
+    <div id="box" class="box"></div>
+
+    <script>
+      // 1.event 对象的常用属性
+      // type 事件类型
+      // target 目标元素
+      // touches 屏幕上的所有触摸点
+      // targetTouches 起始于目标上的所有触摸点
+      // changedTouches 事件触发时，状态发生了改变的所有触摸点
+
+      // 2.触摸点的常用属性
+      // identifier 触摸点id（唯一标识符）,一般多指触摸有用
+      // target 目标元素
+      // screenX/screenY 触点相对于屏幕左边缘的X、Y坐标
+      // clientX/clientY 触点相对于可视区域左边缘的X、Y坐标。不包括任何滚动偏移
+      // pageX/pageY 触点相对于 HTML 文档左边缘的X、Y坐标。包括滚动偏移
+
+      // 3.阻止浏览器的默认行为
+      // 阻止 scrolling, pinch/zoom, 鼠标事件等默认行为
+
+      // 3.1.可以在 touch 的事件处理函数中使用 evt.preventDefault() 阻止浏览器的默认行为
+      // 3.2.touch-action 告诉浏览器哪些触摸操作让浏览器处理，阻止其他触摸操作的默认行为
+      // https://developer.mozilla.org/zh-CN/docs/Web/CSS/touch-action
+
+      const $box = document.getElementById('box');
+
+      $box.addEventListener('touchstart', startHandler, false);
+      // $box.addEventListener('touchmove', moveHandler, false);
+      // $box.addEventListener('touchend', endHandler, false);
+      // $box.addEventListener('touchcancel', cancelHandler, false);
+
+      function startHandler(evt) {
+        console.log('touchstart');
+
+        // 1.event 对象的常用属性
+        // console.log(evt);
+        // console.log(evt.type);
+        // console.log(evt.target);
+        // console.log(evt.touches);
+        // console.log(evt.targetTouches);
+        // console.log(evt.changedTouches);
+
+        // 2.触摸点的常用属性
+        const touch = evt.changedTouches[0];
+        // console.log(touch);
+        // console.log(touch.identifier);
+        // console.log(touch.target);
+        // console.log(touch.screenX, touch.screenY);
+        // console.log(touch.clientX, touch.clientY);
+        // console.log(touch.pageX, touch.pageY);
+
+        // 3.阻止浏览器的默认行为
+        // evt.preventDefault();
+      }
+      function moveHandler(evt) {
+        console.log('touchmove');
+      }
+      function endHandler(evt) {
+        // console.log('touchend');
+        // console.log(evt.type);
+
+        console.log(evt.touches.length);
+        console.log(evt.targetTouches.length);
+        console.log(evt.changedTouches.length);
+      }
+      function cancelHandler(evt) {
+        console.log('touchcancel');
+        console.log(evt.touches.length);
+        console.log(evt.targetTouches.length);
+        console.log(evt.changedTouches.length);
+      }
+
+      $box.addEventListener('mouseover', mouseHandler, false);
+      $box.addEventListener('mouseenter', mouseHandler, false);
+      $box.addEventListener('mousedown', mouseHandler, false);
+      $box.addEventListener('mousemove', mouseHandler, false);
+      $box.addEventListener('mouseup', mouseHandler, false);
+      $box.addEventListener('mouseout', mouseHandler, false);
+      $box.addEventListener('mouseleave', mouseHandler, false);
+      $box.addEventListener('click', mouseHandler, false);
+
+      function mouseHandler(evt) {
+        console.log(evt.type);
+      }
+    </script>
+  </body>
+</html>

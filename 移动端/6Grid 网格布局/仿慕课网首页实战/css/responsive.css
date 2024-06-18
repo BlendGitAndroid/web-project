@@ -1,0 +1,25 @@
+/* 576px 768px 992px 1200px */
+.course-list {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 576px) {
+  .course-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (min-width: 768px) {
+  .course-list {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+@media (min-width: 992px) {
+  .course-list {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+@media (min-width: 1200px) {
+  .course-list {
+    grid-template-columns: repeat(6, 1fr);
+  }
+}

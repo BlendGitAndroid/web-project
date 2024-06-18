@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grid 容器的属性</title>
+    <link rel="stylesheet" href="./grid.css" />
+    <style>
+      /* 1.display 属性 */
+      .grid-1-1 {
+        display: grid;
+      }
+      .grid-1-2 {
+        display: inline-grid;
+      }
+
+      /* 2.grid-template-rows/grid-template-columns 属性 */
+      .container {
+        display: grid;
+      }
+      .grid-2-1 {
+        /* 固定数值 */
+        /* grid-template-rows: 150px 150px 150px;
+        grid-template-columns: 150px 150px 150px; */
+
+        /* grid-template-rows: 150px 300px 150px;
+        grid-template-columns: 150px 300px 150px; */
+
+        /* 给网格线起名字 */
+        /* 允许同一根网格线有多个名字 */
+        grid-template-rows: [r1 r11] 150px [r2] 150px [r3] 150px [r4];
+        grid-template-columns: [c1] 150px [c2] 150px [c3] 150px [c4];
+      }
+      .grid-2-2 {
+        /* 百分比 % */
+        height: 600px;
+        grid-template-rows: 33.33% 33.33% 33.33%;
+        grid-template-columns: 33.33% 33.33% 33.33%;
+      }
+      .grid-2-3 {
+        /* fr */
+        height: 600px;
+        /* grid-template-columns: 1fr 1fr 1fr;
+        grid-template-rows: 1fr 1fr 1fr; */
+
+        /* grid-template-columns: 1fr 2fr 1fr;
+        grid-template-rows: 1fr 2fr 1fr; */
+
+        grid-template-columns: 50px 1fr 50px;
+        grid-template-rows: 1fr 2fr 1fr;
+      }
+      .grid-2-4 {
+        /* auto */
+        height: 600px;
+        /* grid-template-columns: 150px auto 150px; */
+        /* grid-template-columns: auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr; */
+        grid-template-columns: auto 1fr 150px;
+        grid-template-rows: 1fr 2fr 1fr;
+      }
+      .grid-2-5 {
+        /* repeat() */
+        /* grid-template-rows: 150px 150px 150px;
+        grid-template-columns: 150px 150px 150px; */
+
+        /* grid-template-rows: repeat(3, 150px);
+        grid-template-columns: repeat(3, 150px); */
+
+        /* grid-template-rows: repeat(4, 25%);
+        grid-template-columns: repeat(4, 25%); */
+
+        /* grid-template-rows: repeat(3, 1fr);
+        grid-template-columns: repeat(3, 1fr); */
+
+        /* grid-template-columns: repeat(2, 150px 150px);
+        grid-template-columns: 150px 150px 150px 150px;
+        grid-template-rows: repeat(3, 150px); */
+
+        /* 当单元格的大小固定，容器大小不确定时，如果希望每一行（或每一列）容纳尽可能多的单元格，可以使用 auto-fill 自动填充 */
+        grid-template-columns: repeat(auto-fill, 150px);
+        grid-template-rows: repeat(3, 150px);
+      }
+      .grid-2-6 {
+        /* minmax() */
+        grid-template-columns: 1fr minmax(150px, 300px) 1fr;
+        grid-template-rows: repeat(3, 150px);
+      }
+
+      /* 3.grid-auto-flow 属性 */
+      .grid-3-1 {
+        /* row */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        grid-auto-flow: row;
+      }
+      .grid-3-2 {
+        /* column */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        grid-auto-flow: column;
+      }
+      .grid-3-3 {
+        /* row dense */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        grid-auto-flow: row dense;
+      }
+      .grid-3-3 .item-1 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+      .grid-3-3 .item-2 {
+        grid-column-start: 1;
+        grid-column-end: 3;
+      }
+      .grid-3-4 {
+        /* column dense */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        grid-auto-flow: column dense;
+      }
+      .grid-3-4 .item-1 {
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+      .grid-3-4 .item-2 {
+        grid-row-start: 1;
+        grid-row-end: 3;
+      }
+
+      /* 4.grid-auto-rows/grid-auto-columns 属性 */
+      .grid-4 {
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+        /* grid-auto-rows: 200px; */
+
+        grid-auto-flow: column;
+        grid-auto-columns: 200px;
+      }
+
+      /* 5.row-gap/column-gap/gap 属性 */
+      .grid-5 {
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        /* row-gap: 20px;
+        column-gap: 20px; */
+        gap: 20px 20px;
+
+        /* 如果省略了第二个值，第二个值等于第一个值 */
+        gap: 20px;
+      }
+
+      /* 6.grid-template-areas 属性 */
+      .grid-6 {
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        /* grid-template-areas:
+          'a b c'
+          'd e f'
+          'g h i'; */
+
+        grid-template-areas:
+          'a a a'
+          'd e f'
+          'g g g';
+        grid-template-areas:
+          'header header header'
+          'nav main sidebar'
+          'footer footer footer';
+
+        /* 如果某些区域不需要利用，则使用“点”（.）表示 */
+        grid-template-areas:
+          'a . a'
+          'd e f'
+          'g g g';
+
+        /* 区域的命名会影响到网格线。每个区域的起始网格线，会自动命名为 区域名-start，终止网格线自动命名为 区域名-end */
+        grid-template-columns: [c1 c11] 150px [c2] 150px [c3] 150px [c4];
+        grid-template-rows: [r1] 150px [r2] 150px [r3] 150px [r4];
+
+        grid-template-areas:
+          'header header header'
+          'nav main sidebar'
+          'footer footer footer';
+      }
+
+      /* 7.align-items/justify-items/place-items 属性 */
+      .grid-7-1 {
+        /* stretch（默认值） */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        align-items: stretch;
+        justify-items: stretch;
+        place-items: stretch stretch;
+
+        /* 如果省略第二个值，则浏览器认为与第一个值相等 */
+        place-items: stretch;
+      }
+      .grid-7-2 {
+        /* start */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        align-items: start;
+        justify-items: start;
+        place-items: start start;
+      }
+      .grid-7-3 {
+        /* end */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        align-items: end;
+        justify-items: end;
+        place-items: end end;
+      }
+      .grid-7-4 {
+        /* center */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        align-items: center;
+        justify-items: center;
+        place-items: center center;
+      }
+
+      /* 8.align-content/justify-content/place-content 属性 */
+      .grid-8-1 {
+        /* stretch */
+        grid-template-columns: repeat(3, 150px);
+        /* grid-template-rows: repeat(3, 150px); */
+        height: 600px;
+
+        align-content: stretch;
+        justify-content: stretch;
+        place-content: stretch;
+      }
+      .grid-8-2 {
+        /* start */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        height: 600px;
+
+        align-content: start;
+        justify-content: start;
+        place-content: start;
+      }
+      .grid-8-3 {
+        /* end */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        height: 600px;
+
+        align-content: end;
+        justify-content: end;
+        place-content: end;
+      }
+      .grid-8-4 {
+        /* center */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        height: 600px;
+
+        align-content: center;
+        justify-content: center;
+        place-content: center;
+      }
+      .grid-8-5 {
+        /* space-around */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        height: 600px;
+
+        align-content: space-around;
+        justify-content: space-around;
+        place-content: space-around;
+      }
+      .grid-8-6 {
+        /* space-between */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        height: 600px;
+
+        align-content: space-between;
+        justify-content: space-between;
+        place-content: space-between;
+      }
+      .grid-8-7 {
+        /* space-evenly */
+        grid-template-columns: repeat(3, 150px);
+        grid-template-rows: repeat(3, 150px);
+
+        height: 600px;
+
+        align-content: space-evenly;
+        justify-content: space-evenly;
+        place-content: space-evenly;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- <img src="./grid.png" alt="grid" /> -->
+    <!-- <img src="./grid-line.png" alt="grid line" /> -->
+
+    <!-- 1.display 属性 -->
+    <div>
+      <h2>1.display 属性</h2>
+      <h3>指定一个元素采用网格布局</h3>
+      <h4>display: grid | inline-grid;</h4>
+
+      <p>grid：容器元素是块级元素</p>
+      <div class="grid-container grid-1-1">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+      </div>
+      <!-- <div class="grid-container grid-1-1">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+      </div> -->
+
+      <p>inline-grid：容器元素是内联块元素</p>
+      <div class="grid-container grid-1-2">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+      </div>
+      <!-- <div class="grid-container grid-1-2">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+      </div> -->
+    </div>
+
+    <!-- 2.grid-template-rows/grid-template-columns 属性 -->
+    <div>
+      <h2>
+        2.grid-template-rows 属性，<br />
+        grid-template-columns 属性
+      </h2>
+      <h3>
+        grid-template-rows 定义每一行的行高
+        <br />
+        grid-template-columns 定义每一列的列宽
+      </h3>
+      <h4>
+        grid-template-rows: 固定数值 | % | fr | auto | repeat() | minmax()
+      </h4>
+      <h4>
+        grid-template-columns: 固定数值 | % | fr | auto | repeat() | minmax()
+      </h4>
+
+      <p>固定数值</p>
+      <div class="container grid-2-1">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>百分比 %：容器宽高的百分比（不包括内边距和边框）</p>
+      <div class="container grid-2-2">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>fr（fraction 的缩写，意为“片段”）：分配剩余可用空间</p>
+      <div class="container grid-2-3">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>auto：先于 fr 计算，获取必要的最小空间</p>
+      <div class="container grid-2-4">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>repeat()：简化重复的值</p>
+      <div class="container grid-2-5">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>minmax(min, max)：取值 >= 最小值，并且 <= 最大值</p>
+      <div class="container grid-2-6">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+    </div>
+
+    <!-- 3.grid-auto-flow 属性 -->
+    <div>
+      <h2>3.grid-auto-flow 属性</h2>
+      <h3>定义项目的排列顺序</h3>
+      <h4>
+        grid-auto-flow: row（默认值） | column | row dense | column dense;
+      </h4>
+
+      <p>row（默认值）：先填满第一行，再放入第二行</p>
+      <div class="container grid-3-1">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>column：先填满第一列，再放入第二列</p>
+      <div class="container grid-3-2">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>row dense：row，在稍后出现较小的项目时，尝试填充网格中较早的空缺</p>
+      <div class="container grid-3-3">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>
+        column dense：column，在稍后出现较小的项目时，尝试填充网格中较早的空缺
+      </p>
+      <div class="container grid-3-4">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+    </div>
+
+    <!-- 4.grid-auto-rows/grid-auto-columns 属性 -->
+    <div>
+      <h2>
+        4.grid-auto-rows 属性，<br />
+        grid-auto-columns 属性
+      </h2>
+      <h3>
+        grid-auto-rows 定义浏览器自动创建的多余网格的行高
+        <br />
+        grid-auto-columns 定义浏览器自动创建的多余网格的列宽
+      </h3>
+
+      <div class="container grid-4">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+        <div class="item item-10">10</div>
+      </div>
+    </div>
+
+    <!-- 5.row-gap/column-gap/gap 属性 -->
+    <div>
+      <h2>
+        5.row-gap 属性，<br />
+        column-gap 属性，<br />
+        gap 属性
+      </h2>
+      <h3>
+        row-gap 设置行间距
+        <br />
+        column-gap 设置列间距
+        <br />
+        gap 是 row-gap 和 column-gap 的简写形式
+      </h3>
+
+      <div class="container grid-5">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+    </div>
+
+    <!-- 6.grid-template-areas 属性 -->
+    <div>
+      <h2>6.grid-template-areas 属性</h2>
+      <h3>定义区域</h3>
+
+      <div class="container grid-6">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+    </div>
+
+    <!-- 7.align-items/justify-items/place-items 属性 -->
+    <div>
+      <h2>
+        7.align-items 属性，<br />
+        justify-items 属性，<br />
+        place-items 属性
+      </h2>
+      <h3>
+        align-items 设置项目的垂直位置（上中下）
+        <br />
+        justify-items 设置项目的水平位置（左中右）
+        <br />
+        place-items 是 align-items 和 justify-items 的合并简写形式
+      </h3>
+      <h4>align-items: stretch（默认值）| start | end | center;</h4>
+      <h4>justify-items: stretch（默认值）| start | end | center;</h4>
+      <h4>place-items: align-items justify-items;</h4>
+
+      <p>stretch（默认值）：拉伸，占满单元格的整个宽高</p>
+      <div class="container grid-7-1">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>start：对齐单元格的起始边缘</p>
+      <div class="container grid-7-2">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>end：对齐单元格的结束边缘</p>
+      <div class="container grid-7-3">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>center：单元格内部居中</p>
+      <div class="container grid-7-4">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+    </div>
+
+    <!-- 8.align-content/justify-content/place-content 属性 -->
+    <div>
+      <h2>
+        8.align-content 属性，<br />
+        justify-content 属性，<br />
+        place-content 属性
+      </h2>
+      <h3>
+        align-content 设置整个内容区域的垂直位置（上中下）
+        <br />
+        justify-content 设置整个内容区域的水平位置（左中右）
+        <br />
+        place-content 是 align-content 和 justify-content 的合并简写形式
+      </h3>
+      <h4>
+        align-content: stretch（默认值） | start | end | center | space-around |
+        space-between | space-evenly;
+      </h4>
+      <h4>
+        justify-content: stretch（默认值） | start | end | center | space-around
+        | space-between | space-evenly;
+      </h4>
+      <h4>place-content: align-content justify-content;</h4>
+
+      <p>stretch（默认值）：项目大小没有指定时，拉伸占据整个网格容器</p>
+      <div class="container grid-8-1">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>start：对齐容器的起始位置</p>
+      <div class="container grid-8-2">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>end：对齐容器的结束位置</p>
+      <div class="container grid-8-3">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>center：容器内部居中</p>
+      <div class="container grid-8-4">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>
+        space-around：每个项目两侧的间隔相等。所以，项目之间的间隔比项目与容器边框的间隔大一倍
+      </p>
+      <div class="container grid-8-5">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>space-between：项目与项目之间的间隔相等，项目与容器边框之间没有间隔</p>
+      <div class="container grid-8-6">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+
+      <p>
+        space-evenly：项目与项目之间的间隔相等，项目与容器边框之间也是同样长度的间隔
+      </p>
+      <div class="container grid-8-7">
+        <div class="item item-1">1</div>
+        <div class="item item-2">2</div>
+        <div class="item item-3">3</div>
+        <div class="item item-4">4</div>
+        <div class="item item-5">5</div>
+        <div class="item item-6">6</div>
+        <div class="item item-7">7</div>
+        <div class="item item-8">8</div>
+        <div class="item item-9">9</div>
+      </div>
+    </div>
+
+    <!-- 9.grid-template/grid 属性 -->
+    <div>
+      <h2>
+        9.grid-template 属性，<br />
+        grid 属性
+      </h2>
+      <h3>
+        grid-template 是 grid-template-columns、grid-template-rows 和
+        grid-template-areas 这三个属性的合并简写形式
+        <br />
+        grid 是 grid-template-rows、grid-template-columns、grid-template-areas、
+        grid-auto-rows、grid-auto-columns、grid-auto-flow
+        这六个属性的合并简写形式
+      </h3>
+      <p>既不易写也不易读，不建议使用</p>
+    </div>
+  </body>
+</html>

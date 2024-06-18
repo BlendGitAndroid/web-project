@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>断点和书写位置</title>
+    <style>
+      /* 1.如何设置断点 Breakpoint */
+      /* @media screen and (min-width: 320px) {
+        body {
+          background-color: red;
+        }
+      } */
+
+      /* 1.1.经验总结 */
+      /*
+        Bootstrap 的断点
+          xs: < 576px 超小屏
+          sm: 576px ~ 768px 小屏
+          md: 768px ~ 992px 中屏
+          lg: 992px ~ 1200px 大屏
+          xl: >= 1200px 超大屏
+      */
+
+      /* 1.2.改变屏幕大小，当页面显示不正常（或不符合要求）的时候，就需要设置断点了 */
+
+      /* 2.媒体查询的书写位置 */
+      /* 2.1.样式表（style 标签或单独的 CSS 文件）中（推荐） */
+      /* 2.2.样式外链 link 中（不推荐） */
+      /* 不论媒体查询的条件是否满足，都会下载样式文件 */
+    </style>
+    <!-- <link rel="stylesheet" href="./css/index.css" /> -->
+    <!-- <link
+      rel="stylesheet"
+      href="./css/mobile.css"
+      media="screen and (max-width: 768px)"
+    />
+    <link
+      rel="stylesheet"
+      href="./css/pc.css"
+      media="screen and (min-width: 768px)"
+    /> -->
+  </head>
+  <body></body>
+</html>
