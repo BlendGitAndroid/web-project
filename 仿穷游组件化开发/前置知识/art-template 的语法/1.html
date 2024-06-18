@@ -71,6 +71,8 @@
     <script id="tpl-4-2-footer" type="text/html">
       <footer>我是{{page}}公共底部</footer>
     </script>
+
+
     <script id="tpl-4-2-index" type="text/html">
       {{include 'tpl-4-2-header'}}
       <% include('tpl-4-2-header', {page:'首页'}) %>
@@ -80,6 +82,8 @@
       {{include 'tpl-4-2-footer'}}
       <% include('tpl-4-2-footer', {page:'首页'}) %>
     </script>
+
+    
     <script id="tpl-4-2-list" type="text/html">
       <% include('tpl-4-2-header', {page:'列表页'}) %>
 

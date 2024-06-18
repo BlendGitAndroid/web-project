@@ -19,20 +19,20 @@
       // 1.CORS 是什么
       // const url = 'https://www.imooc.com';
 
-      // const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
-      // const xhr = new XMLHttpRequest();
+      const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+      const xhr = new XMLHttpRequest();
 
-      // xhr.onreadystatechange = () => {
-      //   if (xhr.readyState != 4) return;
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState != 4) return;
 
-      //   if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-      //     console.log(xhr.responseText);
-      //   }
-      // };
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+          console.log(xhr.responseText);
+        }
+      };
 
-      // xhr.open('GET', url, true);
+      xhr.open('GET', url, true);
 
-      // xhr.send(null);
+      xhr.send(null);
 
       // Access-Control-Allow-Origin: *
       // 表明允许所有的域名来跨域请求它，* 是通配符，没有任何限制

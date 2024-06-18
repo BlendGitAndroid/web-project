@@ -10,6 +10,7 @@
 
     <script src="https://unpkg.com/art-template@4.13.2/lib/template-web.js"></script>
 
+    <!-- 模板引擎id，type固定是text/html -->
     <script id="tpl-students" type="text/html">
       {{each students}}
         <li>{{$value.name}} {{$value.age}} {{$value.sex}}</li>
@@ -60,7 +61,9 @@
       // );
       const list = document.getElementById('list');
 
-      // 模板引擎输出的是字符串，是填充了数据的字符串
+      // 模板引擎输出的是字符串，是填充了数据的字符串，需要插入到页面中
+      // template 函数通常用于处理模板字符串。它接收两个参数：模板的 
+      // ID 和一个数据对象。在这个例子中，模板的 ID 是 'tpl-students'，数据对象是 { students }。
       list.innerHTML = template('tpl-students', {
         students
       });

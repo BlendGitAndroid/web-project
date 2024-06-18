@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vw + rem 布局方案</title>
+    <style>
+      img {
+        width: 100%;
+      }
+      .tabbar-layout {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.15);
+
+        /* width: 750px;
+  height: 96px; */
+
+        width: 75rem;
+        height: 9.6rem;
+      }
+    </style>
+    <style>
+      /* 1.原理 */
+      /* viewWidth / 750px = ?px / 10px */
+      /* 100vw / 750px = ?vw / 10px */
+      /* ?vw = 10px * 100vw / 750px */
+
+      /* 2.实现 */
+      html {
+        /* font-size: 10px; */
+        /* font-size: 10vw; */
+
+        /* 10px * 100vw / 750px */
+        font-size: 1.333333vw;
+      }
+    </style>
+    <script>
+      // {
+      //   const docEl = document.documentElement;
+
+      //   const setHtmlFontSize = () => {
+      //     const viewWidth = docEl.clientWidth;
+
+      //     docEl.style.fontSize = `${viewWidth / 75}px`;
+      //   };
+
+      //   setHtmlFontSize();
+      //   window.addEventListener('resize', setHtmlFontSize, false);
+      // }
+    </script>
+  </head>
+  <body>
+    <div class="tabbar-layout">
+      <img src="./tabbar.png" alt="标签栏" />
+    </div>
+  </body>
+</html>

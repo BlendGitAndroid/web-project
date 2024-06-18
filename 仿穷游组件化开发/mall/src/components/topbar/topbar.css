@@ -27,7 +27,8 @@
   position: absolute;
   width: 6px;
   height: 6px;
-  background: url(images/icons.png) no-repeat 0 0;
+  /* 引入图片地址 */
+  background: url(images/icons.png) no-repeat 0 0;  
   right: 8px;
   top: 50%;
   margin-top: -3px;

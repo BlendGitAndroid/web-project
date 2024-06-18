@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>vw 布局方案</title>
+    <style>
+      img {
+        width: 100%;
+      }
+      .tabbar-layout {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        box-shadow: 0 -4px 4px rgba(0, 0, 0, 0.15);
+
+        /* width: 100%;
+        height: 48px; */
+
+        /* width: 750px;
+        height: 96px; */
+
+        /* width: 100vw;
+        height: 12.8vw; */
+
+        width: 100vw;
+        /* width: 100%; */
+        height: 12.8vw;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="tabbar-layout"><img src="./tabbar.png" alt="标签栏" /></div>
+  </body>
+
+  <script>
+    // 1.原理
+    // 计算出测量的值对应的 vw 单位的值
+
+    // 测量px / 750px = ?vw / 100vw
+    // ?vw = 100vw * 测量px / 750px
+
+    // 1rem = 10px
+    // 75rem 9.6rem
+
+    // px2vw 插件
+
+    // 优先使用 vw 布局方案，如果条件不允许（比如浏览器不兼容 vw），再选择 rem 方案
+    // 修改历史项目的时候，如果该项目使用的是 rem 布局，可以使用 vw + rem 方案修改
+  </script>
+</html>

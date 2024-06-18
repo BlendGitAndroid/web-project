@@ -1,3 +1,4 @@
+<!-- 接收参数，通过inline和text -->
 <div class="loading {{ inline ? 'loading-inline' : '' }}">
   <div class="loading-indicator">
     <img src="./loading.gif" alt="loading" />

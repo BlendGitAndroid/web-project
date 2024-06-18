@@ -23,6 +23,8 @@ module.exports = {
     // })
 
     // 多入口，实例化多个 HtmlWebpackPlugin 实例
+    // 在 Webpack 中，一个 chunk 通常对应一个输出的 bundle 文件，它是一组模块的集合。Webpack 在构建过程中，
+    // 会根据一些规则（如入口点、代码分割、动态导入等）将模块分组到不同的 chunk 中。
     new HtmlWebpackPlugin({
       template: './index.html', // 模板文件
       filename: 'index.html', // 输出的文件名

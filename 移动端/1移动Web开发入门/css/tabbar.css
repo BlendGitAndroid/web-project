@@ -1,0 +1,24 @@
+/* tabbar */
+.tabbar {
+  height: 100%;
+  background-color: #f6f6f6;
+  font-size: 14px;
+}
+
+.tabbar-item {
+  float: left;
+  width: 33.333333%;
+  height: 100%;
+  padding-top: 3px;
+  color: #c2cfcc;
+  text-align: center;
+}
+.tabbar-item-active {
+  background-color: #e7f3f0;
+  color: #00b38a;
+}
+
+.tabbar-item .iconfont {
+  display: block;
+  font-size: 20px;
+}

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>视口演示</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+      }
+      .layout {
+        overflow: auto;
+        position: relative;
+        width: 375px;
+        height: 667px;
+        margin: 50px 0 0 400px;
+        border: 10px solid #000;
+      }
+      .viewport {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        /* border: 10px solid #000; */
+      }
+      .layout-img {
+        width: 980px;
+        transition: all 0.5s;
+      }
+      .layout-img-scale {
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <img
+        src="./images/viewport.png"
+        alt=""
+        id="layout-img"
+        class="layout-img"
+      />
+      <div class="viewport"></div>
+    </div>
+
+    <script>
+      const $img = document.getElementById('layout-img');
+
+      document.addEventListener(
+        'click',
+        () => {
+          $img.classList.toggle('layout-img-scale');
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

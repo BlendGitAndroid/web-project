@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Flex 基础知识</title>
+    <link rel="stylesheet" href="./basic.css" />
+    <style>
+      .flex-1 {
+        /* Flex 容器是块级元素 */
+        display: flex;
+
+        /* display: block; */
+
+        /* 修改主轴方向 */
+        /* flex-direction: column; */
+        /* flex-direction: row; */
+      }
+      .flex-2 {
+        /* Flex 容器是内联块元素 */
+        display: inline-flex;
+
+        /* display: inline-block; */
+      }
+    </style>
+  </head>
+  <body>
+    <div class="flex-container flex-1">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">4</div>
+    </div>
+
+    <!-- <div class="flex-container flex-2">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">4</div>
+    </div> -->
+
+    <!-- <div class="flex-container flex-2">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">4</div>
+    </div> -->
+
+    <img src="./flex.png" alt="flex" />
+
+    <script>
+      // 1.什么是 Flex 布局
+      // Flex 是 Flexible Box 的缩写，意为“弹性的盒子”，所以 Flex 布局一般也叫作“Flex 弹性布局”
+      // 任何一个 HTML 元素都可以指定为 Flex 布局
+      // display: flex | inline-flex;
+
+      // 2.什么是 Flex 容器（flex container）
+      // 采用 Flex 布局的元素，称为 Flex 容器
+
+      // 3.什么是 Flex 项目（flex item）
+      // Flex 容器的所有 子元素 自动成为容器成员，称为 Flex 项目
+
+      // 4.什么是主轴，什么是交叉轴
+      // 默认情况下，水平方向的是主轴，垂直于主轴方向的是交叉轴
+      // Flex 项目默认沿主轴起始排列
+    </script>
+  </body>
+</html>

@@ -21,8 +21,10 @@ module.exports = {
   devtool: 'cheap-module-eval-source-map',
   resolve: {
     // 自动补全（可以省略）的扩展名
+    // extensions 属性是一个数组，用于配置在导入语句中可以省略的文件扩展名。在这个例子中，.js 扩展名可以被省略。
+    // 例如，当你在代码中写 import MyComponent from './MyComponent' 时，Webpack 会尝试查找 ./MyComponent.js 文件。
     extensions: ['.js'],
-    // 路径别名
+    // 路径别名,当你在代码中写 import api from 'api' 时，Webpack 会将 api 解析为 src/api 的绝对路径。
     alias: {
       api: resolve('src/api'),
       fonts: resolve('src/assets/fonts'),
@@ -68,6 +70,8 @@ module.exports = {
       }
     ]
   },
+  // 这段代码的作用是创建一个HTML文件，这个文件的名称为index.html，并且内容基于./src/pages/index/index.art这个模板文件。
+  // 同时，webpack会自动将打包后的JavaScript文件注入到这个HTML文件中。
   plugins: [
     // 自动将依赖注入 html 模板，并输出最终的 html 文件到目标文件夹
     new HtmlWebpackPlugin({

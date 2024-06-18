@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>Flex 项目的属性</title>
+  <link rel="stylesheet" href="./basic.css" />
+  <style>
+    .flex-container {
+      display: flex;
+    }
+
+    /* 1.order 属性 */
+    .flex-1 .order {
+      order: -1;
+    }
+
+    /* 2.flex-grow 属性 */
+    .flex-2-1 .flex-item {
+      flex-grow: 1;
+    }
+
+    .flex-2-1 .grow-2 {
+      flex-grow: 2;
+    }
+
+    .flex-2-2 .grow {
+      flex-grow: 1;
+    }
+
+    /* 3.flex-shrink 属性 */
+    .flex-3 .flex-item {
+      flex-shrink: 2;
+    }
+
+    .flex-3 .shrink-0 {
+      flex-shrink: 0;
+    }
+
+    /* 4.flex-basis 属性 */
+    .flex-4 .flex-item {
+      /* width: 400px; */
+      flex-basis: 400px;
+      /* height: 400px; */
+    }
+
+    .flex-4 {
+      flex-direction: column;
+    }
+
+    /* 5.flex 属性 */
+    .flex-5-1 .flex-item {
+      /* flex: 0 1 auto; */
+      flex: auto;
+    }
+
+    .flex-5-2 .flex-item {
+      flex: none;
+    }
+
+    /* 6.align-self 属性 */
+    .flex-6 {
+      height: 600px;
+
+      /* align-items: stretch; */
+      align-items: center;
+    }
+
+    .flex-6 .flex-item {
+      /* height: auto; */
+      /* 优先级最高，如果一个样式声明后面加上了!important，那么这个声明的优先级会变得非常高，无论其他规则的优先级如何，只要它们没有使用!important，都会被这个声明覆盖。 */
+      /* align-self: baseline !important;  */
+      text-decoration: underline;
+    }
+
+    .flex-6 .auto {
+      align-self: auto;
+    }
+
+    .flex-6 .start {
+      align-self: flex-start;
+    }
+
+    .flex-6 .end {
+      align-self: flex-end;
+    }
+
+    .flex-6 .center {
+      align-self: center;
+    }
+
+    .flex-6 .stretch {
+      height: auto;
+      align-self: stretch;
+    }
+
+    .flex-6 .baseline {
+      font-size: 24px;
+      align-self: baseline;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <img src="./flex.png" alt="flex" /> -->
+
+  <!-- 1.order 属性 -->
+  <div>
+    <h2>1.order 属性</h2>
+    <div class="flex-container flex-1">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item order">
+        4
+        <span class="desc">order: -1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2.flex-grow 属性 -->
+  <div>
+    <h2>2.flex-grow 属性</h2>
+    <p>
+      如果所有项目的 flex-grow 属性都为 1，则它们将等分剩余空间（如果有的话）
+    </p>
+    <div class="flex-container flex-2-1">
+      <div class="flex-item">
+        1
+        <span class="desc">flex-grow: 1</span>
+      </div>
+      <div class="flex-item">
+        2
+        <span class="desc">flex-grow: 1</span>
+      </div>
+      <div class="flex-item">
+        3
+        <span class="desc">flex-grow: 1</span>
+      </div>
+    </div>
+
+    <p>
+      如果一个项目的 flex-grow 属性为 2，其他项目都为
+      1，则前者占据的剩余空间将比其他项多一倍
+    </p>
+    <div class="flex-container flex-2-1">
+      <div class="flex-item">
+        1
+        <span class="desc">flex-grow: 1</span>
+      </div>
+      <div class="flex-item grow-2">
+        2
+        <span class="desc">flex-grow: 2</span>
+      </div>
+      <div class="flex-item">
+        3
+        <span class="desc">flex-grow: 1</span>
+      </div>
+    </div>
+
+    <p>
+      如果有的 Flex 项目有 flex-grow 属性，有的项目没有 flex-grow 属性，但有
+      width 这样的属性，有 flex-grow 属性的项目将等分剩余空间
+    </p>
+    <div class="flex-container flex-2-2">
+      <div class="flex-item grow">
+        1
+        <span class="desc">flex-grow: 1</span>
+      </div>
+      <div class="flex-item">
+        2
+        <span class="desc">width: 200</span>
+      </div>
+      <div class="flex-item grow">
+        3
+        <span class="desc">flex-grow: 1</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3.flex-shrink 属性 -->
+  <div>
+    <h2>3.flex-shrink 属性</h2>
+
+    <p>
+      如果所有项目的 flex-shrink 属性都不为 0，当空间不足时，都将等比例缩小
+    </p>
+    <div class="flex-container flex-3">
+      <div class="flex-item">
+        1
+        <span class="desc">flex-shrink: 1</span>
+      </div>
+      <div class="flex-item">
+        2
+        <span class="desc">flex-shrink: 1</span>
+      </div>
+      <div class="flex-item">
+        3
+        <span class="desc">flex-shrink: 1</span>
+      </div>
+      <div class="flex-item">
+        4
+        <span class="desc">flex-shrink: 1</span>
+      </div>
+      <div class="flex-item">
+        5
+        <span class="desc">flex-shrink: 1</span>
+      </div>
+    </div>
+
+    <p>
+      如果一个项目的 flex-shrink 属性为 0，其他项目都为
+      1，则空间不足时，前者不缩小
+    </p>
+    <div class="flex-container flex-3">
+      <div class="flex-item shrink-0">
+        1
+        <span class="desc">flex-shrink: 0</span>
+      </div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">4</div>
+      <div class="flex-item">5</div>
+    </div>
+  </div>
+
+  <!-- 4.flex-basis 属性 -->
+  <div>
+    <h2>4.flex-basis 属性</h2>
+
+    <div class="flex-container flex-4">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+    </div>
+  </div>
+
+  <!-- 5.flex 属性 -->
+  <div>
+    <h2>5.flex 属性。flex属性的值通常是两个或三个数值，分别对应flex-grow、flex-shrink和flex-basis属性。例如，flex: 1 1 0表示flex-grow: 1、flex-shrink: 1和flex-basis: 0。</h2>
+    <p>flex: auto (1 1 auto)</p>
+    <div class="flex-container flex-5-1">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">4</div>
+      <div class="flex-item">5</div>
+      <div class="flex-item">6</div>
+    </div>
+
+    <p>flex: none (0 0 auto)</p>
+    <div class="flex-container flex-5-2">
+      <div class="flex-item">1</div>
+      <div class="flex-item">2</div>
+      <div class="flex-item">3</div>
+      <div class="flex-item">4</div>
+      <div class="flex-item">5</div>
+      <div class="flex-item">6</div>
+    </div>
+  </div>
+
+  <!-- 6.align-self 属性 -->
+  <div>
+    <h2>6.align-self 属性，允许单个项目有与其他项目不一样的对齐方式</h2>
+    <div class="flex-container flex-6">
+      <div class="flex-item auto">
+        1
+        <span class="desc">auto</span>
+      </div>
+      <div class="flex-item start">
+        2
+        <span class="desc">flex-start</span>
+      </div>
+      <div class="flex-item end">
+        3
+        <span class="desc">flex-end</span>
+      </div>
+      <div class="flex-item center">
+        4
+        <span class="desc">center</span>
+      </div>
+      <div class="flex-item stretch">
+        5
+        <span class="desc">stretch</span>
+      </div>
+      <div class="flex-item baseline">
+        6
+        <span class="desc">baseline</span>
+      </div>
+    </div>
+
+    <img src="./baseline.png" alt="baseline" />
+  </div>
+  <script>
+    // 1.order
+    // 定义了 Flex 项目的排列顺序
+    // 数值越小，排列越靠前，默认为 0
+    // order: <integer>;  /* default 0 */
+
+    // 2.flex-grow
+    // 定义了 Flex 项目在主轴方向上的放大比例，默认为 0，即如果存在剩余空间，该项目也不放大
+    // flex-grow: <number>; /* default 0 */
+
+    // 3.flex-shrink
+    // 定义了 Flex 项目在主轴方向上的缩小比例，默认为 1，即如果空间不足，该项目将缩小
+    // flex-shrink: <number>; /* default 1 */
+
+    // 4.flex-basis
+    // 定义了在分配多余空间之前，Flex 项目占据的主轴大小（main size）
+    // 浏览器根据这个属性，计算主轴是否有多余空间
+    // 它的默认值为 auto，即项目的本来大小
+    // flex-basis: <length>; | auto; /* default auto */
+
+    // 5.flex
+    // 是 flex-grow, flex-shrink 和 flex-basis 的简写，默认值为 0 1 auto
+    // flex: <flex-grow> || <flex-shrink> || <flex-basis>
+    // 该属性有两个快捷值：auto (1 1 auto) 和 none (0 0 auto)
+
+    // 6.align-self
+    // 允许单个项目有与其他项目不一样的对齐方式，可覆盖 align-items 属性
+    // align-self: auto（默认值） | flex-start | flex-end | center | stretch | baseline;
+  </script>
+</body>
+
+</html>
