@@ -103,17 +103,28 @@
       } */
 
       /* dpr <= 2 且屏幕水平方向 */
+      @media (-webkit-max-device-pixel-ratio: 3) and (orientation: landscape) {
+        body {
+          background-color: green;
+        }
+      }
       @media (-webkit-max-device-pixel-ratio: 2) and (orientation: landscape) {
         body {
           background-color: red;
+        }
+      }
+      @media (-webkit-max-device-pixel-ratio: 1) and (orientation: landscape) {
+        body {
+          background-color: pink;
         }
       }
     </style>
   </head>
   <body>
     <script>
-      // 获取 dpr
-      // console.log(window.devicePixelRatio);
+      // 获取 dpr,像素比（Device Pixel Ratio，简称DPR）是一个非常重要的概念，因为它直接影响到网页上图像和元素的显示效果。
+      // 在高DPR的屏幕上，一个CSS像素可能对应多个物理像素，这意味着为了保持图像的清晰度和细节，需要提供更高分辨率的图像。
+      console.log(window.devicePixelRatio);
     </script>
   </body>
 </html>

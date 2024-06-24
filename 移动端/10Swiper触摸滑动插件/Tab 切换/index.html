@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tab 切换</title>
+    <link rel="stylesheet" href="./swiper-bundle.min.css" />
+    <style>
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
+      }
+      a {
+        text-decoration: none;
+        color: #333;
+      }
+      a:hover {
+        color: #409eff;
+      }
+      li {
+        list-style: none;
+      }
+      body {
+        padding: 24px;
+      }
+      .tab-header {
+        display: flex;
+        justify-content: space-between;
+        line-height: 30px;
+      }
+      .tab-label-active {
+        color: #409eff;
+        border-bottom: 2px solid #409eff;
+      }
+      .tab-item {
+        line-height: 40px;
+        border-bottom: 1px solid #ebebeb;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="tab-header" class="tab-header">
+      <a href="javascript:;" class="tab-label tab-label-active" data-index="0"
+        >在线演示</a
+      >
+      <a href="javascript:;" class="tab-label" data-index="1">中文教程</a>
+      <a href="javascript:;" class="tab-label" data-index="2">获取 Swiper</a>
+    </div>
+    <div id="tab-content" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">
+          <ul>
+            <li class="tab-item">Swiper 基础演示</li>
+            <li class="tab-item">Swiper 精彩应用（移动）</li>
+            <li class="tab-item">Swiper 精彩应用（PC）</li>
+          </ul>
+        </div>
+        <div class="swiper-slide">
+          <ul>
+            <li class="tab-item">Swiper 使用方法</li>
+            <li class="tab-item">Swiper Animate 使用方法</li>
+            <li class="tab-item">Swiper 与 DOM</li>
+          </ul>
+        </div>
+        <div class="swiper-slide">
+          <ul>
+            <li class="tab-item">下载 Swiper</li>
+            <li class="tab-item">Swiper CDN 地址</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <script src="./swiper-bundle.min.js"></script>
+    <script>
+      const $tabHeader = document.getElementById('tab-header');
+      const $tabLabels = $tabHeader.querySelectorAll('.tab-label');
+
+      const tabSwiper = new Swiper('#tab-content', {
+        autoplay: true,
+        on: {
+          slideChangeTransitionEnd() {
+            // console.log(this.activeIndex);
+            for (const $el of $tabLabels) {
+              $el.classList.remove('tab-label-active');
+            }
+            $tabLabels[this.activeIndex].classList.add('tab-label-active');
+          }
+        }
+      });
+
+      // 点击切换选项卡--事件代理
+      $tabHeader.addEventListener(
+        'click',
+        evt => {
+          const $el = evt.target;
+
+          if ($el.classList.contains('tab-label')) {
+            tabSwiper.slideTo($el.dataset.index);
+          }
+        },
+        false
+      );
+    </script>
+  </body>
+</html>

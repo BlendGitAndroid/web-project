@@ -51,6 +51,10 @@
 
       const $box = document.getElementById('box');
 
+      // 获取box元素的位置
+      const boxRect = $box.getBoundingClientRect();
+      console.log(boxRect);
+
       $box.addEventListener('touchstart', startHandler, false);
       // $box.addEventListener('touchmove', moveHandler, false);
       // $box.addEventListener('touchend', endHandler, false);
@@ -69,18 +73,20 @@
 
         // 2.触摸点的常用属性
         const touch = evt.changedTouches[0];
-        // console.log(touch);
-        // console.log(touch.identifier);
-        // console.log(touch.target);
-        // console.log(touch.screenX, touch.screenY);
-        // console.log(touch.clientX, touch.clientY);
-        // console.log(touch.pageX, touch.pageY);
+        console.log(touch);
+        console.log(touch.identifier);
+        console.log(touch.target);
+        console.log(touch.screenX, touch.screenY);
+        console.log(touch.clientX, touch.clientY);
+        console.log(touch.pageX, touch.pageY);
 
         // 3.阻止浏览器的默认行为
-        // evt.preventDefault();
+        evt.preventDefault();
       }
       function moveHandler(evt) {
         console.log('touchmove');
+        const touch = evt.changedTouches[0];
+        console.log(touch.screenX, touch.screenY);
       }
       function endHandler(evt) {
         // console.log('touchend');

@@ -52,6 +52,8 @@
       document.addEventListener(
         'click',
         () => {
+          // toggle方法接受一个参数，即你想要切换的类名。在这个例子中，类名是'layout-img-scale'。
+          // 这个方法的工作原理是检查指定的元素是否已经包含了给定的类名。如果已经包含了，它就会移除这个类名，如果没有包含，则会添加这个类名。
           $img.classList.toggle('layout-img-scale');
         },
         false

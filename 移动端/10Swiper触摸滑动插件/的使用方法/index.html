@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Swiper 的使用方法</title>
+    <link rel="stylesheet" href="./swiper-bundle.min.css">
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+      }
+      .swiper-container {
+        width: 375px;
+        height: 300px;
+      }
+      .swiper-slide {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 80px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="swiper" class="swiper-container">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide">Slide 1</div>
+        <div class="swiper-slide">Slide 2</div>
+        <div class="swiper-slide">Slide 3</div>
+      </div>
+      <!-- 如果需要分页器 -->
+      <div class="swiper-pagination"></div>
+
+      <!-- 如果需要导航按钮 -->
+      <div class="swiper-button-prev"></div>
+      <div class="swiper-button-next"></div>
+
+      <!-- 如果需要滚动条 -->
+      <div class="swiper-scrollbar"></div>
+    </div>
+
+    <script src="./swiper-bundle.min.js"></script>
+    <script>
+      // 1.Swiper 的使用流程
+      // 1.1.加载 Swiper 文件
+      // 加载 swiper-bundle.min.js 和 swiper-bundle.min.css 文件
+
+      // 1.2.完成 Swiper 的 HTML 结构和 CSS 样式
+
+      // 1.3.初始化 Swiper
+      const mySwiper = new Swiper ('#swiper', {
+        // direction: 'vertical', // 垂直切换选项
+        loop: true, // 循环模式选项
+        
+        // 如果需要分页器
+        pagination: {
+          el: '.swiper-pagination',
+        },
+        
+        // 如果需要前进后退按钮
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+        
+        // 如果需要滚动条
+        scrollbar: {
+          el: '.swiper-scrollbar',
+        },
+      });
+
+      // 2.版本升级怎么办
+      // 一切以官网为准
+      // Swiper 官网：https://www.swiper.com.cn
+      // Swiper 使用方法：https://www.swiper.com.cn/usage/index.html
+      // 各种版本下载地址：https://github.com/nolimits4web/swiper
+    </script>
+  </body>
+</html>

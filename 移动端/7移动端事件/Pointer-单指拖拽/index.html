@@ -113,6 +113,8 @@
         // $el.addEventListener('pointermove', moveHandler, false);
         // $el.addEventListener('pointerup', endHandler, false);
         // $el.addEventListener('pointercancel', endHandler, false);
+
+        // 阻止移动端默认行为
         $el.addEventListener(
           'touchstart',
           evt => {
@@ -122,6 +124,7 @@
         );
 
         function startHandler(evt) {
+          evt.preventDefault();
           startPoint.x = evt.pageX;
           startPoint.y = evt.pageY;
 
@@ -130,7 +133,6 @@
           document.addEventListener('pointercancel', endHandler, false);
         }
         function moveHandler(evt) {
-          evt.preventDefault();
 
           movePoint.x = curPos.x + evt.pageX - startPoint.x;
           movePoint.y = curPos.y + evt.pageY - startPoint.y;
