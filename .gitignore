@@ -1,0 +1,5 @@
+node_modules/
+compressed/
+/.idea/
+*.iml
+.DS_Store
