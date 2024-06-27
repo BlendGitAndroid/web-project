@@ -52,13 +52,15 @@
           // }, 200);
 
           // 2.2.消失过程中添加动画效果
+          console.time('click');
           $mask.style.opacity = 0;
         },
         false
       );
       $mask.addEventListener(
-        'transitionend',
+        'transitionend',  // 动画结束事件
         () => {
+          console.timeEnd('click');
           $mask.style.display = 'none';
         },
         false

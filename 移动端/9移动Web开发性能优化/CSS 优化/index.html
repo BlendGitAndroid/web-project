@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>CSS 优化</title>
     <style>
+      /* CSS优化，CSS优先会解析成CSS树，然后和DOM树一起被渲染
+        CSS解析的时候，会从右往左解析，如果嵌套过多，就会导致解析时间过长
+      */
       /* 1.选择器优化 */
       /* 1.1.不要使用嵌套过多过于复杂的选择器，可以通过样式直接选择 */
       /* 1.2.保持简单，不要画蛇添足 */
@@ -12,9 +15,12 @@
       /* ul li a {
         text-decoration: none;
       } */
+
+      /* 组合选择器下面语句的意思是：class是list的ul，class是list-item的li，class是list-link和a */
       /* ul.list li.list-item a.list-link {
         text-decoration: none;
       } */
+
       /* .list-link {
         text-decoration: none;
       } */
@@ -26,7 +32,7 @@
         margin: 0;
       } */
 
-      /* 1.4.移除无匹配的样式 */
+      /* 1.4.移除无匹配的样式，把没有匹配的样式删除掉 */
       /* .list {
       } */
 
@@ -49,7 +55,7 @@
 
       /* 2.2.避免使用 CSS @import 导入 CSS */
       /* 会发送多余的 HTTP 请求 */
-      /* less sass */
+      /* less sass这样的可以用，他们会将代码拷贝过来 */
       @import './reset.css';
     </style>
   </head>

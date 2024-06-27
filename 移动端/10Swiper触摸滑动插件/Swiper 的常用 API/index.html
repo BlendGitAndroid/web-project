@@ -102,14 +102,15 @@
         // slidesPerView: 2
         // freeMode: true
         // loop: true,
+        // 监听事件
         on: {
           init: function (swiper) {
             // console.log(this === swiper);
             // console.log('init');
             // console.log(this);
-            console.log(this.activeIndex);
-            console.log(this.previousIndex);
-            console.log(this.width, this.height);
+            console.log(this.activeIndex);  //当前活跃的索引
+            console.log(this.previousIndex);  // 上一个索引
+            console.log(this.width, this.height); // swiper 容器的宽高
           },
           slideChangeTransitionStart: function (swiper) {
             // console.log(this === swiper);
@@ -131,7 +132,7 @@
         // }
 
         pagination: {
-          el: '.swiper-pagination',
+          el: '.swiper-pagination', // 分页器，使用.来指定类名，使用点（.）前缀表示这是一个类选择器，这是CSS选择器的一部分，用于选择具有指定类名的元素。
           clickable: true
         },
 

@@ -25,7 +25,9 @@
     <div id="mask" class="mask"></div>
 
     <script>
-      // requestAnimationFrame
+      // 优先使用css3的过渡和动画
+      // 优先使用translate3d，开启GPU加速
+      // requestAnimationFrame，浏览器每次重绘之前执行，请求动画的下一帧
       // 和 setTimeout 类似
       const $mask = document.getElementById('mask');
 

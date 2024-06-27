@@ -1,148 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>图片懒加载</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
-      /* .img-container {
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>图片懒加载</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    /* .img-container {
       } */
-      img {
-        width: 100%;
-        height: 183px;
-      }
-    </style>
-  </head>
-  <body>
-    <!-- <div class="img-container"><img src="./images/1.jpg" alt="" /></div>
+    img {
+      width: 100%;
+      height: 183px;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="img-container"><img src="./images/1.jpg" alt="" /></div>
     <div class="img-container"><img src="./images/2.jpg" alt="" /></div>
     <div class="img-container"><img src="./images/3.jpg" alt="" /></div>
     <div class="img-container"><img src="./images/4.jpg" alt="" /></div> -->
 
-    <div class="img-container">
-      <img
-        src="./images/loading.gif"
-        alt=""
-        data-src="./images/1.jpg"
-        class="lazyload"
-      />
-    </div>
-    <div class="img-container">
-      <img
-        src="./images/loading.gif"
-        alt=""
-        data-src="./images/2.jpg"
-        class="lazyload"
-      />
-    </div>
-    <div class="img-container">
-      <img
-        src="./images/loading.gif"
-        alt=""
-        data-src="./images/3.jpg"
-        class="lazyload"
-      />
-    </div>
-    <div class="img-container">
-      <img
-        src="./images/loading.gif"
-        alt=""
-        data-src="./images/4.jpg"
-        class="lazyload"
-      />
-    </div>
-    <div class="img-container">
-      <img
-        src="./images/loading.gif"
-        alt=""
-        data-src="./images/5.jpg"
-        class="lazyload"
-      />
-    </div>
+  <div class="img-container">
+    <img src="./images/loading.gif" alt="" data-src="./images/1.jpg" class="lazyload" />
+  </div>
+  <div class="img-container">
+    <img src="./images/loading.gif" alt="" data-src="./images/2.jpg" class="lazyload" />
+  </div>
+  <div class="img-container">
+    <img src="./images/loading.gif" alt="" data-src="./images/3.jpg" class="lazyload" />
+  </div>
+  <div class="img-container">
+    <img src="./images/loading.gif" alt="" data-src="./images/4.jpg" class="lazyload" />
+  </div>
+  <div class="img-container">
+    <img src="./images/loading.gif" alt="" data-src="./images/5.jpg" class="lazyload" />
+  </div>
 
-    <script>
-      // 1.什么是图片懒加载
-      // 图片懒加载又叫图片延迟（按需）加载
-      // 在需要的时候加载图片
+  <script>
+    // 1.什么是图片懒加载
+    // 图片懒加载又叫图片延迟（按需）加载
+    // 在需要的时候加载图片
 
-      // 2.图片懒加载的实现
-      // 图片要设置高度
-      const imgs = [...document.querySelectorAll('.lazyload')];
-      // console.log(imgs);
+    // 2.图片懒加载的实现，真正的图片放在 data-src 属性中，这个属性是 HTML5 自定义属性
+    // 图片懒加载，一定要设置高度，图片要设置高度，否则图片刚开始时高度都是0，都会把图片加载出来
+    const imgs = [...document.querySelectorAll('.lazyload')]; // 类数组转数组
+    // console.log(imgs);
 
-      lazyload();
+    lazyload();
 
-      // window.addEventListener('scroll', lazyload, false);
-      window.addEventListener('scroll', debounce(lazyload), false);
+    // window.addEventListener('scroll', lazyload, false);
+    window.addEventListener('scroll', debounce(lazyload), false);
 
-      // 不适用
-      // window.addEventListener('scroll', throttle(lazyload), false);
+    // 不适用
+    // window.addEventListener('scroll', throttle(lazyload), false);
 
-      function lazyload() {
-        console.log('lazyload');
+    function lazyload() {
+      console.log('lazyload');
 
-        for (let i = 0; i < imgs.length; i++) {
-          const $img = imgs[i];
+      for (let i = 0; i < imgs.length; i++) {
+        const $img = imgs[i];
 
-          if (isInVisibleArea($img)) {
-            $img.src = $img.dataset.src;
-            imgs.splice(i, 1);
-            i--;
-          }
+        if (isInVisibleArea($img)) {
+          $img.src = $img.dataset.src;  // dataset.src获取的是data-src的值
+          imgs.splice(i, 1);  // 加载完后删除，splice() 方法向/从数组中添加/删除项目，然后返回被删除的项目,splice(i, 1)删除第i个元素
+          i--;
         }
       }
+    }
 
-      // DOM 元素是否在可视区域内
-      function isInVisibleArea($el) {
-        const rect = $el.getBoundingClientRect();
-        // console.log(rect);
+    // DOM 元素是否在可视区域内
+    function isInVisibleArea($el) {
+      const rect = $el.getBoundingClientRect();
+      // console.log(rect);
 
-        return (
-          rect.bottom > 0 &&
-          rect.top < window.innerHeight &&
-          rect.right > 0 &&
-          rect.left < window.innerWidth
-        );
-      }
+      return (
+        rect.bottom > 0 &&  // 元素底部在可视区域内
+        rect.top < window.innerHeight && // 元素顶部在可视区域内
+        rect.right > 0 &&
+        rect.left < window.innerWidth
+      );
+    }
 
-      // 防抖 debounce
-      // 在某个时间期限内，事件处理函数只执行一次
-      function debounce(fn, miliseconds = 250, context) {
-        let timer = null;
+    // 防抖 debounce
+    // 在某个时间期限内，事件处理函数只执行一次
+    function debounce(fn, miliseconds = 250, context) {
+      let timer = null;
 
-        return function (...args) {
-          const self = context || this;
+      return function (...args) {
+        const self = context || this;
 
-          if (timer) {
-            clearTimeout(timer);
-          }
+        if (timer) {
+          clearTimeout(timer);
+        }
 
-          timer = setTimeout(() => {
-            fn.apply(self, args);
-            timer = null;
-          }, miliseconds);
-        };
-      }
+        timer = setTimeout(() => {
+          fn.apply(self, args);
+          timer = null;
+        }, miliseconds);
+      };
+    }
 
-      // 节流 throttle
-      // 事件处理函数执行一次后，在某个时间期限内不再工作
-      function throttle(fn, miliseconds = 250, context) {
-        let lastEventTimestamp = null;
+    /*
+    防抖和节流是两种常用于前端开发中的优化技术，用于控制某些频繁触发的操作。它们的主要区别在于它们如何限制函数的执行频率和时机。
 
-        return function (...args) {
-          const self = context || this;
-          const now = Date.now();
+1. 防抖（Debouncing）：
+ - 防抖的原理是在短时间内连续触发的事件，只执行一次回调。也就是说，如果在设定的时间间隔内再次触发事件，那么上一次的回调会被取消，
+   并重新设置一个新的定时器。
+ - 防抖通常用于处理输入框的输入事件，例如用户正在输入搜索关键字时，不希望每输入一个字就发起一次搜索请求，而是等待用户输入完成一段时间后再发送请求。
 
-          if (!lastEventTimestamp || now - lastEventTimestamp >= miliseconds) {
-            lastEventTimestamp = now;
-            fn.apply(self, args);
-          }
-        };
-      }
-    </script>
-  </body>
+2. 节流（Throttling）：
+ - 节流的原理是在一定时间内只执行一次回调。即使在设定的时间间隔内再次触发事件，也会被忽略。在某些情况下，节流可以看作是将连续的触发事件拦截成一个。
+ - 节流通常用于处理页面滚动、窗口调整等事件，确保在一段时间内只执行一次回调，减少不必要的计算和渲染。
+
+总的来说，防抖和节流都是用于优化处理频繁触发的操作，但它们的处理方式略有不同，分别适用于不同的场景。
+    */
+    // 节流 throttle
+    // 事件处理函数执行一次后，在某个时间期限内不再工作
+    function throttle(fn, miliseconds = 250, context) {
+      let lastEventTimestamp = null;
+
+      return function (...args) {
+        const self = context || this;
+        const now = Date.now();
+
+        if (!lastEventTimestamp || now - lastEventTimestamp >= miliseconds) {
+          lastEventTimestamp = now;
+          fn.apply(self, args);
+        }
+      };
+    }
+  </script>
+</body>
+
 </html>

@@ -1,70 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no"
-    />
-    <title>移动端图片</title>
-    <style>
-      * {
-        padding: 0;
-        margin: 0;
-      }
 
-      /* 1.img 图片 */
-      /* 一般使用百分比，并且只设置宽度或高度中的一个，不同时设置，让宽高能够等比例缩放，图片不失真 */
-      .img-container {
-        display: flex;
-        justify-content: center;
-      }
-      img {
-        /* 当图片实际宽度小于父容器宽度时，图片会被强行拉伸至与父容器同宽 */
-        width: 100%;
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no" />
+  <title>移动端图片</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
 
-        /* 当图片实际宽度小于父容器宽度时，图片不会随着父容器宽度的变大而进一步拉伸 */
-        /* max-width: 100%; */
-      }
+    /* 1.img 图片的处理方式有两种，一种是100%，另外一种是超过最大值居中显示 */
+    /* 一般使用百分比，并且只设置宽度或高度中的一个，不同时设置，让宽高能够等比例缩放，图片不失真 */
+    /* 当结合max-width时，需要使用justify-content: center;，使图片居中 */
+    .img-container {
+      display: flex;
+      justify-content: center;
+    }
 
-      /* 2.背景图片 */
+    img {
+      /* 当图片实际宽度小于父容器宽度时，图片会被强行拉伸至与父容器同宽 */
+      /* width: 100%; */
+
+      /* 当图片实际宽度小于父容器宽度时，图片不会随着父容器宽度的变大而进一步拉伸，不至于使图片不清晰 */
+      max-width: 100%;
+    }
+
+    /* 2.背景图片 */
+    .bg-container {
+      width: 100%;
+
+      /* 2.1.如果高度固定 */
+      /* height: 200px; */
+
+      /* 2.2.如果高度不固定，相对于宽度的百分比，使用padding-top，使用 padding-top 来基于宽度的百分比设
+      置元素的高度是一种巧妙利用 CSS 规范的方法，特别适用于需要保持特定宽高比的响应式设计场景 */
+      /* 563px 224px */
+      /* 和使用 img 标签引入图片的方式类似 */
+      /* 相对于宽度的百分比 */
+      padding-top: 39.7869%;
+
+      /* background-color: red; */
+
+      /* 小屏幕使用小图片 */
+      background: url(./bg.png) no-repeat;
+
+      /* 缩放背景图片以完全覆盖背景区，可能背景图片部分看不见，因为高度固定了 */
+      background-size: cover;
+    }
+
+    /* 在CSS中，结合媒询一起使用 */
+    /* 大屏幕使用大图片
+      `padding-top: 39.7869%;` 是一个CSS属性，用于设置元素顶部的内边距。这里的值`39.7869%`是相对于元素的宽度计算的，而不是高度。
+      这意味着，无论元素的实际高度是多少，其顶部的内边距都将是其宽度的39.7869%。这种使用百分比来设置内边距的方法，特别是当用于顶部
+      或底部内边距时，可以在响应式设计中非常有用，因为它允许元素的高度根据其宽度自动调整，从而保持一定的宽高比。例如，如果你正在创
+      建一个响应式的图片容器，希望无论屏幕大小如何变化，该容器都保持特定的宽高比，比如16:9。你可以通过设置容器的`padding-top`或
+      `padding-bottom`为宽度的56.25%（16:9的宽高比转换为百分比）来实现。在这个例子中，使用了`39.7869%`，这可能对应于某个特定的
+      宽高比，或者是为了达到特定的设计效果而精确计算出来的值。使用这种方法时，通常会将元素的内容放在一个绝对定位的子元素中，该子元
+      素相对于具有百分比内边距的父元素定位。这样可以确保内容正确地填充在由内边距创建的空间内，同时保持了父元素的宽高比。
+      总之，`padding-top: 39.7869%;`是一种利用CSS内边距和百分比单位来控制元素高度和实现特定宽高比的技巧，这在制作响应式设计时非常有用。
+      */
+    @media (min-width: 560px) {
       .bg-container {
-        width: 100%;
-
-        /* 2.1.如果高度固定 */
-        /* height: 200px; */
-
-        /* 2.2.如果高度不固定 */
-        /* 563px 224px */
-        /* 和使用 img 标签引入图片的方式类似 */
-        /* 相对于宽度的百分比 */
-        padding-top: 39.7869%;
-
-        /* background-color: red; */
-
-        /* 小屏幕使用小图片 */
-        background: url(./bg.png) no-repeat;
-
-        /* 缩放背景图片以完全覆盖背景区，可能背景图片部分看不见 */
-        background-size: cover;
+        background-image: url(./bg_lg.png);
       }
+    }
+  </style>
+</head>
 
-      /* 结合媒询一起使用 */
-      /* 大屏幕使用大图片 */
-      @media (min-width: 560px) {
-        .bg-container {
-          background-image: url(./bg_lg.png);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <!-- 1.img 图片 -->
-    <!-- <div class="img-container">
+<body>
+  <!-- 1.img 图片 -->
+  <!-- <div class="img-container">
       <img src="img.jpg" alt="" />
     </div> -->
 
-    <!-- 2.背景图片 -->
-    <div class="bg-container"></div>
-  </body>
+  <!-- 2.背景图片 -->
+  <div class="bg-container"></div>
+</body>
+
 </html>

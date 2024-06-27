@@ -70,7 +70,13 @@
       function debounce(fn, miliseconds = 250, context) {
         let timer = null;
 
+        // 返回一个函数
         return function (...args) {
+
+          // 这里是event对象
+          console.log('debounce args', [...args][0].type);
+
+          // 获取到 this
           const self = context || this;
 
           if (timer) {

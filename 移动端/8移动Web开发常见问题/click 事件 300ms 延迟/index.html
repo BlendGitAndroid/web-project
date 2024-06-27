@@ -1,76 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no"
-    />
-    <title>click 事件 300ms 延迟</title>
-    <style>
-      .btn {
-        width: 100%;
-        height: 300px;
-        font-size: 100px;
 
-        /* touch-action: manipulation; */
-      }
-    </style>
-  </head>
-  <body>
-    <button id="btn" class="btn">提交</button>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, minimum-scale=1,maximum-scale=1, user-scalable=no" />
+  <title>click 事件 300ms 延迟</title>
+  <style>
+    .btn {
+      width: 100%;
+      height: 300px;
+      font-size: 100px;
 
-    <script src="https://cdn.bootcdn.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
-    <script>
-      // 1.移动端 click 事件 300ms 延迟的原因
-      // 原因：double-tap to zoom 双击缩放
+      /* touch-action: manipulation; */
+    }
+  </style>
+</head>
 
-      // 2.解决方案
-      // 2.1.不使用 click 事件，把 click 事件中要处理的放到 touchstart 或 touchend 中去处理
+<body>
+  <button id="btn" class="btn">提交</button>
 
-      // 2.2.禁止双击缩放（浏览器厂商的努力）
-      // https://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
+  <script src="https://cdn.bootcdn.net/ajax/libs/fastclick/1.0.6/fastclick.min.js"></script>
+  <script>
+    // 1.移动端 click 事件 300ms 延迟的原因
+    // 原因：double-tap to zoom 双击缩放功能，浏览器等待 300ms 确定是否要触发双击缩放
 
-      // 2.2.1.viewport 中禁止缩放
-      // 2.2.2.touch-action: manipulation;
+    // 2.解决方案
+    // 2.1.不使用 click 事件，把 click 事件中要处理的放到 touchstart 或 touchend 中去处理，但是这种方式不推荐，
+    // 因为 touchstart 和 touchend 事件会在用户滑动屏幕时触发，可能会导致误操作
 
-      // 2.3.使用 Fastclick 库
-      // 主要针对老版本浏览器
-      // https://github.com/ftlabs/fastclick
-      if ('addEventListener' in document) {
-        document.addEventListener(
-          'DOMContentLoaded',
-          function () {
-            FastClick.attach(document.body);
-          },
-          false
-        );
-      }
+    // 2.2.禁止双击缩放（浏览器厂商的努力）
+    // https://patrickhlauke.github.io/touch/tests/results/#suppressing-300ms-delay
 
-      const $btn = document.getElementById('btn');
-      $btn.addEventListener(
-        'touchstart',
-        () => {
-          console.time('click');
-        },
-        false
-      );
-      // $btn.addEventListener(
-      //   'touchend',
-      //   () => {
-      //     console.timeEnd('click');
-      //     console.log('提交表单');
-      //   },
-      //   false
-      // );
-      $btn.addEventListener(
-        'click',
-        () => {
-          console.timeEnd('click');
-          console.log('提交表单');
-        },
-        false
-      );
-    </script>
-  </body>
+    // 2.2.1.viewport 中禁止缩放，现代浏览器都支持
+    // 2.2.2.touch-action: manipulation; 但是不是所有浏览器都支持
+
+    // touch-action: manipulation; 是一个CSS属性，用于指定如何处理元素上的触摸操作。这个属性主要用于优化移动设备上的触摸交互，
+    // 通过控制浏览器默认的触摸行为来提升用户体验。
+    // 当设置为manipulation时，这个属性允许用户对元素进行平移和缩放操作，但禁用了其他默认的触摸行为，如双击缩放和滚动。这样的设置对
+    // 于那些你想要自定义触摸交互行为的元素特别有用，比如实现自定义的滑动控件或缩放交互，而不是使用浏览器提供的默认行为。
+    // 平移：用户可以通过单指滑动来平移元素，这在图片查看器或地图应用中非常常见。
+    // 缩放：用户可以通过双指捏合或展开来缩放元素，这在图片查看器或地图应用中也很常见。
+    // 使用touch-action: manipulation;可以减少意外的页面缩放或滚动，从而提供更加流畅和可控的触摸体验。这对于提升移动端网页或应用的交互质量
+    // 非常重要。此外，它还可以帮助开发者避免处理复杂的触摸事件监听器，简化开发过程。
+    // 需要注意的是，touch-action属性是一个逐渐被主流浏览器支持的新特性，因此在使用时应该考虑到浏览器兼容性问题。此外，当你在元素上使用这个属性时，
+    // 应该确保自定义的触摸交互逻辑不会对用户操作造成困扰，始终保持良好的用户体验。
+
+    // 2.3.使用 Fastclick 库
+    // 主要针对老版本浏览器
+    // https://github.com/ftlabs/fastclick
+    // if ('addEventListener' in document) {
+    //   document.addEventListener(
+    //     'DOMContentLoaded',
+    //     function () {
+    //       FastClick.attach(document.body);
+    //     },
+    //     false
+    //   );
+    // }
+
+    const $btn = document.getElementById('btn');
+    $btn.addEventListener(
+      'touchstart',
+      () => {
+        console.time('click');
+      },
+      false
+    );
+    // $btn.addEventListener(
+    //   'touchend',
+    //   () => {
+    //     console.timeEnd('click');
+    //     console.log('提交表单');
+    //   },
+    //   false
+    // );
+    $btn.addEventListener(
+      'click',
+      () => {
+        console.timeEnd('click');
+        console.log('提交表单');
+      },
+      false
+    );
+  </script>
+</body>
+
 </html>
