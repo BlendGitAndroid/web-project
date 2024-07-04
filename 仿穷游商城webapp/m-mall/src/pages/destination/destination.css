@@ -9,6 +9,7 @@
   width: 89.333333%;
 }
 
+/* 要分清楚，定位是定位，比如position: absolute，布局是布局，display:flex  */
 .main-layout {
   display: flex;
   position: absolute;

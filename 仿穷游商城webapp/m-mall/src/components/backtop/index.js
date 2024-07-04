@@ -6,6 +6,15 @@ import Scroll from 'utils/scroll';
 const CHANGED_CLASS_NAME = 'backtop-hidden';
 
 class Backtop {
+
+  /**
+   * 返回顶部类
+   * 
+   * @param el 点击元素
+   * @param critical_point 临界点
+   * @param scrollContainer 滚动容器
+   * @param eventEl 监听滚动事件的元素
+   */
   constructor(el, critical_point, scrollContainer, eventEl = scrollContainer) {
     this.el = el;
     this.critical_point = critical_point;
@@ -54,11 +63,13 @@ class Backtop {
 
   //   隐藏
   hide() {
+    console.log('hide');
     this.el.classList.add(CHANGED_CLASS_NAME);
   }
 
   // 显示
   show() {
+    console.log('show');
     this.el.classList.remove(CHANGED_CLASS_NAME);
   }
 }

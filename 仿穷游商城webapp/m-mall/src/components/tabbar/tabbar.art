@@ -1,7 +1,7 @@
 <div class="tabbar">
   <a
     href="./index.html"
-    class="tabbar-item {{ active === 'index' ? 'tabbar-item-active' : '' }}"
+    class="tabbar-item {{ active === 'index' ? 'tabbar-item-active' : '' }}" 
   >
     <i class="iconfont icon-home"></i>
     <span>首页</span>

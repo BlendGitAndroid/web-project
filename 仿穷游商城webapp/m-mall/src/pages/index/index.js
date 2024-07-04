@@ -4,7 +4,7 @@ import 'styles/base.css';
 import 'styles/layout.css';
 import './index.css';
 
-// 组件
+// 引入组件，就会加载相应的js
 import './components/header';
 import './components/slider';
 import 'components/loading';

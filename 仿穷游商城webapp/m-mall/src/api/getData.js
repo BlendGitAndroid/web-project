@@ -1,12 +1,16 @@
 import { SUCC_CODE, TIMEOUT } from 'api/config';
 import { getJSON } from './ajax';
+import product from "./index-product.json"
 
 // 获取数据
 const getData = (url, options) => {
   const ajaxPromise = getJSON(url, { timeoutTime: TIMEOUT, ...options });
   const resultPromise = ajaxPromise
     .then(response => {
-      if (response.code !== SUCC_CODE) throw new Error('出错了');
+      if (response.code !== SUCC_CODE) {
+        console.log('Error: ' + response.msg);
+        return product.data;
+      };
 
       return response.data;
     })

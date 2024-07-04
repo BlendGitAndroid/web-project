@@ -17,8 +17,8 @@
 }
 
 .header-layout .searchbox {
-  /* 335px/375px */
-  width: 89.333333%;
+  /* 335px/375px 重写searchbox的宽度*/
+  width: 89.333333%;  
 }
 
 .slider-layout,

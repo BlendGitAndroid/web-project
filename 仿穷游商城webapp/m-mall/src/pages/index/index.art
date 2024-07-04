@@ -27,7 +27,7 @@
         {{include './components/product/product.art'}}
       </div>
 
-      <!-- 标签栏 -->
+      <!-- 标签栏，通过{}直接传值 -->
       <div class="tabbar-layout">
         <% include('../../components/tabbar/tabbar.art', { active: 'index' }) %>
       </div>

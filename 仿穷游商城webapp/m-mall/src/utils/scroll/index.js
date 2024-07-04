@@ -2,9 +2,16 @@ import { INIT_STATE, CHANGED_STATE } from './constants';
 import DEFAULTS from './defaults';
 
 class Scroll {
+  /**
+   * 滚动条类
+   * 
+   * @param options 
+   * @param scrollContainer 滚动条所在的容器
+   * @param eventEl 监听滚动事件的元素
+   */
   constructor(options, scrollContainer, eventEl = scrollContainer) {
     this.options = Object.assign({}, DEFAULTS, options);
- 
+
     // 滚动条所在的容器
     this.scrollContainer = scrollContainer;
 
@@ -36,6 +43,7 @@ class Scroll {
           }
         } else if (this.needReset()) {
           this.setState(INIT_STATE);
+          
           if (typeof reset === 'function') {
             reset();
           }

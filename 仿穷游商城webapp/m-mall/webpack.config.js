@@ -85,7 +85,7 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       filename: 'details.html',
-      template: './src/pages/details/details.art',
+      template: './src/pages/details/details.html',
       chunks: ['details']
     }),
     new HtmlWebpackPlugin({
