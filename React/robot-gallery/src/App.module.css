@@ -2,32 +2,33 @@
     text-align: center;
 }
 
-.appHeader{
+.appHeader {
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     margin-top: 30px;
-    margin-bottom:24px;
+    margin-bottom: 24px;
 }
 
-.appLogo{
+.appLogo {
     height: 10vmin;
     pointer-events: none;
 }
 
 @media (prefers-reduced-motion:no-preference) {
-    .appLogo{
+    .appLogo {
         animation: App-logo-spin infinite 20s linear;
     }
 }
 
 h1 {
+    /* 引入字体文件 */
     font-family: 'Slidefu';
     font-size: 72px;
 }
 
-.robotList{
+.robotList {
     width: 85vw;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
