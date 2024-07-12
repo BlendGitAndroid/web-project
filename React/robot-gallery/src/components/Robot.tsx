@@ -46,4 +46,5 @@ const Robot: React.FC<RobotProps> = ({ id, name, email, addToCart }) => {
     // )
 };
 
+// 高阶组件，用来给Robot组件添加一个addToCart方法
 export default withAddToCart(Robot);

@@ -15,6 +15,7 @@ interface State {
  * React.Component是一个泛型接口，第一个参数是props的类型，第二个参数是state的类型，第三个参数是自定义数据
  */
 class ShoppingCart extends React.Component<Props, State> {
+    
     constructor(props: Props) {
         super(props);
 

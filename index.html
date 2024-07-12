@@ -152,6 +152,28 @@
         const resultAdd = boundCalculateAdd(5);
         const resultMultiply = boundCalculateMultiply(2);
 
+        //-----------------------------------------------------------------------------------
+        // 柯里化是一种将多参数函数转换为一系列单参数函数的技术。
+        // 在这个例子中，curry函数接收一个多参数函数fn作为参数，并返回一个新的函数。这个新的函数接收一个参数x，并返回一个新的函数。
+        // 这个新的函数接收一个参数y，并返回fn(x, y)的结果。
+        // 通过这种方式，你可以将多参数函数转换为一系列单参数函数。
+        function curry(fn) {
+            return function (x) {
+                return function (y) {
+                    return fn(x, y);
+                }
+            }
+        }
+        curry((a, b) => a + b)(10)(5);
+
+        // 在这个例子中，curryAdd函数接收一个参数a，并返回一个新的函数。这个新的函数接收一个参数b，并返回a + b的结果。
+        function curryAdd(a) {
+            return function (b) {
+                return a + b;
+            }
+        }
+        curryAdd(10)(5);
+
 
     </script>
 </body>

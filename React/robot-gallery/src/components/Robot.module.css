@@ -1,16 +1,21 @@
-.cardContainer{
+.cardContainer {
     display: flex;
     flex-direction: column;
     background-color: #00BDAB;
     border: 1PX solid grey;
     border-radius: 5px;
     padding: 25px;
+    /* 出现类似于一个小手的标志 */
     cursor: pointer;
     backface-visibility: hidden;
+    /* transform: translateZ(0);属性通过3D变换，将元素沿Z轴（即屏幕垂直方向）移动0单位。
+    虽然这看起来似乎没有实际移动元素，但它有一个重要的副作用：它将元素提升到一个新的复合层（compositing layer）。
+    这种技术常用于提高性能，特别是在涉及动画和过渡的情况下，因为它可以减少页面重绘（repaint）和重排（reflow）的需要，
+    从而提高渲染性能。 */
     transform: translateZ(0);
     transition: transform 0.25s ease-out;
 }
 
-.cardContainer:hover{
-    transform:scale(1.05);
+.cardContainer:hover {
+    transform: scale(1.05);
 }

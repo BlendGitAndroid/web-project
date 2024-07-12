@@ -16,6 +16,7 @@ const defaultContextValue: AppStateValue = {
 export const appContext = React.createContext<AppStateValue>(defaultContextValue);
 
 // 创建一个全局的setState的context对象，他的泛型是一个函数或者undefined，用于接收setState函数
+// useState的函数类型就是Dispatch<SetStateAction<S>>
 export const appSetStateContext = React.createContext<
     React.Dispatch<React.SetStateAction<AppStateValue>> | undefined
 >(undefined);
@@ -26,6 +27,7 @@ export const AppStateProvider: React.FC = (props) => {
 
     return (
         // appContext.Provider是一个React组件，用来提供全局状态
+        // 下面是两个全局状态，一个是value，一个是setState，可以这样嵌套起来使用
         <appContext.Provider value={state}>
             <appSetStateContext.Provider value={setState}>
                 {props.children}

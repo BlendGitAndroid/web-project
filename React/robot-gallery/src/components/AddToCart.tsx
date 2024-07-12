@@ -12,7 +12,7 @@ export const withAddToCart = (ChildComponent: React.ComponentType<RobotProps>) =
         // 获取到全局的setState函数
         const setState = useContext(appSetStateContext);
 
-        const addToCart = (id, name) => {
+        const addToCart = (id: number, name: string) => {
             if (setState) {
                 setState(state => {
                     return {
@@ -36,7 +36,7 @@ export const useAddToCart = () => {
 
     const setState = useContext(appSetStateContext);
 
-    const addToCart = (id, name) => {
+    const addToCart = (id: number, name: string) => {
         if (setState) {
             setState(state => {
                 return {

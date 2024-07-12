@@ -5,14 +5,17 @@
 .appHeader {
     display: flex;
     flex-direction: row;
-    align-items: center;
     justify-content: center;
+    align-items: center;
     margin-top: 30px;
     margin-bottom: 24px;
 }
 
 .appLogo {
+    /* 值10vmin表示元素的高度将设置为视口宽度和高度中较小值的10%。vmin是一个相对单位，它依赖于视口的尺寸，
+    因此，使用vmin可以使元素的尺寸适应不同大小的屏幕，增强了页面的响应式设计能力。 */
     height: 10vmin;
+    /* 鼠标事件（如点击、悬停等）将“穿透”该元素，影响到它下面的元素，而不是该元素本身。 */
     pointer-events: none;
 }
 
