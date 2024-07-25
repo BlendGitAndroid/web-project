@@ -1,5 +1,5 @@
 {
-  "presets": ["@babel/preset-env"]
+  "presets": ["@babel/preset-env"]  // 使用 @babel/preset-env 预设，自动决定需要使用哪些 Babel 插件和 polyfills
 }
 
 // 这段代码是一个 .babelrc 文件的内容，它是 Babel 的配置文件。Babel 是一个 JavaScript 编译器，用于将 ES6+ 的代码转换为 ES5 代码，

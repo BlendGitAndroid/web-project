@@ -40,3 +40,9 @@ const age = 18;
 export { fn as func, className, age };
 
 export default 18;
+
+// export 和 export default 的区别
+// export 可以有多个，export default 只能有一个
+// export default 导出的变量可以匿名，export 导出的变量必须具名
+// export default 导出的变量可以不用 {} 包裹，export 导出的变量必须用 {} 包裹
+// export default 导出的变量可以直接导入，export 导出的变量必须用 {} 包裹后导入

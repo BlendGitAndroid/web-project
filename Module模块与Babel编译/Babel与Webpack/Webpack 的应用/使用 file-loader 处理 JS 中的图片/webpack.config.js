@@ -29,7 +29,7 @@ module.exports = {
           loader: 'file-loader',
           options: {
             name: 'img/[name].[ext]',
-            esModule: false
+            esModule: false // 设置为false意味着输出模块将使用CommonJS模块语法，而不是ES模块语法。这可能是为了兼容性考虑，确保无论项目使用哪种模块系统，都能正确处理图片文件
           }
         }
       }

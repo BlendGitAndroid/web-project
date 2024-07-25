@@ -14,6 +14,7 @@ module.exports = {
       // 处理 CSS 文件
       {
         test: /\.css$/,
+        // use: [MiniCssExtractPlugin.loader, 'css-loader'] 
         use: [
           {
             loader: MiniCssExtractPlugin.loader, 

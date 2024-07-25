@@ -28,7 +28,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './index.html', // 模板文件
       filename: 'index.html', // 输出的文件名
-      chunks: ['index'],  // 与入口文件对应的模块名
+      chunks: ['index'],  // 与入口文件对应的模块名，chunks是用于多入口文件的，如果是单入口文件，就不需要设置chunks
       // 压缩 index.html
       minify: {
         // 删除 index.html 中的注释
@@ -46,3 +46,25 @@ module.exports = {
     })
   ]
 };
+
+/**
+ * 那么 HtmlWebpackPlugin 是如何实现多入口文件的呢？
+ * 原因是 HtmlWebpackPlugin 会根据配置的 chunks 生成多个 script 标签，每个 script 标签对应一个入口文件。
+ * 例如，上面的配置中，chunks: ['index'] 会生成如下 script 标签：
+ * <script src="index.js"></script>
+ * 而 chunks: ['search'] 会生成如下 script 标签：
+ * <script src="search.js"></script>
+ * 即在 index.html 中会引入 index.js，而在 search.html 中会引入 search.js。
+ * 这样在写html模板时，就不需要手动引入多个入口文件了。
+ */
+
+/**
+ * loader和plugin的区别：
+ * 1. loader 用于对模块的源代码进行转换，loader 可以使你在 import 或"加载"模块时预处理文件。
+ *    plugin 用于执行范围更广的任务，包括打包优化、资源管理、注入环境变量等。
+ * 2. loader 是一个转换器，将 A 文件进行编译形成 B 文件，本质是文件加载器，它作用于一个个文件上。
+ *    plugin 是一个扩展器，它丰富了 Webpack 本身，针对的是整个构建过程。 以HtmlWebpackPlugin为例，
+ *   它可以在打包结束后，自动生成一个 html 文件，并把打包生成的 js 文件自动引入到这个 html 文件中。
+ * 3. loader 在 module.rules 中配置，作为模块的解析规则，类型为数组。
+ *    plugin 在 plugins 中单独配置，类型为数组。
+ */
