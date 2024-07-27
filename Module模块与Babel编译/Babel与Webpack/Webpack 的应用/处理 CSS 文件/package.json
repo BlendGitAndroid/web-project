@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "webpack": "webpack"
+    "webpack": "webpack",
+    "dev": "webpack server --open chrome"
   },
   "author": "",
   "license": "ISC",
@@ -34,7 +35,11 @@
     "eslint-webpack-plugin": "^2.5.4",
     "file-loader": "^6.2.0",
     "url-loader": "^4.1.1",
-    "html-loader": "^2.1.2"
+    "html-loader": "^2.1.2",
+    "copy-webpack-plugin": "^9.0.0",
+    "clean-webpack-plugin": "^4.0.0-alpha.0",
+    "webpack-dev-server": "^3.11.2",
+    "webpack-merge": "^5.7.3"
   },
   "browserslist": [
     "last 1 version",

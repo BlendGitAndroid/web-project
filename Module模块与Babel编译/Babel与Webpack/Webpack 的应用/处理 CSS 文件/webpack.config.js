@@ -4,6 +4,8 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');  // 引入stylelint-webpack-plugin插件
 const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin') //  引入optimize-css-assets-webpack-plugin插件
 const ESLintPlugin = require('eslint-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin')  // 不需要处理的其他文件，可以直接复制到输出目录
+const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 
 module.exports = {
   mode: 'development',
@@ -28,7 +30,11 @@ module.exports = {
           {
             loader: MiniCssExtractPlugin.loader,
             options: {
-              publicPath: '../' // 解决css文件中引入图片路径错误的问题,在url前面加上../，因为使用了MiniCssExtractPlugin.loader，将CSS文件打包到独立的文件中
+              // 为什么要加上publicPath？
+              // 因为 MiniCssExtractPlugin.loader 会将css都统一打包到css文件夹下
+              // 而图片文件是通过url-loader打包的，都会统一打包到image文件夹下，
+              // 在css文件夹下使用image的东西，需要引入...
+              publicPath: '../'
             }
           },
 
@@ -99,20 +105,33 @@ module.exports = {
       // 处理图片，url-loader 依赖 file-loader，file-loader是按需加载的
       {
         test: /\.(png|gif|jpe?g)$/i,
-        use: {
-          loader: "url-loader",
-          options: {
-            // 指定图片大小，小于该数值的图片，会被转成 base64
-            // 8kb,表示小于3kb的图片会被转为base64，并直接嵌入到最终的bundle文件中,大于3kb的则会按照file-loader的方式进行打包
-            limit: 0 * 1024, // 8 kb
-            // [name] 是图片原来的名称
-            // [ext] 是图片原来的后缀名
-            name: "image/[name].[ext]",
-            // url-loader 默认采用 ES Modules 规范进行解析，但是 html-loader 引入图片使用的是 CommonJS 规范
-            // 解决：关闭 url-loader 默认的 ES Modules 规范，强制 url-loader 使用 CommonJS 规范进行打包
-            esModule: false
+        // use: {
+        //   loader: "url-loader",
+        //   options: {
+        //     // 指定图片大小，小于该数值的图片，会被转成 base64
+        //     // 8kb,表示小于3kb的图片会被转为base64，并直接嵌入到最终的bundle文件中,大于3kb的则会按照file-loader的方式进行打包
+        //     limit: 0 * 1024, // 8 kb
+        //     // [name] 是图片原来的名称
+        //     // [ext] 是图片原来的后缀名
+        //     name: "image/[name].[ext]",
+        //     // url-loader 默认采用 ES Modules 规范进行解析，但是 html-loader 引入图片使用的是 CommonJS 规范
+        //     // 解决：关闭 url-loader 默认的 ES Modules 规范，强制 url-loader 使用 CommonJS 规范进行打包
+        //     esModule: false
+        //   }
+        // }
+
+        // 上面是webpack4的写法，webpack5的写法如下
+
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024
           }
+        },
+        generator: {
+          filename: "image/[name][ext]"
         }
+
       },
 
       {
@@ -121,7 +140,7 @@ module.exports = {
           // html-loader的作用是处理HTML文件中的图片路径，将HTML文件中的图片路径替换为打包后的路径，提示就是一个string替换功能
           // 将HTML文件中的图片路径替换为打包后的路径，使用url-loader来加载图片，但是url-loader默认使用ES Module语法解析文件路径，
           // 而html-loader引入图片是CommonJS语法，所以需要关闭url-loader的ES Module语法
-          loader: 'html-loader',  
+          loader: 'html-loader',
           options: {
             // Webpack 4 中只需要在 url-loader 配置 esModule: false
             // Webpack 5 需要 html-loader 中，也配置 esModule: false
@@ -129,9 +148,70 @@ module.exports = {
           }
         }
       },
+
+      // 匹配字体文件
+      {
+        test: /\.(eot|svg|ttf|woff|woff2)$/i,
+        // use: {
+        //   loader: 'file-loader',  // 使用file-loader处理字体文件
+        //   options: {
+        //     name: 'fonts/[name].[ext]'  // 输出到fonts文件夹
+        //   }
+        // }
+
+        // 使用资源模块处理字体文件
+        // asset 可以在 asset/resource 和 asset/inline 之间进行选择
+        // 如果文件小于 8kb，则使用 asset/inline 类型
+        // 如果文件大于 8kb，则使用 asset/resource 类型
+        type: 'asset',
+        parser: {
+          dataUrlCondition: {
+            maxSize: 8 * 1024
+          }
+        },
+        generator: {
+          filename: "fonts/[name][ext]"
+        }
+      },
     ]
   },
 
+  // 开发服务器，默认加载的是内存的数据
+  // webpack4: webpack-dev-server
+  // webpack5: webpack serve
+  devServer: {
+    // 指定加载内容的路径，就是打包后的文件
+    contentBase: path.resolve(__dirname, 'dist'),
+
+    // 启用 gzip 压缩
+    compress: true,
+
+    // 端口号
+    port: 9200,
+
+    // 启动自动更新（禁用 hot）
+    liveReload: true,
+
+    // 配置代理：解决接口跨域问题
+    proxy: {
+      // 下面的配置就是说，当请求 /api 时，会将请求转发到 https://api.github.com/api
+      // 配置pathRewrite 为 /api，是为了将 /api 替换为空，这样请求 /api/users 就会转发到 https://api.github.com/users
+      // http://localhost:9200/api
+      '/api': {
+        // http://localhost:9200/api/users => https://api.github.com/api/users
+        target: 'https://api.github.com',
+        // http://localhost:9200/api/users => https://api.github.com/users
+        pathRewrite: {
+          '^/api': "" // 将 /api 替换为空
+        },
+        // 不能使用 localhost:9200 作为 github 的主机名
+        changeOrigin: true
+      }
+    }
+  },
+
+  // 配置目标
+  target: "web",
 
   plugins: [
     // 生成一个HTML文件，并自动引入打包后的JS和CSS文件
@@ -151,7 +231,19 @@ module.exports = {
     new ESLintPlugin({
       // 自动解决常规的代码格式报错
       fix: true
-    })
+    }),
+    // 直接将 src 下，不需要特殊处理的文件，直接复制到输出目录中
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: "src/public",
+          to: "public"
+        }
+      ]
+    }),
+
+    // 打包之前，先删除历史文件
+    new CleanWebpackPlugin()
   ]
 };
 // 在Webpack中，loader和plugin都是用来扩展Webpack功能的，但它们的工作方式和使用场景有所不同。
