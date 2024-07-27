@@ -10,8 +10,10 @@
         // 数组的slice方法
         var arr = ['A', 'B', 'C', 'D', 'E', 'F'];
         // slice方法不会修改原数组，而是返回一个新的数组
+        // slice方法的第一个参数是起始位置，第二个参数是结束位置（不包括结束位置）
         var child_arr1 = arr.slice(2, 5);
         var child_arr2 = arr.slice(2);
+        // slice方法还可以接受负数，表示倒数
         var child_arr3 = arr.slice(2, -1);
         console.log(child_arr1);
         console.log(child_arr2);

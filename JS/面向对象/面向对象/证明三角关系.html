@@ -7,6 +7,7 @@
 </head>
 <body>
     <script>
+        // 普通函数的原型对象是一个空对象，而构造函数的原型对象是一个对象，这个对象中有一个constructor属性指向构造函数本身
         function People(name, age, sex) {
             this.name = name;
             this.age = age;
@@ -15,6 +16,7 @@
         // 实例化
         var xiaoming = new People('小明', 12, '男');
         // 测试三角关系是否存在
+        // 构造函数的prototype属性指向是实例的原型
         console.log(xiaoming.__proto__ === People.prototype);
     </script>
 </body>

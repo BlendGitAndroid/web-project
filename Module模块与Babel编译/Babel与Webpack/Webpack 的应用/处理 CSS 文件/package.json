@@ -9,11 +9,44 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "css-loader": "^4.1.1",
-    "html-webpack-plugin": "^4.3.0",
-    "mini-css-extract-plugin": "^0.9.0",
+    "css-loader": "^5.2.4",
+    "html-webpack-plugin": "^5.3.1",
+    "mini-css-extract-plugin": "^1.6.0",
     "style-loader": "^1.2.1",
-    "webpack": "^4.44.1",
-    "webpack-cli": "^3.3.12"
+    "webpack": "^5.37.1",
+    "webpack-cli": "^4.7.0",
+    "less": "^4.1.1",
+    "less-loader": "^9.0.0",
+    "postcss-loader": "^5.3.0",
+    "autoprefixer": "^10.2.5",
+    "stylelint": "^13.13.1",
+    "stylelint-config-standard": "^22.0.0",
+    "stylelint-webpack-plugin": "^2.1.1",
+    "optimize-css-assets-webpack-plugin": "^6.0.0",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.2",
+    "babel-loader": "^8.2.2",
+    "core-js": "^3.12.1",
+    "@babel/polyfill": "^7.12.1",
+    "eslint": "^7.27.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.23.3",
+    "eslint-webpack-plugin": "^2.5.4",
+    "file-loader": "^6.2.0",
+    "url-loader": "^4.1.1",
+    "html-loader": "^2.1.2"
+  },
+  "browserslist": [
+    "last 1 version",
+    "> 1%"
+  ],
+  "stylelint": {
+    "extends": "stylelint-config-standard",
+    "rules": {
+      "number-leading-zero": "never"
+    }
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base"
   }
 }

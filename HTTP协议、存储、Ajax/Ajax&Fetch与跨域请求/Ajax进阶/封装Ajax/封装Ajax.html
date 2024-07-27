@@ -29,8 +29,8 @@
 
       const xhr = ajax(url, {
         method: 'GET',
-        params: { username: 'alex' },
-        data: {
+        params: { username: 'alex' }, // 会拼接到 url 后面，在浏览器中就是载荷中的查询字符串参数
+        data: { // data就是表单数据
           age: 18
         },
         responseType: 'json',
@@ -53,7 +53,7 @@
         }
       });
 
-      xhr.abort();
+      // xhr.abort();
     </script>
   </body>
 </html>

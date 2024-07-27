@@ -13,6 +13,7 @@ const initialState: ShoppingCarttate = {
   items: [],
 };
 
+// 获取购物车数据
 export const getShoppingCart = createAsyncThunk(
   "shoppingCart/getShoppingCart",
   async (jwt: string, thunkAPI) => {

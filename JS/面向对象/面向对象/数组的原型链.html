@@ -9,6 +9,7 @@
     <script>
         var arr = [344, 45, 34, 23];
 
+        // __proto__是定义在对象上的属性，其等于该对象的构造函数的prototype属性
         console.log(arr.__proto__ === Array.prototype);                 // true
         console.log(arr.__proto__.__proto__ === Object.prototype);      // true
         console.log(Array.prototype.hasOwnProperty('push'));            // true

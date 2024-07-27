@@ -1,66 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Promise 的基本用法</title>
-  </head>
-  <body>
-    <script>
-      // 1.实例化构造函数生成实例对象
-      // console.log(Promise);
 
-      // Promise 解决的不是回调函数，而是回调地狱
-      // const p = new Promise(() => {});
+<head>
+  <meta charset="UTF-8" />
+  <title>Promise 的基本用法</title>
+</head>
 
-      // 2.Promise 的状态
-      // const p = new Promise((resolve, reject) => {
-      //   // Promise 有 3 种状态，一开始是 pending（未完成），执行 resolve，变成 fulfilled(resolved)，已成功
-      //   // 执行 reject，变成 rejected，已失败
+<body>
+  <script>
+    // 1.实例化构造函数生成实例对象
+    // console.log(Promise);
 
-      //   // Promise 的状态一旦变化，就不会再改变了
+    // Promise 解决的不是回调函数，而是回调地狱
+    // const p = new Promise(() => {});
 
-      //   // pending->fulfilled
-      //   // resolve();
+    // 2.Promise 的状态
+    // const p = new Promise((resolve, reject) => {
+    //   // Promise 有 3 种状态，一开始是 pending（未完成），执行 resolve，变成 fulfilled(resolved)，已成功
+    //   // 执行 reject，变成 rejected，已失败
 
-      //   // pending->rejected
-      //   reject();
-      // });
+    //   // Promise 的状态一旦变化，就不会再改变了
 
-      // 3.then 方法
-      // p.then(
-      //   () => {
-      //     console.log('success');
-      //   },
-      //   () => {
-      //     console.log('error');
-      //   }
-      // );
+    //   // pending->fulfilled
+    //   // resolve();
 
-      // 4.resolve 和 reject 函数的参数
-      const p = new Promise((resolve, reject) => {
-        // Promise 有 3 种状态，一开始是 pending（未完成），执行 resolve，变成 fulfilled(resolved)，已成功
-        // 执行 reject，变成 rejected，已失败
+    //   // pending->rejected
+    //   reject();
+    // });
 
-        // Promise 的状态一旦变化，就不会再改变了
+    // 3.then 方法
+    // p.then(
+    //   () => {
+    //     console.log('success');
+    //   },
+    //   () => {
+    //     console.log('error');
+    //   }
+    // );
 
-        // pending->fulfilled
-        // resolve('succ');
-        // resolve({ username: 'alex' });
+    // 4.resolve 和 reject 函数的参数
+    const p = new Promise((resolve, reject) => {
+      // Promise 有 3 种状态，一开始是 pending（未完成），执行 resolve，变成 fulfilled(resolved)，已成功
+      // 执行 reject，变成 rejected，已失败
 
-        // pending->rejected
-        // reject('reason');
-        reject(new Error('reason'));
-      });
-      p.then(
-        data => {
-          console.log('success', data);
-        },
-        err => {
-          console.log('error', err);
-        }
-      );
+      // Promise 的状态一旦变化，就不会再改变了
 
-      console.log(p);
-    </script>
-  </body>
+      // pending->fulfilled
+      // 返回的值会传递给下一个 then 方法，因为 then 方法返回的是一个 Promise 对象，
+      // 只有在 resolve 的情况下才会传递值，如果没有调用 resolve 方法，那么 then 方法的回调函数就不会执行
+      resolve('succ');
+      // resolve({ username: 'alex' });
+
+      // pending->rejected
+      // reject('reason');
+      // reject(new Error('reason'));
+    });
+    p.then(
+      data => {
+        console.log('success then', data);
+        return data;  // 返回的值会传递给下一个 then 方法，因为 then 方法返回的是一个 Promise 对象
+      },
+      err => {
+        console.log('error', err);
+        return new Error('error');
+      }
+    ).then(
+      data => {
+        console.log('success then then', data);
+      },
+      err => {
+        console.log('error then', err);
+      }
+    );
+
+    console.log(p);
+  </script>
+</body>
+
 </html>

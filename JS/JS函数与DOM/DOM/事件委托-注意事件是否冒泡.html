@@ -18,6 +18,7 @@
         var oList = document.getElementById('list');
         var oBtn = document.getElementById('btn');
 
+        // 事件委托的原理就是利用事件冒泡，如果事件不冒泡，那么事件委托就不成立
         // onmouseenter这个属性天生就是“不冒泡”的，相当于你事件处理函数附加给了哪个DOM节点
         // 就是哪个DOM节点自己触发的事件,没有冒泡过程
         // 这里改成onmouseenter是不对的，因为onmouseenter不冒泡，会导致事件处理函数附加给了oList，而不是oList的子元素

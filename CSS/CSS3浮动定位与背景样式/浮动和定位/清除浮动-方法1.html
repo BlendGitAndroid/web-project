@@ -13,9 +13,18 @@
         }
 
         div {
-            /* 试用hidden */
+            /* 试用hidden，构建了BFC */
             overflow: hidden;
             margin-bottom: 10px;
+        }
+
+
+        .box1 {
+            background-color: aqua;
+        }
+
+        .box2 {
+            background-color: pink;
         }
 
         p {
@@ -29,11 +38,11 @@
 </head>
 
 <body>
-    <div>
+    <div class="box1">
         <p></p>
         <p></p>
     </div>
-    <div>
+    <div class="box2">
         <p></p>
         <p></p>
     </div>

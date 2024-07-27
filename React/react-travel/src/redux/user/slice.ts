@@ -20,13 +20,14 @@ export const signIn = createAsyncThunk(
     email: string,
     password: string,
   }, thunkAPI) => {
-    const { data } = await axios.post(
-      `http://82.157.43.234:8080/auth/login`, {
-      email: paramaters.email,
-      password: paramaters.password
-    }
-    );
-    return data.token;
+    // const { data } = await axios.post(
+    //   `http://82.157.43.234:8080/auth/login`, {
+    //   email: paramaters.email,
+    //   password: paramaters.password
+    // }
+    // );
+    // return data.token;
+    return "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwidXNlcm5hbWUiOiJCbGVuZCIsImlhdCI6MTUxNjIzOTAyMn0.wW5fuMjgzTqcvRIWqfqNrycnbqQtS-9h0GZ846VjtIM";
   }
 );
 

@@ -10,6 +10,7 @@
 <body>
     <script>
         // 不管用户传入多少个实际参数，永远能够计算它们的和
+        // js就是这样，没有定义形参，但是可以通过arguments获取实参，原因是js是弱类型语言
         function fun() {
             var sum = 0;
             for (var i = 0; i < arguments.length; i++) {

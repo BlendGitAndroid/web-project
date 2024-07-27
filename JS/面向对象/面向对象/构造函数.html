@@ -7,8 +7,10 @@
 </head>
 <body>
     <script>
+        // 对象的里面也有函数，他的函数名其实就是对象的属性名，只不过这个属性名对应的值是一个函数
+        // 这里写的是构造函数，里面都要用this关键字，这个this关键字指的是当前对象
         function People(name, age, sex) {
-            this.name = name;
+            this.name = name;   // name是属性
             this.age = age;
             this.sex = sex;
             this.sayHello = function () {

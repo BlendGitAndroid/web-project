@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
+        /* 动画其实就是使用2D和3D变换，结合animation和@keyframes来实现的效果 */
+
         .box1 {
             width: 200px;
             height: 200px;
@@ -14,6 +16,7 @@
             animation: r 1s linear 0s infinite;
         }
 
+        /* 使用keyframes，关键帧来定义动画 */
         @keyframes r {
             from {
                 transform: rotate(0);
@@ -35,6 +38,7 @@
             from {
                 transform: translateX(0);
             }
+
             to {
                 transform: translateX(1000px);
             }
@@ -51,6 +55,7 @@
             from {
                 border-radius: 0;
             }
+
             to {
                 border-radius: 50%;
             }
@@ -67,18 +72,23 @@
             0% {
                 background-color: red;
             }
+
             20% {
                 background-color: yellow;
             }
+
             40% {
                 background-color: blue;
             }
+
             60% {
                 background-color: green;
             }
+
             80% {
                 background-color: purple;
             }
+
             100% {
                 background-color: orange;
             }

@@ -19,12 +19,17 @@
         事件委托的优点是，你不需要为每个子元素单独设置事件监听器，只需要在父元素上设置一个监听器就可以了。这不仅可以减少事
         件监听器的数量，提高性能，而且还可以处理动态添加的元素。因为即使在事件监听器设置之后添加的元素，只要它是 oList 的
         子元素，点击它也会触发这个事件监听器。
+        事件委托的原理是事件冒泡，利用事件冒泡的原理，将事件加到父元素上，触发执行效果的时候，会冒泡到父元素，然后根据
+        触发的子元素来执行相应的效果。
          */
         var oList = document.getElementById('list');
         var oBtn = document.getElementById('btn');
 
         oList.onclick = function (e) {
             // e.target表示用户真正点击的那个元素
+            // 要是获取ul元素，可以用e.currentTarget
+            console.log(e.currentTarget);   // 获取的是事件监听器所在的元素
+            console.log(e.target);          // 获取的点击事件的元素
             e.target.style.color = 'red';
         };
 

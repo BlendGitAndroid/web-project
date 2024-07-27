@@ -1,38 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        .box1{
+        .box1 {
             width: 100px;
             height: 100px;
             background-color: orange;
         }
-        .box2{
+
+        .box2 {
             width: 100px;
             height: 100px;
             background-color: blue;
         }
-        span{
+
+        span {
+            /* 对于行内元素来说，直接设置宽度和高度通常不会有任何效果，因为行内元素的尺寸应由其内容决定。 */
             width: 100px;
             height: 100px;
-            /* padding会撑开盒子，会占用上面元素的空间，所以得转换为行内块 */
+            /* padding会撑开盒子，会占用上面元素的空间，所以得转换为行内块 
+            在行内元素中，左右的内边距会影响元素的宽度，但上下的内边距虽然可见，却不会影响到相邻元素的布局，也不会增加元素本身的高度
+            */
             padding: 20px;
-            /* 这里设置margin是没有用的 */
-            margin-top: 20px;   
+            /* 这里设置margin是没有用的，在行内元素中，垂直方向的外边距（margin-top和margin-bottom）不会影响元素的布局，这意味着这个设置在行内元素中不会有任何效果。 */
+            margin-top: 20px;
+            margin-left: 20px;
             background-color: green;
         }
-        img{
+
+        img {
             width: 400px;
         }
-        input{
+
+        input {
             width: 200px;
             height: 100px;
         }
     </style>
 </head>
+
 <body>
     <div class="box1"></div>
     <div class="box2"></div>
@@ -49,4 +59,5 @@
         <input type="text">
     </div>
 </body>
+
 </html>

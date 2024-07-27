@@ -6,12 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        /* BFC(Box Formatting Context，块级格式化上下文)是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然 */
+        /* 
+        只要构建出了BFC，能清除浮动，就可以解决外边距重叠的问题，也可以解决浮动元素造成的高度塌陷问题。
+        BFC(Box Formatting Context，块级格式化上下文)是页面上的一个隔离的独立容器，容器里面的子元素不会影响到外面的元素，反之亦然。
+        块级格式化上下文是CSS可视化渲染的一部分。它是一块区域，规定了内部块盒的渲染方式，以及浮动相互之间的影响关系。
+        块格式化上下文（BFC）有下面几个特点：
+        1. BFC是就像一道屏障，隔离出了BFC内部和外部，内部和外部区域的渲染相互之间不影响。BFC有自己的一套内部子元素渲染的规则，不影响外部渲染，
+        也不受外部渲染影响。
+        2. BFC的区域不会和外部浮动盒子的外边距区域发生叠加。也就是说，外部任何浮动元素区域和BFC区域是泾渭分明的，不可能重叠。
+        3. BFC在计算高度的时候，内部浮动元素的高度也要计算在内。也就是说，即使BFC区域内只有一个浮动元素，BFC的高度也不会发生塌缩，高度是大于等
+        于浮动元素的高度的。
+        4. HTML结构中，当构建BFC区域的元素紧接着一个浮动盒子时，即，是该浮动盒子的兄弟节点，BFC区域会首先尝试在浮动盒子的旁边渲染，但若宽度不够，
+        就在浮动元素的下方渲染。
+        当元素设置了overflow样式，且值不为visible时，该元素就建构了一个BFC。按照第三代的写法，就会撑起高度，不会发生高度塌陷。
+
+        构建BFC（块级格式化上下文）的方法主要包括以下几种：
+        1. 使用overflow属性（非visible值）：在元素上设置overflow属性为hidden、auto或scroll可以创建BFC。这是最常用的方法之一，因为它不仅创建了BFC，
+        还能处理元素内部的溢出内容。
+        2. 使用float属性：元素的float值不为none时，会创建BFC。这是最早的创建BFC的方法，但是它会使元素脱离文档流，所以不推荐使用。
+        3. 使用display属性：display属性的值为table-cell、table-caption、inline-block、flex、inline-flex、grid、inline-grid时，会创建BFC。
+        4. 使用position属性：position属性的值为absolute或fixed时，会创建BFC。这是最常用的创建BFC的方法之一，因为它不会使元素脱离文档流。
+        */
         .box {
             width: 400px;
             border: 10px solid #000;
             /* 让盒子相称BFC的方法 */
-            overflow: hidden;   
+            overflow: hidden;
             /* 要浮动都浮动 */
             /* float: left; */
         }

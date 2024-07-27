@@ -18,18 +18,18 @@
     <script>
       // 1.携带数据
       // POST 请求主要通过请求体携带数据，同时也可以通过请求头携带
-      // const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
-      // const xhr = new XMLHttpRequest();
+      const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
+      const xhr = new XMLHttpRequest();
 
-      // xhr.onreadystatechange = () => {
-      //   if (xhr.readyState != 4) return;
+      xhr.onreadystatechange = () => {
+        if (xhr.readyState != 4) return;
 
-      //   if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-      //     console.log(xhr.responseText);
-      //   }
-      // };
+        if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+          console.log(xhr.responseText);
+        }
+      };
 
-      // xhr.open('POST', url, true);
+      xhr.open('POST', url, true);
 
       // 如果想发送数据，直接写在 send() 的参数位置，一般是字符串
       // xhr.send('username=alex&age=18');
@@ -42,7 +42,7 @@
       // [object Object]
 
       // 2.数据编码
-      // xhr.send(`username=${encodeURIComponent('张三')}&age=18`);
+      xhr.send(`username=${encodeURIComponent('张三')}&age=18`);
     </script>
   </body>
 </html>

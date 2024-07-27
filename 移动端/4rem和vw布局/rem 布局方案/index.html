@@ -48,16 +48,28 @@
 
       // 375px / 48px
 
+      //rem的原理是根据html的font-size来计算的，所以我们需要根据屏幕的宽度来动态的设置html的font-size
       // viewWidth / 750px = ? / 10px
       // ? = viewWidth * 10px / 750px = viewWidth / 75
 
+      // 为什么是 75？
+      // 为了将屏幕宽度转换为rem单位，以实现响应式设计。基于 750px 的设计稿，1rem = 10px，在css中写宽高时，
+      // 直接写设计稿的宽高值除以10即可，如设计稿宽度为750px，css中写75rem，这样就可以实现响应式设计。
+      // 当屏幕的宽度发生变化时，通过动态设置html的font-size，如屏幕宽度为375px，font-size为5px，这样75rem就等于375px，实现了响应式设计。
+
+      // 在响应式设计中，rem的值是相对于html的font-size来计算的，如设置html的font-size为10px，那么1rem就等于10px，2rem就等于20px。
+      // 如font-size为5px，那么1rem就等于5px。当屏幕宽度发生变化时，通过动态设置html的font-size，rem的值也会随之变化，实现了响应式设计。
+      // 所以在开发中，我们只需要根据设计稿的宽高值除以10来写css，不需要考虑rem的值，rem的值会随着屏幕的宽度变化而变化。
+
       // 2.实现
       {
+        // 动态设置 html 的字体大小
         const docEl = document.documentElement;
 
         const setHtmlFontSize = () => {
           const viewWidth = docEl.clientWidth;
 
+          // 设置 html 的字体大小
           docEl.style.fontSize = `${viewWidth / 75}px`;
 
           console.log('docEl.style.fontSize:', docEl.style.fontSize);

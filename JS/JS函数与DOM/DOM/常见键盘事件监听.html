@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     姓名：
     <input type="text" id="nameField">
@@ -12,17 +14,22 @@
     <script>
         var nameField = document.getElementById('nameField');
 
+        // onkeydown事件在用户按下键盘按键时触发
         nameField.onkeydown = function () {
             console.log('我是onkeydown');
         };
 
-        nameField.onkeypress = function() {
+        // onkeypress事件在用户按下键盘按键时触发. 
+        // 但是，onkeypress事件不会触发以下键盘按键：Shift、Ctrl、Alt、Esc, F1 - F12, Tab, Backspace, 
+        // Insert, Delete, Home, End, PageUp, PageDown, 方向键
+        nameField.onkeypress = function () {
             console.log('我是onkeypress');
         }
 
-        nameField.onkeyup = function() {
+        nameField.onkeyup = function () {
             console.log('我是onkeyup');
         }
     </script>
 </body>
+
 </html>

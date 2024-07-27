@@ -32,12 +32,15 @@
         //     console.log('我是按钮');
         // };
 
+        // 点击盒子，打印盒子
         oBox.addEventListener('click', function(e) {
             // 阻止事件继续传播，在捕获阶段触发，所以btn的捕获阶段不会触发
-            e.stopPropagation();
+            e.stopPropagation();    // 阻止事件继续传播
             console.log('我是盒子');
-        }, true);
+        }, true);   // 捕获阶段
 
+        // 如果盒子不阻止冒泡，那么点击按钮，会打印盒子和按钮
+        // 如果盒子加了阻止冒泡，那么点击按钮，只会打印盒子
         oBtn.addEventListener('click', function() {
             // 这里的log不会被打印
             console.log('我是按钮');

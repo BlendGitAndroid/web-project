@@ -8,11 +8,12 @@
 </head>
 <body>
     <script>
+        // JavaScript有很多内置构造函数，比如Array就是数组类型的构造函数，Function就是函数类型的构造函数，Object就是对象类型的构造函数
         // Object.prototype是万物原型链的终点。JavaScript中函数、数组皆为对象.
         // 任何函数都可以看做是 Function “new出来的”，那我们开一个脑洞:
         // Object也是函数呀，它是不是Function “new出来的”呢?答案是肯定的
         // Function也是个函数，可以看作它自己 “new出来的” 自己，自己也是一个实例.
-        console.log(Object.__proto__ === Function.prototype);
+        console.log(Object.__proto__ === Function.prototype);   //  
         console.log(Object.__proto__.__proto__ === Object.prototype);
         console.log(Function.__proto__ === Function.prototype);
         console.log();

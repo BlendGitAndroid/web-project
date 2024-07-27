@@ -1,39 +1,45 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <script>
-        // var arr = [22, 33, 44, 55];
-        // // 方法就是打点调用的函数，所以是数组打点调用它们
-        // arr.push(66);
-        // arr.push(77, 88, 99);
+        var arr = [22, 33, 44, 55];
+        // 方法就是打点调用的函数，所以是数组打点调用它们
+        arr.push(66);
+        // push() 方法可向数组的末尾添加一个或多个元素，并返回新的长度
+        arr.push(77, 88, 99);
 
-        // console.log(arr);
-        
+        console.log(arr);
+
         // ***********************************
-        // var arr = [22, 33, 44, 55];
-        // var item = arr.pop();
-        // console.log(arr);
-        // console.log(item);
-        
-         
+        var arr = [22, 33, 44, 55];
+        // pop() 方法用于删除并返回数组的最后一个元素
+        var item = arr.pop();
+        console.log(arr);
+        console.log(item);
+
+
         // ***********************************
-        // var arr = [22, 33, 44, 55];
-        // arr.unshift(11);
-        // arr.unshift(0);
-        // console.log(arr);
-        
+        var arr = [22, 33, 44, 55];
+        // unshift() 方法可向数组的开头添加一个或更多元素，并返回新的长度
+        arr.unshift(11);
+        arr.unshift(0);
+        console.log(arr);
+
         // ***********************************
         var arr = [22, 33, 44, 55];
         var item = arr.shift(); // 用于删除数组的第一个元素，并返回该元素的值
         console.log(arr);
         console.log(item);
-        
-        
+
+
     </script>
 </body>
+
 </html>

@@ -31,6 +31,9 @@
         </div>
     </div>
     <script>
+        // 对于事件的捕获和冒泡，我们可以通过addEventListener方法来设置
+        // 先是从外到内捕获，再是从内到外冒泡
+
         // box3最内层元素，就不区分捕获和冒泡了，谁先书写谁先执行
         var oBox1 = document.getElementById('box1');
         var oBox2 = document.getElementById('box2');

@@ -7,11 +7,12 @@
 </head>
 <body>
     <script>
-        function sum(a, b){
+        function sum(a, b) {
             return a + b;
         }
 
-        //  JavaScript 中打印出一个函数的原型对象。
+        // JavaScript 中打印出一个函数的原型对象。如一些常见的方法，如 toString()、valueOf() 等都是定义在 prototype 对象中的。
+        // prototype是定义在函数上的属性，而不是实例上的属性
         console.log(sum.prototype);
 
         console.log(typeof sum.prototype);

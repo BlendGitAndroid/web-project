@@ -16,8 +16,12 @@
         People.prototype.nationality = '中国';
 
         var xiaoming = new People('小明', 12, '男');
-        
+
         console.log(xiaoming.nationality);      // 中国
+
+        // 通过原型链查找，对象的__proto__等于构造函数的prototype
+        xiaoming.__proto__.nationality = "中国1";
+
         console.log(xiaoming);
     </script>
 </body>

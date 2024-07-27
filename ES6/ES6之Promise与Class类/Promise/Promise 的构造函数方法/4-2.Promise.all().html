@@ -32,17 +32,20 @@
 
       // Promise.all() 的状态变化与所有传入的 Promise 实例对象状态有关
       // 所有状态都变成 resolved，最终的状态才会变成 resolved
-      // 只要有一个变成 rejected，最终的状态就变成 rejected
+      // 只要有一个变成 rejected，最终的状态就变成 rejected，所以P2的return结果没有返回
 
+      // Promise.all 返回一个新的 Promise 实例, 该实例的状态由传入的 Promise 实例决定
       const p = Promise.all([p1, p2]);
       p.then(
         data => {
-          console.log(data);
+          console.log("success " + data);
         },
         err => {
-          console.log(err);
+          console.log("err " + err);
         }
-      );
+      ).catch(err => {
+        console.log("catch " + err);
+      });
     </script>
   </body>
 </html>

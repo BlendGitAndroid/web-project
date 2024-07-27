@@ -15,18 +15,30 @@ import { useSelector } from "./redux/hooks";
 import { useDispatch } from "react-redux";
 import { getShoppingCart } from "./redux/shoppingCart/slice";
 
+{/* <PrivateRoute
+isAuthenticated={jwt !== null}
+path="/placeOrder"
+component={PlaceOrderPage}
+/> */}
+
+// 正常的路由
+{/* <Route path="/register" component={RegisterPage} /> */ }
+
+// 私有路由，只有登录后才能访问，这里的...rest是剩余参数，其实就是指的path="/placeOrder"
 const PrivateRoute = ({ component, isAuthenticated, ...rest }) => {
   const routeComponent = (props) => {
     return isAuthenticated ? (
-      React.createElement(component, props)
+      React.createElement(component, props) // 创建一个React元素
     ) : (
-      <Redirect to={{ pathname: "/signIn" }} />
+      <Redirect to={{ pathname: "/signIn" }} /> // 重定向到登录页面
     );
   }
+
   return <Route render={routeComponent} {...rest} />;
 }
 
 function App() {
+
   const jwt = useSelector((s) => s.user.token);
   const dispatch = useDispatch();
 

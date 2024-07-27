@@ -8,10 +8,10 @@
         gender: "male",
     };
     type People = typeof p1;    // 从 p1 推断出 People 的类型
-    function getName(p: People): string {
+    function getName1(p: People): string {
         return p.name;
     }
-    getName(p1);
+    getName1(p1);
 
     // keyof 关键词
     // keyof 可以用来取得一个对象接口的所有 key 值

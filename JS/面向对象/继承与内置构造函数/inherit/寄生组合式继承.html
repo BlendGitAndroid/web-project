@@ -12,8 +12,9 @@
     <script>
         // 这个函数接收两个参数，subType是子类的构造函数，superType是父类的构造函数
         function inheritPrototype(subType, superType) {
-            var prototype = Object.create(superType.prototype);
-            subType.prototype = prototype;
+            // 其实原型链集成的核心就是这个，子类的原型指向父类的实例，就是为了让子类的原型指向父类的原型
+            var prototype = Object.create(superType.prototype); // 创建出父类原型的一个副本
+            subType.prototype = prototype;  // 将这个副本赋值给子类的原型
         }
 
         // 父类

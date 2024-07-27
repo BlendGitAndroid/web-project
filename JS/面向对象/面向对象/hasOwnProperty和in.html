@@ -18,11 +18,13 @@
         // 实例化
         var xiaoming = new People('小明', 12, '男');
 
+        // hasOwnProperty()方法用来判断某个属性是否是对象自身的属性
         console.log(xiaoming.hasOwnProperty('name'));
         console.log(xiaoming.hasOwnProperty('age'));
         console.log(xiaoming.hasOwnProperty('sex'));
         console.log(xiaoming.hasOwnProperty('nationality'));
 
+        // in运算符用来判断某个属性是否是对象自身的属性或者原型上的属性
         console.log('name' in xiaoming);
         console.log('age' in xiaoming);
         console.log('sex' in xiaoming);

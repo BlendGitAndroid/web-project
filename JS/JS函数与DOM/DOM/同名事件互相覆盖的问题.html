@@ -39,6 +39,7 @@
         var oBox2 = document.getElementById('box2');
         var oBox3 = document.getElementById('box3');
 
+        // addEventListener 方法用于向指定元素添加事件句柄，可以为同一个元素添加多个同类型的事件句柄，不会覆盖已有的事件句柄。
         // 与 onclick 属性不同，addEventListener 方法允许为同一元素的同一事件添加多个监听器，而且这些监听器不会相互覆盖。
         // 这意味着，当你点击 oBox2 元素时，会先后弹出包含 'C' 和 'D' 的警告框。
         oBox2.addEventListener('click', function () {

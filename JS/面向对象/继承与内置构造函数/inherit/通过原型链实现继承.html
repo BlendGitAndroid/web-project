@@ -10,8 +10,11 @@
 
 <body>
     <script>
+        // 通过原型链实现继承，那子类的构造函数是怎么来的呢？ 通过原型链实现继承，子类的构造函数是父类的实例，所以子类的构造函数是父类的实例。
+
         // 缺点：
-        // 问题1:如果父类的属性中有引用类型值，则这个属性会被所有子类的实例共享;
+        // 问题1:如果父类的属性中有引用类型值，则这个属性会被所有子类的实例共享，这样就会出现一个子类实例更改了父类的属性，其他子类实例的属性也会被更改。
+        // 原因是因为子类的实例的__proto__指向父类的实例，子类实例的原型链上有父类的实例，所以子类实例的属性会被共享。
         // 问题2:子类的构造函数中，往往需要重复定义很多超类定义过的属性。即子类的构造函数写的不够优雅;
         // 父类：People类
         function People(name, age, sex) {
@@ -35,7 +38,7 @@
             this.sid = sid;
         }
         // 实现继承的非常重要的语句。让子类的prototype指向父类的一个实例。
-        Student.prototype = new People();
+        Student.prototype = new People(); // 这样的话，子类的实例就可以继承父类的属性和方法了。子类实例的是__proto__指向的就是父类的实例
         // 追加方法
         Student.prototype.exam = function () {
             console.log(this.name + '正在考试');
@@ -54,7 +57,10 @@
         xiaoming.sayHello();
         xiaoming.sleep();
         console.log(xiaoming);
-        // xiaoming.arr.push(123);
+
+        // 这里其实还是People构造函数，因为Student.prototype = new People();这句话，Student的原型对象指向了People的实例，
+        // 所以Student的构造函数就是People的构造函数。
+        console.log(xiaoming.constructor);  
         // console.log(xiaoming.arr);
 
         var xiaohong = new Student('小红', 11, '女', '小慕学校', 100667);

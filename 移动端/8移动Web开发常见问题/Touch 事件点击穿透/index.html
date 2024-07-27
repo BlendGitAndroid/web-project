@@ -31,7 +31,8 @@
 
     <script>
       // 1.Touch 事件点击穿透的原因
-      // 移动端 Touch 事件会立即触发，而 click 事件会延迟一段时间触发
+      // 移动端 Touch 事件会立即触发，而 click 事件会延迟一段时间触发，当遮罩层消失时，click 事件会穿透到下面的元素上
+      // 为什么有穿透呢？因为 click 事件是在 touchend 事件之后触发的，而 touchend 事件是在遮罩层消失之后触发的
 
       // 2.解决方案
       // 遮罩层不要立即消失
@@ -41,30 +42,30 @@
 
       const $btn = document.getElementById('btn');
       const $mask = document.getElementById('mask');
-      $mask.addEventListener(
-        'touchend',
-        () => {
-          // $mask.style.display = 'none';
+      // $mask.addEventListener(
+      //   'touchend',
+      //   () => {
+      //     // $mask.style.display = 'none';
 
-          // 2.1.延时消失
-          // setTimeout(() => {
-          //   $mask.style.display = 'none';
-          // }, 200);
+      //     // 2.1.延时消失
+      //     // setTimeout(() => {
+      //     //   $mask.style.display = 'none';
+      //     // }, 200);
 
-          // 2.2.消失过程中添加动画效果
-          console.time('click');
-          $mask.style.opacity = 0;
-        },
-        false
-      );
-      $mask.addEventListener(
-        'transitionend',  // 动画结束事件
-        () => {
-          console.timeEnd('click');
-          $mask.style.display = 'none';
-        },
-        false
-      );
+      //     // 2.2.消失过程中添加动画效果
+      //     console.time('click');
+      //     $mask.style.opacity = 0;
+      //   },
+      //   false
+      // );
+      // $mask.addEventListener(
+      //   'transitionend',  // 动画结束事件
+      //   () => {
+      //     console.timeEnd('click');
+      //     $mask.style.display = 'none';
+      //   },
+      //   false
+      // );
 
       // $mask.addEventListener(
       //   'touchstart',
@@ -73,6 +74,16 @@
       //   },
       //   false
       // );
+
+      // 如果都是click事件，那么就不会有穿透问题
+      $mask.addEventListener(
+        'click',
+        () => {
+          $mask.style.display = 'none';
+        },
+        false
+      );
+
       $btn.addEventListener(
         'click',
         () => {

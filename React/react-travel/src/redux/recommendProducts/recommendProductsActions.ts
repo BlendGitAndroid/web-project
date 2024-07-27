@@ -64,7 +64,6 @@ export const giveMeDataActionCreator = (): ThunkAction<
   dispatch(fetchRecommendProductStartActionCreator());
   try {
     const { data } = await axios.get(
-      // "http://123.56.149.216:8080/api/productCollections"
       "http://82.157.43.234:8080/api/productCollections"
     );
     dispatch(fetchRecommendProductSuccessActionCreator(data));

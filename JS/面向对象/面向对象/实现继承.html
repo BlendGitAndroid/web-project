@@ -31,7 +31,7 @@
             this.studentNumber = studentNumber;
         }
         // 关键语句，实现继承
-        // 通过原型链实现继承
+        // 通过原型链实现继承，让Student的原型对象指向People的实例，这样Student的实例就可以访问到People的原型对象上的属性和方法
         Student.prototype = new People();
 
         Student.prototype.study = function () {

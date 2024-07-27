@@ -7,7 +7,9 @@
 </head>
 <body>
     <script>
-        console.log(a);
+        // 如果输出一个没有声明的变量，会报ReferenceError: xx is not defined
+        // 如果定义了变量，但是没有赋值，输出undefined
+        console.log(a); // undefined
         var a = 123;
         console.log(a);
         

@@ -14,7 +14,9 @@
         console.log([] instanceof Object);
         console.log([] instanceof Array);
 
-        console.log(Object.prototype.__proto__);
+
+        // 内置构造函数Object
+        console.log(Object.prototype.__proto__);    // null，Object.prototype是终点，没有原型了
         console.log(null.__proto__);
     </script>
 </body>

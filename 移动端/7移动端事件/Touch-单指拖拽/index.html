@@ -27,6 +27,7 @@
           y: 0
         };
 
+        // touch事件中，只有按下的那个点才会触发move和end事件
         $el.addEventListener('touchstart', startHandler, false);
         $el.addEventListener('touchmove', moveHandler, false);
         $el.addEventListener('touchend', endHandler, false);

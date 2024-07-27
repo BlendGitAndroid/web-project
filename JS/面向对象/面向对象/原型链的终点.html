@@ -13,6 +13,14 @@
         }
         var xiaoming = new People('小明', 12);
 
+        // 怎么理解原型呢，原型就是一个对象，这个对象里面有很多的属性和方法，这些属性和方法都可以被对象所继承
+        // 原型都有一个属性，叫做constructor，这个属性指向的是构造函数，而原型链是通过原型对象的constructor属性指向构造函数，来实现的继承
+        // 他的终点是Object.prototype，Object.prototype的原型是null
+        // 通过原型链查找，对象的__proto__等于构造函数的prototype
+        console.log(Object.prototype);
+
+        console.log(xiaoming.__proto__ === People.prototype);               // true
+
         console.log(xiaoming.__proto__.__proto__ === Object.prototype);     // true
         console.log(Object.prototype.__proto__);                            // null
 

@@ -16,13 +16,15 @@
         };
 
         console.log(xiaoming.name);
+        console.log(xiaoming['name']);  // 使用方括号语法，属性得用引号括起来
+        // console.log(xiaoming[name]); // 这样写会报错，因为name是变量，而不是字符串
         console.log(xiaoming.age);
         console.log(xiaoming.sex);
         console.log(xiaoming.hobbies);
         console.log(xiaoming['favorite-book']); // 在 JavaScript 中使用方括号（[]）语法访问对象属性的示例。
         
         var key = 'sex';
-        console.log(xiaoming[key]);
+        console.log(xiaoming[key]); // 方括号语法可以通过变量来访问对象属性
 
         console.log();
         Math.ceil();

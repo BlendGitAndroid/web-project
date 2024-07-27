@@ -51,7 +51,7 @@ class Ajax {
 
     const { success, httpCodeError, error, abort, timeout } = this.options;
 
-    // load
+    // load，当请求成功完成时触发
     xhr.addEventListener(
       'load',
       () => {
@@ -74,7 +74,7 @@ class Ajax {
       false
     );
 
-    // abort
+    // abort，当请求被取消时触发
     xhr.addEventListener(
       'abort',
       () => {
@@ -133,9 +133,13 @@ class Ajax {
   sendData() {
     const xhr = this.xhr;
 
+    console.log("start xhr.send");
+
     if (!this.isSendData()) {
       return xhr.send(null);
     }
+
+    console.log("xhr.send has params");
 
     let resultData = null;
     const { data } = this.options;
@@ -144,7 +148,7 @@ class Ajax {
     if (this.isFormData()) {
       resultData = data;
     } else if (this.isFormURLEncodedData()) {
-      // 发送 application/x-www-form-urlencoded 格式的数据
+      // 发送 application/x-www-form-urlencoded 格式的数据，需要设置为&连接的字符串
 
       this.setContentType(CONTENT_TYPE_FORM_URLENCODED);
       resultData = serialize(data);

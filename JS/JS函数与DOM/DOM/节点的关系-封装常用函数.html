@@ -38,7 +38,7 @@
             // 遍历node这个节点的所有子节点，判断每一个子节点的nodeType属性是不是1
             // 如果是1，就推入结果数组
             for (var i = 0; i < node.childNodes.length; i++) {
-                if (node.childNodes[i].nodeType == 1) {
+                if (node.childNodes[i].nodeType == 1) { // 1表示元素节点
                     children.push(node.childNodes[i]);
                 }
             }

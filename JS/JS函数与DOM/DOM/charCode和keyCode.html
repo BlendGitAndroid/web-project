@@ -19,6 +19,9 @@
         var oField2 = document.getElementById('field2');
         var oInfo2 = document.getElementById('info2');
 
+        // 事件对象的 charCode 和 keyCode 属性是用来获取按下的按键的字符码和键码的。这两个属性在不同的事件中有不同的表现。
+        // 一般来说，charCode 属性在 keypress 事件中有效，而 keyCode 属性在 keydown 和 keyup 事件中有效。
+
         // 字符码（charCode）是按下的键所代表的字符的 Unicode 编码。它只在 keypress 事件中有效。
         // 例如，字符 "a" 的字符码是 97，字符 "A" 的字符码是 65。注意，字符码是区分大小写的。
         oField1.onkeypress = function (e) {

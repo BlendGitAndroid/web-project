@@ -17,8 +17,8 @@
             e: 80
         };
 
-        sum.call(xiaoming, 3, 5);
-        sum.apply(xiaoming, [3, 5]);
+        sum.call(xiaoming, 3, 5);   //  call方法的第一个参数是this指向的对象，后面的参数是传入函数的参数，多个参数用逗号隔开
+        sum.apply(xiaoming, [3, 5]); // apply方法的第一个参数是this指向的对象，第二个参数是一个数组，数组中的元素是传入函数的参数
     </script>
 </body>
 </html>

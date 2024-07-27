@@ -24,9 +24,9 @@
             // 绑定监听
             this.bindEvent();
         }
-        // 初始化方法
+        // 初始化方法，就像定义对象里面的函数
         TrafficLight.prototype.init = function() {
-            // 创建自己的DOM
+            // 创建自己的DOM和dom属性
             this.dom = document.createElement('img');
             // 设置src属性
             this.dom.src = 'images/' + this.color + '.jpg';
@@ -36,12 +36,12 @@
         TrafficLight.prototype.bindEvent = function() {
             // 备份上下文，这里的this指的是JS的实例
             // 为什么要备份上下文呢？因为在事件处理函数中，this指的是触发事件的元素，而我们要让this指的是JS的实例
-            var self = this;    // TrafficLight的实例
+            var self = this;    // this指的是TrafficLight的实例
             // 当自己的dom被点击的时候
             this.dom.onclick = function () {
                 // 当被点击的时候，调用自己的changeColor方法
                 console.log(this);  // this指的是触发事件的元素,即this指的是img
-                self.changeColor();
+                self.changeColor(); // self指的是TrafficLight的实例，如果不备份上下文，this指的是img，而img没有changeColor方法
             };
         }
         // 改变颜色

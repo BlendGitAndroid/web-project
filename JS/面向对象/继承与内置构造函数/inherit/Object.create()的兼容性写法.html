@@ -16,7 +16,7 @@
             // 创建一个临时构造函数
             function F() {}
             // 让这个临时构造函数的prototype指向o，这样一来它new出来的对象，__proto__指向了o
-            F.prototype = o;
+            F.prototype = o;    // 这个和原型链的继承有点像
             // 返回F的实例
             return new F();
         }

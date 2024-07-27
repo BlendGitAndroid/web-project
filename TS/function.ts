@@ -12,6 +12,8 @@
         return a + b;
     };
 
+    countNumber(1, 2);
+
     // 可选参数：在参数后面加上?，表示该参数可选，而且必须是最后一个参数
     function printFunc(name: string, age?: number): void {
         console.log(name, age);

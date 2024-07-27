@@ -19,15 +19,16 @@ export const RegisterForm = () => {
   const onFinish = async (values: any) => {
     console.log("Success:", values);
     try {
-      await axios.post("http://82.157.43.234:8080/auth/register", {
-        email: values.username,
-        password: values.password,
-        confirmPassword: values.confirm,
-      });
+      // await axios.post("http://82.157.43.234:8080/auth/register", {
+      //   email: values.username,
+      //   password: values.password,
+      //   confirmPassword: values.confirm,
+      // });
       history.push("/signIn/");
     } catch (error) {
       console.log("Failed:", error);
-      alert("注册失败！");
+      // alert("注册失败！");
+      history.push("/signIn/");
     }
   };
 

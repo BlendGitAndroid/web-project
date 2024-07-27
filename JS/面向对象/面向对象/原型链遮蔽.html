@@ -18,12 +18,15 @@
         // 实例化
         var xiaoming = new People('小明', 12, '男');
         var tom = new People('汤姆', 10, '男');
-        tom.nationality = '美国';
+        tom.nationality = '美国';   // 这里是给tom对象添加了一个nationality属性，这个属性是tom自己的，不是原型上的
         
         console.log(xiaoming.nationality);      // 中国
         console.log(xiaoming);
 
         console.log(tom.nationality);           // 美国
+
+        tom.__proto__.nationality = '美国1';   // 这里是给原型上的nationality属性赋值，这里改的是原型上的属性，所以xiaoming的nationality属性也会改变
+        console.log(xiaoming.nationality);      // 美国1
 
         'nationality' in xiaoming       // true
     </script>

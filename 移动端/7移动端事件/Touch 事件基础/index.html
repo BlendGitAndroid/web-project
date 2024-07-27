@@ -18,6 +18,9 @@
     <script>
       // 1.Touch 事件的类型
       // touchstart touchmove touchend touchcancel
+      // 既然有了mouse事件，为什么还要有touch事件？
+      // 1.1.移动端设备的触摸屏幕是一种全新的交互方式，需要新的事件类型来支持
+      // 1.2.移动端设备的触摸屏幕是一种多点触控的交互方式，需要新的事件类型来支持
 
       // 2.注意事项
       // 2.1.Touch 事件在 PC 端不会触发，鼠标事件在 PC 端和移动端都会触发
@@ -36,6 +39,8 @@
 
       const $box = document.getElementById('box');
 
+      // touch事件最大的不同就是只有当触发了touchstart事件，才会触发touchmove和touchend事件
+      // 而mouse事件是不需要的，只要鼠标移动，就会触发mousemove事件
       $box.addEventListener('touchstart', startHandler, false);
       $box.addEventListener('touchmove', moveHandler, false);
       $box.addEventListener('touchend', endHandler, false);

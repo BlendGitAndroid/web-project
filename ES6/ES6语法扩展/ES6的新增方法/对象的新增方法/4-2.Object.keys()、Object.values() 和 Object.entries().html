@@ -13,8 +13,8 @@
       };
 
       console.log(Object.keys(person1));  // ["name", "age"]，返回一个数组，包含对象的所有可枚举属性的键名
-      console.log(Object.values(person1));
-      console.log(Object.entries(person1));
+      console.log(Object.values(person1));  //  ["Alex", 18]，返回一个数组，包含对象的所有可枚举属性的键值
+      console.log(Object.entries(person1)); //  [["name", "Alex"], ["age", 18]]，返回一个二维数组，包含对象的所有可枚举属性的键值对
 
       // 2.与数组类似方法的区别
       // console.log([1, 2].keys());

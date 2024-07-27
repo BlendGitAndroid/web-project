@@ -7,11 +7,13 @@
 </head>
 <body>
     <script>
+        // 注意，这里是对象的方法，不是行数的方法，也不是类的方法
         var xiaoming = {
             name: '小明',
             age: 12,
             sex: '男',
             sayHello: function () {
+                console.log("我的名字是" + this.name + "，我今年" + this.age)   // 这里的this指的是当前对象
                 console.log('你好我是小明，我12岁了，我是一个男生');
             },
             sleep: function () {

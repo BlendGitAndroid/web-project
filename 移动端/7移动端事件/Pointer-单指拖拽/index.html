@@ -109,6 +109,7 @@
           y: 0
         };
 
+        // 当在被拖拽元素上按下鼠标时，绑定在 document 上的 pointermove 事件才会触发
         $el.addEventListener('pointerdown', startHandler, false);
         // $el.addEventListener('pointermove', moveHandler, false);
         // $el.addEventListener('pointerup', endHandler, false);

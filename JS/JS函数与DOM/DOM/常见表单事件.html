@@ -25,13 +25,15 @@
 
     <script>
         var myform = document.getElementById('myform');
-        var nameField = myform.nameField;
+        var nameField = myform.nameField;   // 这里的nameField是一个对象，是定义在input的name属性上的
         var ageField = myform.ageField;
 
+        // 当用户在文本框中输入时，onchange事件会在文本框失去焦点时触发
         nameField.onchange = function () {
             console.log('你已经修改完了姓名');
         };
 
+        // oninput事件在用户输入时触发
         nameField.oninput = function () {
             console.log('你正在修改姓名');
         };

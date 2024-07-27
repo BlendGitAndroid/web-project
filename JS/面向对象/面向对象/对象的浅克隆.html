@@ -10,6 +10,8 @@
 <body>
     <script>
         var obj1 = {
+            // 在一个对象的内部，不能用var声明属性，直接写属性名就行了
+            // var cc = 1,
             a: 1,
             b: 2,
             c: [44, 55, 66]
@@ -27,6 +29,7 @@
         obj1.c.push(77);
         console.log(obj2);                  // obj2的c属性这个数组也会被增加77数组
         console.log(obj1.c == obj2.c);      // true，true就证明了数组是同一个对象
+
     </script>
 </body>
 

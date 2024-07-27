@@ -41,10 +41,9 @@
         var oBox = document.getElementById('box');
         var oInfo = document.getElementById('info');
 
-        // offsetLeft 和 offsetTop 属性返回元素的左边缘和上边缘相对于包含元素的左内边缘和上内边缘的距离。
-        // clientX 和 clientY 属性返回鼠标指针的位置，相对于浏览器的左上角。
-        // pageX 和 pageY 属性返回鼠标指针的位置，相对于文档的左上角。
-        // 当没有滚动条时，offsetX/Y 和 clientX/Y 是一样的。
+        // offset系列属性：鼠标相对于事件源元素的偏移量，只有在事件源元素上才有意义，这里就是oBox
+        // client系列属性：鼠标相对于浏览器窗口的偏移量，随滚动条滚动而改变
+        // page系列属性：鼠标相对于文档的偏移量，不随滚动条滚动而改变
         oBox.onmousemove = function (e) {
             oInfo.innerHTML = 'offsetX/Y：' + e.offsetX + ',' + e.offsetY + '<br>'
                             + 'clientX/Y：' + e.clientX + ',' + e.clientY + '<br>'

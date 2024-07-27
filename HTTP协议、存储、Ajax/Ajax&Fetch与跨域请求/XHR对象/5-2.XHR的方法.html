@@ -60,6 +60,7 @@
       // xhr.send(null);
       // xhr.send('username=alex&age=18');
       xhr.send(
+        // 将对象转换为 JSON 字符串，反过来将 JSON 字符串转换为对象需要使用 JSON.parse()  
         JSON.stringify({
           username: 'alex'
         })
