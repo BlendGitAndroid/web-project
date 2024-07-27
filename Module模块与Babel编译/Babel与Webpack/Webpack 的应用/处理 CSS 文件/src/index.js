@@ -12,3 +12,6 @@ const showMsg = () => {
 
 // eslint-disable-next-line
 window.showMsg = showMsg;
+
+// eslint-disable-next-line
+console.log('接口地址：', API_BASE_URL);

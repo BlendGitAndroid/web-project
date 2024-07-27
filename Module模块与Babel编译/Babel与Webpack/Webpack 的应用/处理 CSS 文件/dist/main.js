@@ -16,7 +16,7 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _body_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./body.less */ \"./src/body.less\");\n// polyfill 会转译所有的 JS 新语法，但是文件会变得很大，因为 polyfill 包含了所有的新特性，而不是按需加载\n// import '@babel/polyfill'\n\n // 在JS中引入 CSS 文件，使用 import 语法, 目的是为了让 webpack 打包时能够识别 CSS 文件\n\n\nvar showMsg = function showMsg() {\n  // eslint-disable-next-line\n  alert('Hello');\n};\n\n// eslint-disable-next-line\nwindow.showMsg = showMsg;\n\n//# sourceURL=webpack://webpack-css/./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _body_less__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./body.less */ \"./src/body.less\");\n// polyfill 会转译所有的 JS 新语法，但是文件会变得很大，因为 polyfill 包含了所有的新特性，而不是按需加载\n// import '@babel/polyfill'\n\n // 在JS中引入 CSS 文件，使用 import 语法, 目的是为了让 webpack 打包时能够识别 CSS 文件\n\n\nvar showMsg = function showMsg() {\n  // eslint-disable-next-line\n  alert('Hello');\n};\n\n// eslint-disable-next-line\nwindow.showMsg = showMsg;\n\n// eslint-disable-next-line\nconsole.log('接口地址：', \"http://apidev.example.com\");\n\n//# sourceURL=webpack://webpack-css/./src/index.js?");
 
 /***/ }),
 
