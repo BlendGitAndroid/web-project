@@ -63,5 +63,9 @@
   },
   "eslintConfig": {
     "extends": "airbnb-base"
-  }
+  },
+  "sideEffects": [
+    "./src/extend.js",
+    "./src/**"
+  ]
 }

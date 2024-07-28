@@ -9,6 +9,9 @@ import $ from 'jquery';
 
 import about from './about.md'; // 引入 markdown 文件
 
+import { add } from './math'; // 引入 math.js 文件中的 add 方法
+import "./extend" // 引入自定义的 String 方法
+
 const showMsg = () => {
   // eslint-disable-next-line
   alert('Hello');
@@ -39,3 +42,8 @@ document.getElementById('btn').onclick = function () {
 
 console.log(about);
 $('body').append(about);
+
+// 测试引入的 add 方法
+console.log("1 + 2: " + add(1, 2));
+
+console.log("007: " + (7).pad(3));

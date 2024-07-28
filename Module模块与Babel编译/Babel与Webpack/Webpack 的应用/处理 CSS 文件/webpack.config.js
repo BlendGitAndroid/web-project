@@ -7,6 +7,8 @@ const ESLintPlugin = require('eslint-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')  // 不需要处理的其他文件，可以直接复制到输出目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
 const MyPlugin = require('./plugin/MyPlugin') // 引入自定义插件
+const TerserPlugin = require("terser-webpack-plugin");
+
 
 // 导出一个箭头函数
 module.exports = (env, argv) => {
@@ -25,8 +27,30 @@ module.exports = (env, argv) => {
       filename: '[name].js' // 输出文件名为[name].js,如果没有指定entry中的key,则默认为main.js
     },
 
-    // 2. 代码分离，优化策略，提取公共代码
+    // devtool默认值在生产环境下，也就是mode为production，值是false。在开发环境下也就是mode为development，值是eval。
+    // Tree Shaking 仅支持 source-map | inline-source-map | hidden-source-map | nosources-source-map
+    devtool: 'source-map',
+
+    // 优化策略
     optimization: {
+
+
+      // Tree Shaking依赖于ES6模块化的静态引入方式，生产模式下默认开启
+      // Tree Shaking与Source Map存在兼容性问题，只支持souce-map/inline-source-map/hidden-source-map/nosources-source-map
+      // eval模式将js输出为eval包裹的字符串，不支持Tree Shaking
+      // Tree Shaking 1. optimization.usedExports方法
+      // 标记未被使用的代码
+      // usedExports: true,
+      // // 删除usedExports标记的未被使用的代码，并且代码会被压缩
+      // minimize: true,
+      // minimizer: [new TerserPlugin()],
+
+      // Tree Shaking 2. optimization.sideEffets方法
+      // 把未使用但无副作用的代码删除
+      // 如果有副作用的代码，需要在package.json中配置"sideEffects"
+      // sideEffets: true,
+
+      // 2. 代码分离，优化策略，提取公共代码
       splitChunks: {
         chunks: 'all'
       }
@@ -297,6 +321,15 @@ module.exports = (env, argv) => {
   // 判断环境
   if (env.production) {
     config.mode = 'production';
+
+    // webpack4中有13种模式，webpack5中有26种模式
+    // 启动SourceMap定位问题
+    // config.devtool = 'source-map'; // 生成source-map文件，这只是一种生成source-map的方式，还有其他方式
+    // 开发环境下建议使用eva-cheap-module-source-map，打包速度快，定位到行
+    // 生产环境下建议使用none|nosources-source-map，不生成source-map文件，保护源码
+    // 启用 Source Map 定位问题
+    config.devtool = 'nosources-source-map' // 可以定位信息，但是不暴露源码
+
     config.plugins = [      // 生成一个HTML文件，并自动引入打包后的JS和CSS文件
       new HtmlWebpackPlugin({
         template: './index.html',
@@ -320,10 +353,10 @@ module.exports = (env, argv) => {
         files: ['src/*.{css,less,sass,scss}']
       }),
       new OptimizeCssAssetsPlugin(), // 压缩CSS文件
-      new ESLintPlugin({
-        // 自动解决常规的代码格式报错
-        fix: true
-      }),
+      // new ESLintPlugin({
+      //   // 自动解决常规的代码格式报错
+      //   fix: true
+      // }),
       // 直接将 src 下，不需要特殊处理的文件，直接复制到输出目录中
       new CopyWebpackPlugin({
         patterns: [

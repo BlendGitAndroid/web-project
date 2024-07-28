@@ -1,14 +1,28 @@
-/*
- * ATTENTION: The "eval" devtool has been used (maybe by default in mode: "development").
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
 /******/ 	var __webpack_modules__ = ({
+
+/***/ "./src/extend.js":
+/*!***********************!*\
+  !*** ./src/extend.js ***!
+  \***********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.number.constructor.js */ "./node_modules/core-js/modules/es.number.constructor.js");
+/* harmony import */ var core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_number_constructor_js__WEBPACK_IMPORTED_MODULE_0__);
+
+// 为 Number 的原型添加一个扩展方法
+// 这是一个有副作用的函数
+Number.prototype.pad = function (size) {
+  var res = this + "";
+  while (res.length < size) {
+    res = '0' + res;
+  }
+  return res;
+};
+
+/***/ }),
 
 /***/ "./src/index.js":
 /*!**********************!*\
@@ -16,7 +30,97 @@
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ \"./node_modules/core-js/modules/es.array.iterator.js\");\n/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ \"./node_modules/core-js/modules/es.object.to-string.js\");\n/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.promise.js */ \"./node_modules/core-js/modules/es.promise.js\");\n/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ \"./node_modules/core-js/modules/es.string.iterator.js\");\n/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ \"./node_modules/core-js/modules/web.dom-collections.iterator.js\");\n/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index.css */ \"./src/index.css\");\n/* harmony import */ var _body_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body.less */ \"./src/body.less\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);\n/* harmony import */ var _about_md__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./about.md */ \"./src/about.md\");\n\n\n\n\n\n// polyfill 会转译所有的 JS 新语法，但是文件会变得很大，因为 polyfill 包含了所有的新特性，而不是按需加载\n// import '@babel/polyfill'\n\n // 在JS中引入 CSS 文件，使用 import 语法, 目的是为了让 webpack 打包时能够识别 CSS 文件\n\n\n\n // 引入 markdown 文件\n\nvar showMsg = function showMsg() {\n  // eslint-disable-next-line\n  alert('Hello');\n};\n\n// eslint-disable-next-line\nwindow.showMsg = showMsg;\n\n// eslint-disable-next-line\n// if (API_BASE_URL) {\n//   console.log('接口地址：', API_BASE_URL);\n// }\n\n// 给 body 添加一个页脚(包含备案号)\njquery__WEBPACK_IMPORTED_MODULE_7___default()('body').append('<h3>备案号：XXXXXXX</h3>');\n\n// 3. 代码分离：动态导入。验证按需加载(先关闭ESLintPlugin插件，否则会报错)\n// eslint-disable-next-line\ndocument.getElementById('btn').onclick = function () {\n  // import 启动懒加载\n  // webpackChunkName: 'desc' 指定懒加载的文件名称\n  // webpackPrefetch: true 启动预加载，如果不加这个参数，就是懒加载\n  // 预加载和懒加载的区别：在network中可以看到，预加载是在页面加载完毕后会加载wp.js文件，懒加载是点击按钮后才加载wp.js文件\n  __webpack_require__.e(/*! import() | desc */ \"desc\").then(__webpack_require__.bind(__webpack_require__, /*! ./wp */ \"./src/wp.js\")).then(function (_ref) {\n    var desc = _ref.desc;\n    alert(desc());\n  });\n};\nconsole.log(_about_md__WEBPACK_IMPORTED_MODULE_8__[\"default\"]);\njquery__WEBPACK_IMPORTED_MODULE_7___default()('body').append(_about_md__WEBPACK_IMPORTED_MODULE_8__[\"default\"]);\n\n//# sourceURL=webpack://webpack-css/./src/index.js?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! core-js/modules/es.array.iterator.js */ "./node_modules/core-js/modules/es.array.iterator.js");
+/* harmony import */ var core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_array_iterator_js__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
+/* harmony import */ var core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_object_to_string_js__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
+/* harmony import */ var core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_promise_js__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! core-js/modules/es.string.iterator.js */ "./node_modules/core-js/modules/es.string.iterator.js");
+/* harmony import */ var core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_es_string_iterator_js__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! core-js/modules/web.dom-collections.iterator.js */ "./node_modules/core-js/modules/web.dom-collections.iterator.js");
+/* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
+/* harmony import */ var _body_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body.less */ "./src/body.less");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
+/* harmony import */ var _about_md__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./about.md */ "./src/about.md");
+/* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./math */ "./src/math.js");
+/* harmony import */ var _extend__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./extend */ "./src/extend.js");
+
+
+
+
+
+// polyfill 会转译所有的 JS 新语法，但是文件会变得很大，因为 polyfill 包含了所有的新特性，而不是按需加载
+// import '@babel/polyfill'
+
+ // 在JS中引入 CSS 文件，使用 import 语法, 目的是为了让 webpack 打包时能够识别 CSS 文件
+
+
+
+ // 引入 markdown 文件
+
+ // 引入 math.js 文件中的 add 方法
+ // 引入自定义的 String 方法
+
+var showMsg = function showMsg() {
+  // eslint-disable-next-line
+  alert('Hello');
+};
+
+// eslint-disable-next-line
+window.showMsg = showMsg;
+
+// eslint-disable-next-line
+// if (API_BASE_URL) {
+//   console.log('接口地址：', API_BASE_URL);
+// }
+
+// 给 body 添加一个页脚(包含备案号)
+jquery__WEBPACK_IMPORTED_MODULE_7___default()('body').append('<h3>备案号：XXXXXXX</h3>');
+
+// 3. 代码分离：动态导入。验证按需加载(先关闭ESLintPlugin插件，否则会报错)
+// eslint-disable-next-line
+document.getElementById('btn').onclick = function () {
+  // import 启动懒加载
+  // webpackChunkName: 'desc' 指定懒加载的文件名称
+  // webpackPrefetch: true 启动预加载，如果不加这个参数，就是懒加载
+  // 预加载和懒加载的区别：在network中可以看到，预加载是在页面加载完毕后会加载wp.js文件，懒加载是点击按钮后才加载wp.js文件
+  __webpack_require__.e(/*! import() | desc */ "desc").then(__webpack_require__.bind(__webpack_require__, /*! ./wp */ "./src/wp.js")).then(function (_ref) {
+    var desc = _ref.desc;
+    alert(desc());
+  });
+};
+console.log(_about_md__WEBPACK_IMPORTED_MODULE_8__["default"]);
+jquery__WEBPACK_IMPORTED_MODULE_7___default()('body').append(_about_md__WEBPACK_IMPORTED_MODULE_8__["default"]);
+
+// 测试引入的 add 方法
+console.log("1 + 2: " + (0,_math__WEBPACK_IMPORTED_MODULE_9__.add)(1, 2));
+console.log("007: " + 7 .pad(3));
+
+/***/ }),
+
+/***/ "./src/math.js":
+/*!*********************!*\
+  !*** ./src/math.js ***!
+  \*********************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   add: () => (/* binding */ add),
+/* harmony export */   minus: () => (/* binding */ minus)
+/* harmony export */ });
+function add(x, y) {
+  return x + y;
+  console.log('加法运算');
+}
+function minus(x, y) {
+  return x - y;
+  console.log('减法运算');
+}
 
 /***/ }),
 
@@ -26,7 +130,14 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var core
   \**********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (__WEBPACK_DEFAULT_EXPORT__)\n/* harmony export */ });\n// Module\nvar code = \"<h1 id=\\\"about\\\">About</h1>\\n<p>This is BlendAndroid.</p>\\n\";\n// Exports\n/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);\n\n//# sourceURL=webpack://webpack-css/./src/about.md?");
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+// Module
+var code = "<h1 id=\"about\">About</h1>\n<p>This is BlendAndroid.</p>\n";
+// Exports
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (code);
 
 /***/ }),
 
@@ -36,7 +147,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpac
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://webpack-css/./src/index.css?");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ }),
 
@@ -46,7 +159,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
   \***********************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extract-plugin\n\n\n//# sourceURL=webpack://webpack-css/./src/body.less?");
+__webpack_require__.r(__webpack_exports__);
+// extracted by mini-css-extract-plugin
+
 
 /***/ })
 
@@ -389,8 +504,9 @@ eval("__webpack_require__.r(__webpack_exports__);\n// extracted by mini-css-extr
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_jquery_dist_jquery_js","vendors-node_modules_core-js_modules_es_object_to-string_js-node_modules_core-js_modules_es_p-283ad7"], () => (__webpack_require__("./src/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_jquery_dist_jquery_js","vendors-node_modules_core-js_modules_es_number_constructor_js-node_modules_core-js_modules_es-c62c13"], () => (__webpack_require__("./src/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
+//# sourceMappingURL=index.js.map
