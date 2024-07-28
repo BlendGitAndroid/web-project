@@ -6,16 +6,30 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin') //
 const ESLintPlugin = require('eslint-webpack-plugin')
 const CopyWebpackPlugin = require('copy-webpack-plugin')  // 不需要处理的其他文件，可以直接复制到输出目录
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const MyPlugin = require('./plugin/MyPlugin') // 引入自定义插件
 
 // 导出一个箭头函数
 module.exports = (env, argv) => {
   const config = {
     mode: 'development',
-    entry: './src/index.js',
+    // entry: './src/index.js',
+
+    // 1. 代码分离，多入口打包
+    entry: {
+      index: './src/index.js',
+      about: './src/about.js'
+    },
 
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js' // 输出文件名为[name].js,如果没有指定entry中的key,则默认为main.js
+    },
+
+    // 2. 代码分离，优化策略，提取公共代码
+    optimization: {
+      splitChunks: {
+        chunks: 'all'
+      }
     },
 
     module: {
@@ -175,6 +189,22 @@ module.exports = (env, argv) => {
             filename: "fonts/[name][ext]"
           }
         },
+
+        // 使用自定义loader处理markdown文件
+        {
+          test: /\.md$/i,
+          // use: './loader/markdown-loader',
+          use: [
+            'html-loader',
+            // './loader/markdown-loader'
+            {
+              loader: './loader/markdown-loader', // 先使用markdown-loader处理markdown文件，将markdown文件转换为html文件，然后再使用html-loader处理html文件
+              options: {
+                size: 20
+              }
+            }
+          ]
+        },
       ]
     },
 
@@ -219,7 +249,18 @@ module.exports = (env, argv) => {
       // 生成一个HTML文件，并自动引入打包后的JS和CSS文件
       new HtmlWebpackPlugin({
         template: './index.html',
-        filename: 'index.html'  // 生成的HTML文件名，位置默认在output.path中
+        filename: 'index.html',  // 生成的HTML文件名，位置默认在output.path中
+        // 指定要加载的打包文件，与entry中的key对应，如果不设置chunks，则默认加载所有打包文件
+        chunks: ['index']
+      }),
+      new HtmlWebpackPlugin({
+        // 指定打包后的文件名称
+        filename: 'about.html',
+        // 用来指定，生成 HTML 的模板
+        template: './index.html',
+        // 指定 HTML 中使用的变量
+        title: "关于我们",
+        chunks: ['about']
       }),
       // 实例化插件
       new MiniCssExtractPlugin({
@@ -230,10 +271,10 @@ module.exports = (env, argv) => {
         files: ['src/*.{css,less,sass,scss}']
       }),
       // new OptimizeCssAssetsPlugin(), // development不需要压缩CSS文件
-      new ESLintPlugin({
-        // 自动解决常规的代码格式报错
-        fix: true
-      }),
+      // new ESLintPlugin({
+      //   // 自动解决常规的代码格式报错
+      //   fix: true
+      // }),
       // 直接将 src 下，不需要特殊处理的文件，直接复制到输出目录中
       new CopyWebpackPlugin({
         patterns: [
@@ -245,7 +286,11 @@ module.exports = (env, argv) => {
       }),
 
       // 打包之前，先删除历史文件
-      new CleanWebpackPlugin()
+      new CleanWebpackPlugin(),
+
+      new MyPlugin({
+        target: '.css'
+      }),
     ]
   };
 
