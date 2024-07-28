@@ -43,7 +43,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(core_js_modules_web_dom_collections_iterator_js__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _index_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./index.css */ "./src/index.css");
 /* harmony import */ var _body_less__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./body.less */ "./src/body.less");
-/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js");
+/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! jquery */ "jquery");
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var _about_md__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./about.md */ "./src/about.md");
 /* harmony import */ var _math__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./math */ "./src/math.js");
@@ -163,6 +163,16 @@ __webpack_require__.r(__webpack_exports__);
 // extracted by mini-css-extract-plugin
 
 
+/***/ }),
+
+/***/ "jquery":
+/*!*************************!*\
+  !*** external "jQuery" ***!
+  \*************************/
+/***/ ((module) => {
+
+module.exports = jQuery;
+
 /***/ })
 
 /******/ 	});
@@ -279,7 +289,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// This function allow to reference async chunks
 /******/ 		__webpack_require__.u = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "" + chunkId + ".js";
+/******/ 			return "" + chunkId + "." + "43cf9f98" + ".js";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -288,7 +298,7 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 		// This function allow to reference all chunks
 /******/ 		__webpack_require__.miniCssF = (chunkId) => {
 /******/ 			// return url for filenames based on template
-/******/ 			return "css/" + chunkId + ".css";
+/******/ 			return "css/" + chunkId + "." + "c2150b48" + ".css";
 /******/ 		};
 /******/ 	})();
 /******/ 	
@@ -504,9 +514,9 @@ __webpack_require__.r(__webpack_exports__);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module depends on other loaded chunks and execution need to be delayed
-/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_jquery_dist_jquery_js","vendors-node_modules_core-js_modules_es_number_constructor_js-node_modules_core-js_modules_es-c62c13"], () => (__webpack_require__("./src/index.js")))
+/******/ 	var __webpack_exports__ = __webpack_require__.O(undefined, ["vendors-node_modules_core-js_modules_es_number_constructor_js-node_modules_core-js_modules_es-c62c13"], () => (__webpack_require__("./src/index.js")))
 /******/ 	__webpack_exports__ = __webpack_require__.O(__webpack_exports__);
 /******/ 	
 /******/ })()
 ;
-//# sourceMappingURL=index.js.map
+//# sourceMappingURL=index.e3ba1093.js.map

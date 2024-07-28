@@ -1,4 +1,5 @@
 const path = require('path');
+const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const StylelintPlugin = require('stylelint-webpack-plugin');  // 引入stylelint-webpack-plugin插件
@@ -22,9 +23,16 @@ module.exports = (env, argv) => {
       about: './src/about.js'
     },
 
+    // 缓存：2. 文件资源缓存，浏览器将从服务器获取的资源（如 HTML、CSS、JavaScript 文件等）存储在本地，以便在后续请求中直接
+    // 从本地读取这些资源，而不需要再次从服务器获取。这样可以减少网络请求，提高页面加载速度。
+    // 缓存机制是通过设置文件名的方式实现的，如果文件内容不变，那么文件名也不变，浏览器就会从缓存中读取文件。
+    // 但是Http的头部信息中，有一个Cache-Control/Expires/RTag字段，可以设置缓存的时间，如果缓存时间到了，那么浏览器会重新请求服务器
+    // 1. hash: 每次构建时，会生成一个唯一的hash值
+    // 2. chunkhash: 根据chunk生成hash值，如果打包来源于同一个chunk，那么hash值就一样
+    // 3. contenthash: 根据文件内容生成hash值，只要文件内容不变，那么contenthash值就不变
     output: {
       path: path.resolve(__dirname, 'dist'),
-      filename: '[name].js' // 输出文件名为[name].js,如果没有指定entry中的key,则默认为main.js
+      filename: '[name].[contenthash:8].js' // 输出文件名为[name].js,如果没有指定entry中的key,则默认为main.js
     },
 
     // devtool默认值在生产环境下，也就是mode为production，值是false。在开发环境下也就是mode为development，值是eval。
@@ -54,6 +62,25 @@ module.exports = (env, argv) => {
       splitChunks: {
         chunks: 'all'
       }
+    },
+
+    // 模块的解析规则，resolve是从path中解析出来的
+    resolve: {
+      // 配置模块加载的路径别名
+      alias: {
+        // 指定路径的别名
+        '@': resolve('src') // 指定src目录的别名为@
+      },
+      // 指定引入文件的后缀名（指定之后，在引入文件时，后缀名可以省略）
+      // 默认是 ['.js', '.json']
+      extensions: ['.js', '.json', '.less'],
+      // 指定模块默认加载的路径，也就是制定查找模块的路径
+      modules: [resolve(__dirname, './node_modules'), 'node_modules']
+    },
+
+    // 排除打包依赖项
+    externals: {
+      'jquery': 'jQuery'  // 不打包jquery，在html中通过CDN引入，是为了减少打包体积
     },
 
     module: {
@@ -117,6 +144,8 @@ module.exports = (env, argv) => {
           use: {
             loader: 'babel-loader',
             options: {
+              // 缓存：1. babel缓存。第二次构建时，会读取之前的缓存
+              cacheDirectory: true,
               presets: [
                 [
                   // 下面的写法，也可以单独放在.babelrc文件中
@@ -288,7 +317,7 @@ module.exports = (env, argv) => {
       }),
       // 实例化插件
       new MiniCssExtractPlugin({
-        filename: 'css/[name].css'  // 将CSS文件输出到css文件夹,并以[name].css命名,如果没有指定entry中的key,则默认为main.css
+        filename: 'css/[name].[contenthash:8].css'  // 将CSS文件输出到css文件夹,并以[name].css命名,如果没有指定entry中的key,则默认为main.css
       }),
       new StylelintPlugin({
         // 指定需要进行格式校验的文件

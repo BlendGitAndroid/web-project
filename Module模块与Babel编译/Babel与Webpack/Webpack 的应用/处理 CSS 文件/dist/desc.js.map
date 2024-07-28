@@ -1,1 +1,0 @@
-{"version":3,"file":"desc.js","mappings":";;;;;;;;;;;;;AAAA;AACAA,OAAO,CAACC,GAAG,CAAC,OAAO,CAAC;AAEb,SAASC,IAAIA,CAAA,EAAG;EACrB,OAAO,mBAAmB;AAC5B","sources":["webpack://webpack-css/./src/wp.js"],"sourcesContent":["// 判断模块是否加载\nconsole.log('模块加载了');\n\nexport function desc() {\n  return 'Webpack 是一款前端打包工具';\n}\n"],"names":["console","log","desc"],"sourceRoot":""}
