@@ -80,6 +80,9 @@ export const Header: React.FC = () => {
     history.push("/")
   }
 
+  // items: MenuProps['items'] 是 TypeScript 中的一种类型注解语法，属于索引访问类型。它表示 items 这个属性的类型是 MenuProps 
+  // 接口中 items 属性的类型。
+  // map方法返回一个新的数组，数组中的元素是原始数组中的每个元素调用一个提供的函数后的返回值。
   const items: MenuProps['items'] = languageList.map((l) => {
     return {
       key: l.code,

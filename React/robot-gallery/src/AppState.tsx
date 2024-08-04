@@ -30,7 +30,7 @@ export const AppStateProvider: React.FC = (props) => {
         // 下面是两个全局状态，一个是value，一个是setState，可以这样嵌套起来使用
         <appContext.Provider value={state}>
             <appSetStateContext.Provider value={setState}>
-                {props.children}
+                {props.children}    {/* 这里的children是App组件 */}
             </appSetStateContext.Provider>
         </appContext.Provider>
     );

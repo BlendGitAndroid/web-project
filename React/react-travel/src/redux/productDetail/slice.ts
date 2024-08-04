@@ -31,6 +31,10 @@ export const getProductDetail = createAsyncThunk(
  * 这是使用Redux Toolkit的createSlice函数创建的，旨在简化Redux状态管理。createSlice函数接收一个配置对象，
  * 其中包含slice的名称、初始状态、reducers和extraReducers。
  * Slice的好处是可以去除样板代码，不用再手动编写action creators和action types。
+ * createAsyncThunk和createSlice是Redux Toolkit的两个核心API，用于创建异步action和slice，是怎么关联起来的呢？
+ * 在createSlice的配置对象中，有一个extraReducers字段，用于处理异步action。在这个字段中，我们可以使用方括号语法，
+ * 将一个action type映射到一个reducer函数。这个action type就是createAsyncThunk创建的异步action的三个状态：pending、fulfilled和rejected。
+ * 当异步action的状态发生变化时，对应的reducer函数就会被调用，从而更新state。
  */
 export const productDetailSlice = createSlice({
   name: "productDetail",  // slice的名称, 用于在Redux store中标识这个slice

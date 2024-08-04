@@ -3,7 +3,7 @@ import { CHANGE_LANGUAGE, ADD_LANGUAGE, LanguageActionTypes } from "./languageAc
 
 export interface LanguageState {
   language: "en" | "zh";
-  languageList: { name: string; code: string }[];
+  languageList: { name: string; code: string }[]; // js中能这样定义数组
 }
 
 // 定义初始值

@@ -32,10 +32,10 @@ h1 {
 }
 
 .robotList {
-    width: 85vw;
+    width: 85vw; /* 表示视口的85%，就是浏览器窗口的宽度 */
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-gap: 20px;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4列 */
+    grid-gap: 20px; /* 间距 */
     /* 老师使用macos小屏幕看起来居中了，但是换到分辨率大的屏幕上是没居中的，效果不美观，因此建议加上这句代码 */
     margin: 0 auto;
 }

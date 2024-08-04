@@ -1,11 +1,12 @@
-.cartContainer{
-    display:block;
+.cartContainer {
+    display: relative;
     margin-bottom: 50px;
 }
 
-.cartDropDown{
+/* 下面的代码没有设置top值，意味着 .cartDropDown 元素在垂直方向上将保持其默认位置，具体来说，它会根据其在文档流中的位置进行垂直定位。 */
+.cartDropDown {
     background: white;
-    box-shadow: 0 1px 7px rgba(0,0,0,0.2);
+    box-shadow: 0 1px 7px rgba(0, 0, 0, 0.2);
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -15,31 +16,31 @@
     z-index: 999;
 }
 
-.cartDropDown ul{
+.cartDropDown ul {
     list-style: none;
-    margin:0;
+    margin: 0;
     padding: 0;
 }
 
-.cartDropDown li{
+.cartDropDown li {
     border-bottom: 1px solid #ccc;
     padding: 5px 0;
 }
 
-.cartDropDown li:last-child{
+.cartDropDown li:last-child {
     border-bottom: 0;
 }
 
-.button{
+.button {
     background: none;
     border: none;
-    padding:0;
+    padding: 0;
     display: inline-flex;
     align-items: center;
     cursor: pointer;
     font-size: 16px;
 }
 
-.button svg{
-    margin:0 5px 0 0;
+.button svg {
+    margin: 0 5px 0 0;
 }

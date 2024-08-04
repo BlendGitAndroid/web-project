@@ -15,7 +15,7 @@ interface AddLanguageAction {
   payload: { name: string; code: string };
 }
 
-// 定义action的混合类型
+// 定义action的混合类型，这是一个联合类型
 export type LanguageActionTypes = ChangeLanguageAction | AddLanguageAction;
 
 // 定义action的创建函数，返回的是一个对象

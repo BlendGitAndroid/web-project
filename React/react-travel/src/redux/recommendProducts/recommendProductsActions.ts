@@ -61,6 +61,7 @@ export const giveMeDataActionCreator = (): ThunkAction<
   unknown,  // 额外的参数
   RecommendProductAction  // action的类型
 > => async (dispatch, getState) => {  // 这里的dispatch和getState是redux-thunk传入的
+  // dispatch的作用是将action发送给reducer
   dispatch(fetchRecommendProductStartActionCreator());
   try {
     const { data } = await axios.get(
@@ -74,6 +75,8 @@ export const giveMeDataActionCreator = (): ThunkAction<
 
 /**
  * redux-thunk的源码
+ * 如果没有redux-thunk，那么redux只能处理普通的action，即一个js对象。
+ * dispatch后的action会被redux-thunk拦截，如果action是一个函数，那么redux-thunk会执行这个函数，并传入dispatch和getState作为参数。
  * 
  * function createThunkMiddleware(extraArgs) {
   return ({dispatch, getState}) => (next) => (action) => {

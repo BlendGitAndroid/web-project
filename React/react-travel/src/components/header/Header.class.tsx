@@ -25,6 +25,7 @@ const mapStateToProps = (state: RootState) => {
 // 定义mapDispatchToProps，将dispatch映射到组件的props中
 const mapDispatchToProps = (dispatch: Dispatch) => {
   return {
+    // code: "zh" | "en"，表示code只能是"zh"或"en"中的一个，是一个联合类型
     changeLanguage: (code: "zh" | "en") => {
       const action = changeLanguageActionCreator(code);
       dispatch(action);
