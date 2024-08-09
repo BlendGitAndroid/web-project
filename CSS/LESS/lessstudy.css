@@ -1,0 +1,47 @@
+html {
+  font-size: 22px;
+}
+@media screen and (max-width: 320) {
+  html {
+    font-size: 320px / 15;
+  }
+}
+body {
+  background-color: #f5f5f5;
+}
+.header {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+}
+.header .logo {
+  width: 100px;
+  height: 100px;
+  color: deepskyblue;
+  background-color: aqua;
+}
+.nav {
+  width: 200px;
+  height: 200px;
+  background-color: pink;
+}
+.nav a {
+  display: block;
+  width: 100px;
+  height: 100px;
+  color: aColor;
+  background-color: yellow;
+}
+.nav a:hover {
+  background-color: deeppink;
+}
+.nav a.box {
+  width: 100px;
+  height: 100px;
+  background-color: #666666;
+}
+.nav a:nth-child(3) {
+  width: 100px;
+  height: 100px;
+  background-color: #333333;
+}

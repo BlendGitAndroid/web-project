@@ -1,0 +1,12 @@
+// out:true
+@no: 15;
+
+html {
+    font-size: 22px;
+}
+
+@media screen and (max-width: 320) {
+    html {
+        font-size: 320px / @no;
+    }
+}
