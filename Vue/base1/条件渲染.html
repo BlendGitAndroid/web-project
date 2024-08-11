@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 10</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // v-if是通过条件来渲染元素，是直接移除dom元素
+  // v-show是通过css来控制元素的显示和隐藏，是display:none
+
+  // 频繁的显示和隐藏，使用v-show
+
+  const app = Vue.createApp({
+    data() {
+      return {
+        show: false,
+        conditionOne: false,
+        conditionTwo: true
+      }
+    },
+    template: `
+      <div v-if="show">Hello World</div>
+
+      <div v-if="conditionOne">if</div>
+      <div v-else-if="conditionTwo">elseif</div>
+      <div v-else>else</div>
+
+      <div v-show="show">Bye World</div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

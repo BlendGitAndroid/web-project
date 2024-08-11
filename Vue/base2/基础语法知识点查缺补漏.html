@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 22</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // v-once 让某个元素标签只渲染一次
+  // ref 实际上是获取 Dom 节点 / 组件引用 的一个语法
+  // provide / inject
+  const app = Vue.createApp({
+    data() {
+      return { count: 1 }
+    },
+
+    // provide 用于提供数据
+    provide() {
+      return {
+        count: this.count,
+      }
+    },
+
+    mounted() {
+      // 通过 ref 获取 Dom 节点
+      console.log(this.$refs.countA.innerHTML = "ref");
+    },
+    template: `
+      <div>
+        <div v-once>{{count}}</div>
+        <div ref="countA">{{count}}</div>
+
+        <child :count="count" />
+
+        <button @click="count += 1">Add</button>
+
+      </div>
+    `
+  });
+
+  app.component('child', {
+    template: `<child-child />`
+  });
+
+  app.component('child-child', {
+    // inject 用于接收父组件通过 provide 提供的数据，是一次性的
+    inject: ['count'],
+    template: `<div>{{count}}</div>`
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

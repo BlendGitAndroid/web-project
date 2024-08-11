@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 23</title>
+  <style>
+    /* 动画 */
+    @keyframes leftToRight {
+      0% {
+        transform: translateX(-100px);
+      }
+
+      50% {
+        transform: translateX(-50px);
+      }
+
+      0% {
+        transform: translateX(0px);
+      }
+    }
+
+    .animation {
+      animation: leftToRight 3s;
+    }
+
+    /* 过渡 */
+
+    .blue {
+      background: blue;
+    }
+
+    .green {
+      background: green;
+    }
+
+    .transition {
+      color: white;
+      transition: 1s background-color ease;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        animate: {
+          animation: true, // 设置为 true 时，为div添加 animation 类名
+        },
+        styleObj: {
+          background: 'blue',
+        }
+      }
+    },
+    methods: {
+      handleClick() {
+        if (this.styleObj.background === 'blue') {
+          this.styleObj.background = 'green';
+        } else {
+          this.styleObj.background = 'blue'
+        }
+      }
+    },
+    template: `
+      <div :class="animate">
+        动画效果
+      </div>
+
+      <div>
+        <div class="transition" :style="styleObj">hello world</div>
+        <button @click="handleClick">切换</button>
+      </div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

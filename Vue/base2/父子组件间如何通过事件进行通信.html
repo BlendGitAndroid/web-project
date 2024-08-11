@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 18</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return { count: 1 }
+    },
+    methods: {
+      // value是子组件传递过来的值
+      handleSubtraction(value) {
+        this.count = value;
+      }
+    },
+    template: `
+      <counter v-model="count" />
+
+      <counter1 :count="count" @subtraction="handleSubtraction" />
+    `
+  });
+
+  app.component('counter1', {
+    props: ['count'],
+    // 通过 emits 选项声明该组件可以触发的事件
+    emits:["subtraction"],
+    methods: {
+      handleClick() {
+        // 通过触发 subtraction 事件来更新父组件的 count
+        this.$emit('subtraction', this.count - 1);
+      }
+    },
+    template: `
+      <div @click="handleClick">{{count}}</div>
+    `
+  });
+
+  app.component('counter', {
+    props: ['modelValue'],  // 通过 v-model 传递的值，会被解析成 modelValue
+    methods: {
+      handleClick() {
+        // 通过触发 update:modelValue 事件来更新父组件的 modelValue
+        this.$emit('update:modelValue', this.modelValue + 3);
+      }
+    },
+    template: `
+      <div @click="handleClick">{{modelValue}}</div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+</html>

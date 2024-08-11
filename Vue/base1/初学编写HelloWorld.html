@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>hello world</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // 创建一个新的 Vue 应用实例
+  Vue.createApp({
+    // data 函数返回一个对象，对象中包含了 Vue 实例中的数据
+    data() {
+      return {
+        content: 1
+      }
+    },
+
+    // mounted 函数会在 Vue 实例挂载到页面之后自动执行
+    mounted() {
+      setInterval(() => {
+        this.$data.content += 1;
+      }, 1000)
+    },
+
+    // template 属性用于定义 Vue 实例的模板
+    template: '<div>{{content}}</div>'
+  }).mount('#root');
+</script>
+
+</html>

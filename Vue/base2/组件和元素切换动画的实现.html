@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
+  <title>lesson 25</title>
+  <style>
+    .v-leave-to {
+      opacity: 0;
+    }
+
+    .v-enter-from {
+      opacity: 0;
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: opacity 1s ease-in;
+    }
+
+    .v-leave-from,
+    .v-enter-to {
+      opacity: 1;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // 多个单元素标签之间的切换
+  // 多个单组件之间的切换
+  // mode="out-in" 会在旧元素离开后，新元素进入之前添加一个延迟
+  // mode="in-out" 会在新元素进入之后，旧元素离开之前添加一个延迟
+  // appear 属性会在元素第一次渲染的时候添加动画
+  // <component :is="component" /> 会根据 component 的值来动态渲染组件
+  // 是if else的替代方案
+  const ComponentA = {
+    template: '<div>hello world</div>'
+  }
+
+  const ComponentB = {
+    template: '<div>bye world</div>'
+  }
+
+  const app = Vue.createApp({
+
+    data() {
+      return { 
+        show: true,
+        component: 'component-a' 
+      }
+    },
+
+    methods: {
+      handleClick() {
+        if (this.component === 'component-a') {
+          this.component = 'component-b';
+        } else {
+          this.component = 'component-a';
+        }
+        this.show = !this.show;
+      },
+    },
+
+    components: {
+      'component-a': ComponentA,
+      'component-b': ComponentB,
+    },
+
+    template: `
+      <div>
+
+        <transition mode="out-in" appear>
+          <component :is="component" />
+        </transition>
+
+        <transition mode="out-in" appear>
+          <div v-if="show">A</div>
+          <div v-else="show">B</div>
+        </transition>
+
+        <button @click="handleClick">切换</button>
+      </div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

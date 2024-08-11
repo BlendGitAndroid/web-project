@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 7</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // {{}} 插值表达式: 用于将 Vue 实例中的数据渲染到页面中。这个表达式会被替换为对应数据的值，从而实现数据的动态渲染。里面可以写表达式
+
+  // v-html：用于将 HTML 内容插入到元素中。它会将绑定的数据作为 HTML 代码插入，而不是普通文本。这在需要动态渲染 HTML 内容时非常有用，
+  // 但需要注意的是，使用 v-html 可能会带来 XSS（跨站脚本攻击）风险，因此要确保插入的内容是可信的。
+
+  // v-bind(:)：用于动态绑定 HTML 属性。它的缩写形式是 :。这个指令可以将 Vue 实例中的数据绑定到 HTML 元素的属性上，使属性值随着数据的变化而自动更新。
+
+  // v-on(@)：用于监听 DOM 事件，并在事件触发时执行相应的 JavaScript 代码。这个指令使得我们可以轻松地在模板中添加事件监听器。
+
+  // v-once：用于只渲染元素和组件一次。这个指令会使元素或组件及其所有子节点只渲染一次，不会随着数据的变化而重新渲染。
+
+  // 动态参数：动态参数允许我们在指令中使用动态的属性名或事件名。使用方括号 [] 包裹参数名即可实现动态参数。
+
+  // 修饰符：修饰符是以点 . 开头的特殊后缀，用于修改指令的行为。例如，.prevent 修饰符可以用于 v-on 指令，表示在触发事件时调用 event.preventDefault()。
+  // 修饰符可以帮助我们简化常见的操作，增强代码的可读性和可维护性。
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: "hello world",
+        messagespan: "<strong>hello span<strong>",
+        disable: true,
+        show: false,
+        titlename: "title",
+        event: "click"
+      }
+    },
+    methods: {
+      handleClick() {
+        alert('click')
+      },
+
+      handleClickPrevent(e) {
+        e.preventDefault();
+        alert('handleClickPrevent')
+      }
+    },
+    template: `
+      <div>{{message}}</div>
+
+      <div v-html="messagespan"></div>
+
+      <div v-bind:title="message">{{message}}</div>
+      <div :[titlename]="message" @[event] = "handleClick">{{message}}</div>
+
+      <input v-bind:disabled="disable" />
+
+      <div>{{'a' + 'b'}}</div>
+
+      <div v-once>{{message}}</div>
+
+      <form action="https://www.baidu.com" v-on:click="handleClick">
+        <button type="submit">提交</button>
+      </form>
+
+      <form action="https://www.baidu.com" @click="handleClickPrevent">
+        <button type="submit">提交</button>
+      </form>
+
+      <form action="https://www.baidu.com" @click.prevent="handleClick">
+        <button type="submit">提交</button>
+      </form>
+
+    `
+  });
+  const vm = app.mount('#root');
+
+
+  /**
+   * 在 JavaScript 中，语句和表达式是两个基本的概念，它们在编程中扮演不同的角色。
+   * 语句（Statement）
+   * 语句是执行某种操作的指令。语句通常不返回值，而是执行某种动作，如声明变量、控制流程、执行循环等。语句以分号结尾。
+   * 
+   * let x = 5; // 变量声明语句
+   * if (x > 0) { // if 语句
+   *  console.log('x is positive'); // 表达式语句
+   * }
+   * 
+   * 表达式（Expression）
+   * 表达式是一个代码片段，它会被求值为一个值。表达式可以是一个简单的值、变量、操作符组合，或者是一个函数调用。表达式可以嵌入到其他表达式或语句中。
+   * 语句通常不返回值，而是执行某种操作。
+   * 
+   * 5 + 3; // 一个简单的表达式
+   * x > 0 // 比较表达式
+   * */
+</script>
+
+</html>

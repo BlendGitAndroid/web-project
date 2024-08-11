@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 12</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // event, $event
+  // 事件修饰符：stop, prevent, capture, self, once, passive
+  // 按键修饰符：enter, tab, delete, esc, up, down, left, right
+  // 鼠标修饰符：left, right, middle
+  // 精确修饰符：exact
+  const app = Vue.createApp({
+    data() {
+      return {
+        count: 0,
+      }
+    },
+    methods: {
+      handleClick1() {
+        console.log('click1')
+      },
+      handleClick(number, event) {
+        // 获取原生的事件对象
+        console.log(event.target)
+        console.log('click' + number)
+      },
+      handleDivClick() {
+        alert('div click')
+      }
+    },
+    template: `
+      <div>
+        {{count}}
+
+        <div>可以这样写</div>
+        <button @click="count += 1">增加</button>
+
+        <div>传递$event</div>
+        <button @click="handleClick(2, $event)">获取</button>
+
+        <div>多个方法</div>
+        <button @click="handleClick(2, $event), handleClick1()">获取</button>
+
+        <div>点击事件冒泡</div>
+        <div @click="handleDivClick">
+            <button @click="handleClick(2, $event)">获取</button>
+        </div>
+
+        <div>禁止事件冒泡</div>
+        <div @click="handleDivClick">
+            <button @click.stop="handleClick(2, $event)">获取</button>
+        </div>
+
+        <div>self事件</div>
+        <div @click.self="handleDivClick">
+            点击我啊
+            <button @click="handleClick1">self事件</button>
+        </div>
+
+        <div>
+          当按下回车键时触发
+          <input type="text" @keydown.enter="handleClick1" />
+        </div>
+
+         <div>
+          当点击鼠标左键时触发
+          <div @click.left="handleClick1" >鼠标修饰符</div>
+        </div>
+
+        只有在ctrl键按下的时候，点击事件才会触发
+        <div @click.ctrl.exact="handleClick1">123</div>
+      </div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

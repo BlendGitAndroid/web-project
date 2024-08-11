@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 29</title>
+  <style>
+    .header {
+      position: absolute
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // 自定义指令 directive
+
+  // 自定义局部指令，在指令中可以使用生命周期函数
+  const directive = {
+    focus: {
+      // 能够写生命周期函数
+      mounted(el, binding) {
+        el.focus();
+      }
+    }
+  }
+
+  const app = Vue.createApp({
+    data() {
+      return {
+        distance: 110
+      }
+    },
+
+    directives: directive,
+
+    template: `
+      <div>
+        <div>
+          <input v-focus />自定义指令
+        </div>
+
+        <div v-pos:right="distance" class="header">
+          <input /> 右边
+        </div>
+
+        <div v-pos:top="distance" class="header">
+          <input /> 上边  
+        </div>
+
+      </div>
+    `
+  });
+
+  // 自定义全局指令，el是当前元素，binding是一个对象
+  app.directive('pos', (el, binding) => {
+    // binding.value 是传入的值, binding.arg 是传入的参数
+    el.style[binding.arg] = (binding.value + 'px');
+  })
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

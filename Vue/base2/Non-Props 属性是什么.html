@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 17</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // Non-prop 属性：父组件给子组件传递参数的时候，子组件没有通过 props 接收的参数
+  const app = Vue.createApp({
+    template: `
+      <div>
+        <counter msg="hello" msg1="hello1" />
+      </div>
+    `
+  });
+
+  app.component('counter', {
+    // 在 Vue.js 中，inheritAttrs 是一个组件选项，用于控制非 props 属性是否会自动应用到组件的根元素上。
+    // 默认情况下，Vue.js 会将所有未在 props 中显式声明的属性（即非 props 属性）自动添加到组件的根元素上。
+    // inheritAttrs: false,
+    mounted() {
+      // 通过 this.$attrs 获取到所有的非 props 属性
+      console.log(this.$attrs);
+      console.log(this.$attrs.msg);
+    },
+    template: `
+      <div :msg="$attrs.msg">Counter</div>
+      <div v-bind="$attrs">Counter</div>
+      <div :msg1="$attrs.msg1">Counter</div>
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+</html>

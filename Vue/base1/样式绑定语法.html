@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 9</title>
+  <style>
+    .red {
+      color: red;
+    }
+
+    .green {
+      color: green;
+    }
+  </style>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  const app = Vue.createApp({
+    data() {
+      return {
+        // 通过改变字符串的值来改变样式，app.$data.classString = 'green'
+        classString: 'red',
+        // 可以使用对象的方式来展示样式
+        classObject: { red: false, green: true },
+        classArray: ['red', 'green', { brown: false }],
+
+        // 行内样式
+        styleString: 'color: yellow;background: orange',
+
+        // 可以使用对象的方式来展示样式，上面的styleString可以这样写
+        styleObject: {
+          color: 'orange',
+          background: 'yellow'
+        }
+      }
+    },
+    template: `
+      <div :class="classString">classString</div>
+
+      <div :class="classObject">classObject</div>
+
+      <div :class="classArray">classArray</div>
+
+      <div :style="styleObject">
+        Hello World
+      </div>
+
+      <demo class="green"></demo>
+    `
+  });
+
+  // 创建一个名字为demo的组件
+  app.component('demo', {
+    template: `
+      <div :class="$attrs.class">one</div>
+      <div :class="$attrs.class">two</div>
+    `
+  })
+
+  // $attrs 是 Vue.js 中的一个内置对象，它包含了传递给组件但没有在 props 中显式声明的属性。在这个例子中，$attrs.class 表示从父组件传递过来的 class 属性。
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

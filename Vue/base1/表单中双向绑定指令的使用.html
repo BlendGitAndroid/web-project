@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 13</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // v-model 双向绑定
+  // input, textarea, checkbox, radio, select
+  // 修饰符 lazy, number, trim
+  const app = Vue.createApp({
+    data() {
+      return {
+        message: 'hello',
+        checkbox: true,
+        checkboxarr: [],
+        radio: "",
+        options: [{
+          text: 'A', value: { value: 'A' },
+        }, {
+          text: 'B', value: { value: 'B' },
+        }, {
+          text: 'C', value: { value: 'C' }
+        }],
+        option: { value: 'A' }
+      }
+    },
+    template: `
+      <div>
+        {{message}}
+        <input v-model.trim="message"  />
+
+        <div></div>
+        {{checkbox}}
+        学习下<input type="checkbox" v-model="checkbox"  value="学习下"/>
+
+        <div></div>
+        {{checkboxarr}}
+        语文<input type="checkbox" v-model="checkboxarr"  value="语文"/>
+        数学<input type="checkbox" v-model="checkboxarr"  value="数学"/>
+        英语<input type="checkbox" v-model="checkboxarr"  value="英语"/>
+
+        <div></div>
+        {{radio}}
+        语文<input type="radio" v-model="radio"  value="语文"/>
+        数学<input type="radio" v-model="radio"  value="数学"/>
+        英语<input type="radio" v-model="radio"  value="英语"/>
+      </div>
+
+      {{option}}
+      <select v-model="option" multiple>
+        <option v-for="item in options" :value="item.value">{{item.text}}</option>
+      </select>
+
+    `
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>
