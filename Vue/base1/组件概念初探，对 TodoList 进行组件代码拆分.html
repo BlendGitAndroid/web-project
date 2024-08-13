@@ -12,18 +12,24 @@
 <script>
   // mvvm , vue 实例，vue 组件
   const app = Vue.createApp({
+
     data() {
       return {
         inputValue: '',
         list: []
       }
     },
+
     methods: {
       handleAddItem() {
+        if (this.inputValue.trim() === '') {
+          return;
+        }
         this.list.push(this.inputValue);
         this.inputValue = '';
       }
     },
+
     template: `
       <div>
         <input v-model="inputValue" />
@@ -45,6 +51,7 @@
   });
 
   app.component('todo-item', {
+    // props 是组件的属性，可以通过 v-bind 绑定数据
     props: ['content', 'index'],
     template: '<li>{{index}} -- {{content}}</li>'
   });

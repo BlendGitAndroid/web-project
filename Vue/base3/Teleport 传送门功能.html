@@ -37,6 +37,12 @@
 </body>
 <script>
   // teleport 传送门
+  // 在 Vue.js 中，<teleport> 是一个内置组件，用于将其子元素渲染到 DOM 树中的指定位置，而不是默认的父组件内部。
+  // 这对于实现一些特定的 UI 需求非常有用，例如模态框、工具提示、弹出菜单等，它们通常需要在 DOM 树的特定位置渲染，以确保正确的样式和行为。
+
+  // <teleport> 组件的 to 属性用于指定目标位置，可以是任何有效的 CSS 选择器。例如：
+  // to="body"：将内容渲染到 body 元素中。
+  // to="#app"：将内容渲染到具有 id="app" 的元素中。
   const app = Vue.createApp({
     data() {
       return {

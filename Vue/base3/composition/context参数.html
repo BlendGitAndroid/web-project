@@ -12,34 +12,18 @@
   <div id="root"></div>
 </body>
 <script>
-  // toRef：将一个响应式对象的属性转换为一个 ref，返回一个 ref 对象
-  // const app = Vue.createApp({
-  //   template: `
-  //     <div>{{age}}</div>
-  //   `,
-  //   setup(props, context) {
-
-
-  //     const { reactive,toRef} = Vue;
-
-  //     const data = reactive({name: 'dell'});
-  //     const age=toRef(data,'age');
-  //     setTimeout(() => {
-  //       age.value = 'lee'
-  //     }, 2000)
-
-
-  //     return {age}
-  //   }
   const app = Vue.createApp({
+
     methods: {
       handleChange() {
         alert('change');
       }
     },
+
     template: `<child @change="handleChange">parent</child>`
 
   });
+
   app.component('child', {
 
     template: `<div @click="handleClick">123123</div>`,
@@ -49,11 +33,13 @@
       // h: 用于创建虚拟节点 
       const { h } = Vue;
 
-      // attrs: 用于接收父组件的属性
+      // attrs: 用于接收父组件的None-Props属性
       // slots: 用于接收父组件的插槽
       // emit: 用于触发父组件的事件
       const { attrs, slots, emit } = context;
-      function handleClick() { emit('change') }
+      function handleClick() {
+        emit('change')
+      }
       return { handleClick }
     }
   })

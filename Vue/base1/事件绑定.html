@@ -17,6 +17,9 @@
   // 按键修饰符：enter, tab, delete, esc, up, down, left, right
   // 鼠标修饰符：left, right, middle
   // 精确修饰符：exact
+
+  // .self 是一个事件修饰符，它确保只有在点击事件发生在绑定元素本身
+  // 时才会触发事件处理函数 handleDivClick。换句话说，如果点击事件发生在 div 内部的其他元素（如按钮）上，handleDivClick 不会被触发。
   const app = Vue.createApp({
     data() {
       return {
@@ -33,7 +36,7 @@
         console.log('click' + number)
       },
       handleDivClick() {
-        alert('div click')
+        console.log('click div')
       }
     },
     template: `

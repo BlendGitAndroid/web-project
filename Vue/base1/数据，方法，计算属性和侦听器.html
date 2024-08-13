@@ -17,6 +17,10 @@
   // 是 computed 是基于依赖的数据进行缓存的，只有依赖的数据发生变化才会重新计算，而 method 页面渲染每次都会重新计算
 
   // computed 和 watcher 都能实现的功能，建议使用 computed 因为更加简洁
+
+  // computed和watch的区别，两个都是对数据进行监听，当数据发生变化时，执行相应的操作
+  // computed 是计算属性，依赖其他属性值，并且 computed 的值有缓存，只有依赖的属性值发生变化，才会重新计算
+  // watch 是观察属性，当属性发生变化时执行异步操作，对数据的变化做出反应
   const app = Vue.createApp({
     data() {
       return {

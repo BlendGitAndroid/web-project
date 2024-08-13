@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 35</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // toRefs: 将一个响应式对象转换为普通对象，其中对象的每个属性都是一个 ref，返回一个普通对象，但是没有默认值
+  // toRef：将一个响应式对象的属性转换为一个 ref，返回一个 ref 对象，如果找不到，会有一个默认值
+  const app = Vue.createApp({
+    template: `
+      <div>{{age}}</div>
+    `,
+    setup(props, context) {
+
+      const { reactive, toRef } = Vue;
+
+      const data = reactive({ name: 'dell' });
+      const age = toRef(data, 'age'); // 如果找不到，会有一个默认值
+      setTimeout(() => {
+        age.value = 'lee'
+      }, 2000)
+
+      return { age }
+    }
+  })
+
+  const vm = app.mount('#root');
+</script>
+
+</html>

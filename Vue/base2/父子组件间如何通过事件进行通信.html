@@ -11,15 +11,18 @@
 </body>
 <script>
   const app = Vue.createApp({
+
     data() {
       return { count: 1 }
     },
+
     methods: {
       // value是子组件传递过来的值
       handleSubtraction(value) {
         this.count = value;
       }
     },
+
     template: `
       <counter v-model="count" />
 
@@ -46,7 +49,7 @@
     props: ['modelValue'],  // 通过 v-model 传递的值，会被解析成 modelValue
     methods: {
       handleClick() {
-        // 通过触发 update:modelValue 事件来更新父组件的 modelValue
+        // 通过触发 update:modelValue 事件来更新父组件的 modelValue，在双向绑定中，v-model 会监听这个事件
         this.$emit('update:modelValue', this.modelValue + 3);
       }
     },

@@ -18,33 +18,41 @@
   // reactive 处理非基础类型的数据
   const app = Vue.createApp({
     template: `
+      <div>{{refname}}</div>
       <div>{{name}}</div>
     `,
     setup(props, context) {
-      // const { ref } = Vue;
+      const { ref } = Vue;
+
+      // 如果不改成响应式的，setup()里面数据改变了，页面不会更新
       // ref的原理是将基础类型的数据变成响应式的：
       // proxy , 'dell' 变成 proxy({value: 'dell'}) 这样的一个响应式引用
-      // let name = ref('dell');
-      // setTimeout(() => {
-      //   name.value = 'lee'
-      // }, 2000)
-      // return { name }
+      let refname = ref('dell');
+
+      setTimeout(() => {
+        // value是ref的一个属性
+        refname.value = 'lee'
+      }, 1000)
 
       const { reactive, readonly, toRefs } = Vue;
+
       // proxy , { name: 'dell'} 变成 proxy({ name: 'dell'}) 这样的一个响应式引用
       const nameObj = reactive({ name: 'dell', age: 28 });
-      const copyNameObj = readonly(nameObj);  // 只读
+      
+      const copyNameObj = readonly(nameObj);  // 只读，不可修改
 
       setTimeout(() => {
         nameObj.name = 'lee'
       }, 2000)
+
       // toRefs的原理是将对象的每个属性都变成响应式的：
       // toRefs proxy({ name: 'dell', age: 28}), { 
       //  name: proxy({ value: 'dell'}),
       //  age: proxy({value: 28})
       // }
       const { name, age } = toRefs(nameObj);  // 解构，使用toRefs
-      return { name }
+
+      return { refname, name }
     }
   });
   const vm = app.mount('#root');

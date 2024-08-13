@@ -14,9 +14,11 @@
 <script>
   // setup函数：在组件实例被创建之前执行，可以用来替代data、methods、computed等属性
   const app = Vue.createApp({
+    
     template: `
       <div @click="handleClick">{{name}}</div>
     `,
+
     methods: {
       test() {
         // 但是在外面可以访问到setup中的属性和方法
@@ -26,8 +28,12 @@
     mounted() {
       this.test();
     },
+
     // created 实例被完全初始化之前，在setup中不能访问到实例的属性和方法，也就是不能使用this
+    // props表示当前组件接收到的属性
+    // context表示当前组件的上下文
     setup(props, context) {
+      // 必须有一个返回值，返回的对象中的属性和方法会被挂载到组件实例上
       return {
         name: 'dell',
         handleClick: () => {

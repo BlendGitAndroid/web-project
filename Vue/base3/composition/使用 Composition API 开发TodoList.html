@@ -27,7 +27,7 @@
     const { ref } = Vue;
 
     const inputValue = ref('');
-    
+
     const handleInputValueChange = (e) => {
       inputValue.value = e.target.value
     }
@@ -41,9 +41,9 @@
       const { list, addItemToList } = listRelativeEffect();
       const { inputValue, handleInputValueChange } = inputRelativeEffect();
       return {
-        list, 
+        list,
         addItemToList,
-        inputValue, 
+        inputValue,
         handleInputValueChange
       }
     },

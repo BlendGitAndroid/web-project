@@ -51,15 +51,15 @@
         Hello World
       </div>
 
-      <demo class="green"></demo>
+      <demo classname="green"></demo>
     `
   });
 
   // 创建一个名字为demo的组件
   app.component('demo', {
     template: `
-      <div :class="$attrs.class">one</div>
-      <div :class="$attrs.class">two</div>
+      <div :class="$attrs.classname">one</div>
+      <div :class="$attrs.classname">two</div>
     `
   })
 

@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>lesson 40</title>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
 </head>
+
 <body>
   <div id="root"></div>
 </body>
@@ -22,16 +24,19 @@
         ref, onBeforeMount, onMounted, onBeforeUpdate, onUpdated,
         onRenderTracked, onRenderTriggered
       } = Vue;
-      const name = ref('dell')
+
       onBeforeMount(() => {
         console.log('onBeforeMount')
       })
+
       onMounted(() => {
         console.log('onMounted')
       })
+
       onBeforeUpdate(() => {
         console.log('onBeforeUpdate')
       })
+
       onUpdated(() => {
         console.log('onUpdated')
       })
@@ -39,10 +44,15 @@
       onRenderTracked(() => {
         console.log('onRenderTracked')
       })
+
       // 每次触发页面重新渲染时自动执行
       onRenderTriggered(() => {
         console.log('onRenderTriggered')
       })
+
+      const name = ref('dell')
+
+      // 当点击后，name的值会变成lee，会触发重新渲染，会触发onRenderTriggered，onBeforeUpdate，onRenderTracked，onUpdated
       const handleClick = () => {
         name.value = 'lee'
       }
@@ -54,7 +64,8 @@
       </div>
     `,
   });
-  
+
   const vm = app.mount('#root');
 </script>
+
 </html>

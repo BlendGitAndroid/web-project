@@ -16,20 +16,27 @@
   const app = Vue.createApp({
     setup() {
       const { reactive, computed } = Vue;
+
       const countObj = reactive({ count: 0 });
+
       const handleClick = () => {
         countObj.count += 1;
       }
+
       let countAddFive = computed({
+        // get 方法用于获取计算属性的值
         get: () => {
           return countObj.count + 5;
         },
+
+        // set 方法接收一个参数，用于设置计算属性的值
         set: (param) => {
           countObj.count = param - 5;
         }
       })
 
       setTimeout(() => {
+        // 设置计算属性的值，就会触发 set 方法
         countAddFive.value = 100;
       }, 3000)
 

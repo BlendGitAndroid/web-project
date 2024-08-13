@@ -20,6 +20,7 @@
     },
 
     // 通过rules属性传入校验规则
+    // rules 通常用于定义表单验证规则。它们可以在表单组件中使用，以确保用户输入的数据符合特定的要求。
     rules: {
       age: {
         validate: age => age > 25,
@@ -36,6 +37,7 @@
     `
   });
 
+  // 插件结合mixins使用
   const validatorPlugin = (app, options) => {
     app.mixin({
       created() {

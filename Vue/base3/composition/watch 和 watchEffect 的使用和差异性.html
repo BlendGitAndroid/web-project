@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>lesson 39</title>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script>
+  // watch 侦听器
+  // watchEffect 侦听器，偏向于 effect
+  const app = Vue.createApp({
+    setup() {
+      const { ref, reactive, watch, watchEffect, toRefs } = Vue;
+
+      const nameRef = ref("dell")
+
+      watch(nameRef, (curName, prevName) => {
+        console.log('watch', curName, prevName);
+      })
+
+      const nameObj = reactive({
+        name: 'dell', englishName: 'lee'
+      })
+
+      // 具备一定的惰性 lazy
+      // 参数可以拿到原始和当前值
+      // 可以侦听多个数据的变化，用一个侦听器承载
+      // 当使用 watch 侦听多个数据时，第一个参数是一个数组，数组中的每一项都是一个函数，每个函数都是一个侦听器，侦听器的执行顺序是按照数组中的顺序依次执行的。
+      // 第二个参数是一个回调函数，回调函数的参数是一个数组，数组中的每一项都是一个数组，每个数组中的第一个元素是当前值，第二个元素是之前的值。
+      // immediate 选项是一个布尔值，用于指定是否在侦听器初始化时立即执行回调函数。默认值是 false，表示不立即执行回调函数。
+      const stop1 = watch([() => nameObj.name, () => nameObj.englishName], ([curName, curEng], [prevName, preEng]) => {
+        console.log('watch', curName, prevName, '---', curEng, preEng);
+
+        setTimeout(() => {
+          stop1(); // 停止侦听
+        }, 3000)
+      }, { immediate: true })
+
+      // 1. 立即执行，没有惰性 immediate
+      // 2. 不需要传递你要侦听的内容，自动会感知代码依赖
+      // 3. 不需要传递很多参数，只要传递一个毁掉函数
+      // 4. 不能获取之前数据的值
+      const stop = watchEffect(() => {
+        console.log("watchEffect: " + nameObj.name);
+        console.log("watchEffect: " + nameObj.englishName);
+        setTimeout(() => {
+          stop(); // 停止侦听
+        }, 3000)
+      })
+
+      const { name, englishName } = toRefs(nameObj);
+
+      return { name, englishName, nameRef }
+    },
+    template: `
+      <div>
+        <div>
+          nameRef: <input v-model="nameRef"> 
+        </div>
+        <div>
+          nameRef is {{nameRef}}
+        </div>
+
+
+        <div>
+          Name: <input v-model="name"> 
+        </div>
+        <div>
+          Name is {{name}}
+        </div>
+
+        <div>
+          EnglishName: <input v-model="englishName"> 
+        </div>
+        <div>
+          EnglishName is {{englishName}}
+        </div>
+      </div>
+    `,
+  });
+
+  const vm = app.mount('#root');
+</script>
+
+</html>
