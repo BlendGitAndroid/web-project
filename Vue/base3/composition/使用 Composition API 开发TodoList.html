@@ -54,6 +54,7 @@
           <input :value="inputValue" @input="handleInputValueChange" />
           <button @click="() => addItemToList(inputValue)">提交</button>
         </div>
+        
         <ul>
           <li v-for="(item, index) in list" :key="index">{{item}}</li>
         </ul>
