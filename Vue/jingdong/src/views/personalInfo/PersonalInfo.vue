@@ -7,7 +7,7 @@
       </div>
       <img
         class="header__avatar"
-        src="http://www.dell-lee.com/imgs/avatar.jpg"
+        src="https://t12.baidu.com/it/u=1986867410,208036171&fm=30&app=106&f=JPEG?w=640&h=640&s=ACC2925E4A7247BF860D61A903007062"
       />
     </div>
     <div class="list">
