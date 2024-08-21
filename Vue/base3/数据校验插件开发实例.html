@@ -19,10 +19,13 @@
       return { name: 'dell', age: 23 }
     },
 
+    // 注意区分不同age，虽然都是age，但是是不同的age
     // 通过rules属性传入校验规则
     // rules 通常用于定义表单验证规则。它们可以在表单组件中使用，以确保用户输入的数据符合特定的要求。
     rules: {
+      // rules对象下的age属性，包含一个 validate 方法和一个 message 字符串
       age: {
+        // validate 方法接收一个参数，参数的名字是 age
         validate: age => age > 25,
         message: 'too young, to simple'
       },
@@ -43,12 +46,15 @@
       created() {
 
         // 遍历rules属性，为每个属性添加watcher
+        // 自定义属性通过$options.属性名 访问
         for (let key in this.$options.rules) {
 
           // 获取校验规则
           const item = this.$options.rules[key];
 
           // 监听数据变化，当数据变化时，执行校验函数
+          // $watch方法的第一个参数是要监听的属性，属性的名字就是定义在data中的属性名
+          // 第二个参数是回调函数，value是属性的值
           this.$watch(key, (value) => {
             const result = item.validate(value);
             if (!result) console.log(item.message);
@@ -58,7 +64,9 @@
     })
   }
 
+  // 使用插件
   app.use(validatorPlugin);
+
   const vm = app.mount('#root');
 </script>
 

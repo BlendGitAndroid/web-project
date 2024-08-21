@@ -12,7 +12,7 @@
   <div id="root"></div>
 </body>
 <script>
-  // v-for是用来循环渲染元素的
+  // v-for是用来循环渲染元素的，一般写在template标签里面，v-for写在谁上面，就会循环渲染谁
 
   // <template>标签是一个占位符，不会渲染到页面上
 
@@ -55,7 +55,7 @@
           v-for="(value, key, index) in listObject"
           :key="index"
         >
-          <div v-if="key !== 'lastName'">
+          <div v-if="key !== lastName">
             {{value}} -- {{key}}
           </div>
         </template>

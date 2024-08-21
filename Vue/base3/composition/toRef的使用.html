@@ -23,7 +23,10 @@
       const { reactive, toRef } = Vue;
 
       const data = reactive({ name: 'dell' });
+      
+      const name = toRef(data, 'name'); // 第一个参数是响应式对象，第二个参数是属性名，返回一个 ref 对象
       const age = toRef(data, 'age'); // 如果找不到，会有一个默认值
+
       setTimeout(() => {
         age.value = 'lee'
       }, 2000)

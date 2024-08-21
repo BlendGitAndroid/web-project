@@ -25,6 +25,7 @@
   app.component('my-title', {
     props: ['level'],
     render() {
+      // h 函数是一个创建虚拟DOM的函数
       const { h } = Vue;
       return h('h' + this.level, {}, [
         this.$slots.default(),

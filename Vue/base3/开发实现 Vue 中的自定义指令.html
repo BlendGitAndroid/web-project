@@ -25,6 +25,7 @@
   const directive = {
     focus: {
       // 能够写生命周期函数
+      // el是当前元素，binding是一个对象，里面包含了很多属性
       mounted(el, binding) {
         el.focus();
       }

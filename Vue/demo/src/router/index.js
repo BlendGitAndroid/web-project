@@ -18,7 +18,7 @@ const routes = [
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(),  // 使用 hash 模式
   routes
 })
 

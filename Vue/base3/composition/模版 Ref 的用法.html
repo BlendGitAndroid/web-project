@@ -19,19 +19,19 @@
     setup() {
       const { ref, onMounted } = Vue;
 
-      // ref 用于获取真实的 DOM 元素节点
-      const hello = ref(null);
+      // ref 用于获取真实的 DOM 元素节点，在非 CompositionAPI 的语法下，this.$refs.hello1获取
+      const hello1 = ref(null);
 
       onMounted(() => {
-        console.log(hello.value);
+        console.log(hello1.value);
       })
 
-      return { hello }  // hello保存的就是真实的 DOM 元素节点的引用
+      return { hello1 }  // hello1保存的就是真实的 DOM 元素节点的引用，使用ref="hello1"绑定
     },
 
     template: `
       <div>
-        <div ref="hello">hello world</div>
+        <div ref="hello1">hello world</div>
       </div>
     `,
   });

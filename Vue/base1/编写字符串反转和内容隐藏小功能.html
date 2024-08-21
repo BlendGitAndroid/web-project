@@ -12,39 +12,29 @@
   <div id="root"></div>
 </body>
 <script>
-  // Vue.createApp({
-  //   data() {
-  //     return {
-  //       content: 'hello world'
-  //     }
-  //   },
-  //   methods: {
-  //     handleBtnClick() {
-  //       this.content = this.content.split('').reverse().join('');
-  //     }
-  //   },
-  //   template: `
-  //     <div>
-  //       {{content}}
-  //       <button v-on:click="handleBtnClick">反转</button>
-  //     </div>
-  //   `
-  // }).mount('#root');
   Vue.createApp({
     data() {
       return {
-        show: true
+        show: true,
+        content: "hello world",
       }
     },
     methods: {
       handleBtnClick() {
         this.show = !this.show;
+      },
+
+      reverseBtnClick() {
+        this.content = this.content.split('').reverse().join('');
       }
     },
     template: `
       <div>
         <span v-if="show">hello world</span>
         <button v-on:click="handleBtnClick">显示/隐藏</button>
+
+        <div>{{content}}</div>
+        <button @click="reverseBtnClick">反转</button>
       </div>
     `
   }).mount('#root');

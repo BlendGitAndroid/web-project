@@ -19,6 +19,9 @@
     },
     methods: {
       handleAddItem() {
+        if(!this.inputValue){
+          return;
+        }
         this.list.push(this.inputValue);
         this.inputValue = '';
       }

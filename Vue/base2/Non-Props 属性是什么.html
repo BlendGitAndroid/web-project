@@ -11,6 +11,8 @@
 </body>
 <script>
   // Non-prop 属性：父组件给子组件传递参数的时候，子组件没有通过 props 接收的参数
+  // props 属性：用于父组件向子组件传递数据，子组件通过 props 接收。使用v-bind绑定数据，然后在子组件中通过props接收
+  // 非 props 属性：传递给子组件但未在 props 中定义的属性，这些属性会被添加到子组件的根元素上。直接定义在子组件的根元素上
   const app = Vue.createApp({
     template: `
       <div>

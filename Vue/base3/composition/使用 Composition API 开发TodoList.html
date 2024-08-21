@@ -12,11 +12,18 @@
   <div id="root"></div>
 </body>
 <script>
+  //  @input表示监听input事件，当input事件触发时，调用handleInputValueChange方法
+  //  :value="inputValue"表示将inputValue的值绑定到input的value属性上
+
+
   // 关于 list 操作的内容进行了封装
   const listRelativeEffect = () => {
     const { reactive } = Vue;
     const list = reactive([]);
     const addItemToList = (item) => {
+      if (!item) {
+        return;
+      }
       list.push(item);
     }
     return { list, addItemToList }
@@ -40,11 +47,20 @@
       // 流程调度中转
       const { list, addItemToList } = listRelativeEffect();
       const { inputValue, handleInputValueChange } = inputRelativeEffect();
+
+      // 获取到的就是真正的数据，而不是ref对象
+      const inputValueClick = (value) => {
+        console.log("真正的值：" + value);
+        console.log(inputValue);
+        inputValue.value = '';
+      }
+
       return {
         list,
         addItemToList,
         inputValue,
-        handleInputValueChange
+        handleInputValueChange,
+        inputValueClick
       }
     },
 
@@ -53,6 +69,8 @@
         <div>
           <input :value="inputValue" @input="handleInputValueChange" />
           <button @click="() => addItemToList(inputValue)">提交</button>
+
+          <button @click="() => inputValueClick(inputValue)">查看</button>
         </div>
         
         <ul>
