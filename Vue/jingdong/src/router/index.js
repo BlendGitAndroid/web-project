@@ -56,15 +56,19 @@ const routes = [{
 ]
 
 const router = createRouter({
-  history: createWebHashHistory(),
+  history: createWebHashHistory(),  // 设置路由模式为hash
   routes
 })
 
+// 路由守卫，判断是否登录
+// to: Route: 即将要进入的目标 路由对象
+// from: Route: 当前导航正要离开的路由
+// next: Function: 一定要调用该方法来 resolve 这个钩子
 router.beforeEach((to, from ,next) => {
   const { isLogin } = localStorage;
   const { name } = to;
   const isLoginOrRegister = (name === "Login" || name === "Register");
-  (isLogin || isLoginOrRegister) ? next() : next({ name: 'Login'});
+  (isLogin || isLoginOrRegister) ? next() : next({ name: 'Login'}); // 如果已经登录或者是登录注册页面，直接跳转，否则跳转到登录页面
 })
 
 export default router

@@ -3,7 +3,7 @@
     class="mask"
     v-if="showCart && calculations.total > 0"
     @click="handleCartShowChange"
-  />
+  ></div>
   <div class="cart">
     <div class="product" v-if="showCart && calculations.total > 0">
       <div class="product__header">
@@ -33,7 +33,7 @@
           class="product__item__checked iconfont"
           v-html="item.check ? '&#xe652;': '&#xe667;'"
           @click="() => changeCartItemChecked(shopId, item._id)"
-        />
+        ></div>
         <img class="product__item__img" :src="item.imgUrl" />
         <div class="product__item__detail">
           <h4 class="product__item__title">{{item.name}}</h4>
@@ -138,6 +138,7 @@ export default {
 <style lang="scss" scoped>
 @import '../../style/viriables.scss';
 @import '../../style/mixins.scss';
+
 .mask {
   position: fixed;
   left: 0;
@@ -152,7 +153,7 @@ export default {
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  z-index: 2; // 保证购物车在mask上层
   background: $bgColor;
 }
 .product {

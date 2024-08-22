@@ -4,14 +4,18 @@ import { useStore } from 'vuex'
 export const useCommonCartEffect = (shopId) => {
   const store = useStore()
   const cartList = store.state.cartList;
+
+  // 调用mutations中的changeCartItemInfo方法
   const changeCartItemInfo = (shopId, productId, productInfo, num) => {
     store.commit('changeCartItemInfo', {
       shopId, productId, productInfo, num
     })
   }
   
+  // productList 计算属性依赖于 cartList[shopId]?.productList。当 cartList 或 shopId 变化时，productList 会重新计算。
   const productList = computed(() => {
     const productList = cartList[shopId]?.productList || {}
+
     const notEmptyProductList = {}
     for(let i in productList) {
       const product = productList[i]
@@ -22,11 +26,13 @@ export const useCommonCartEffect = (shopId) => {
     return notEmptyProductList
   })
 
+  // shopName 计算属性依赖于 cartList[shopId]?.shopName。当 cartList 或 shopId 变化时，shopName 会重新计算。
   const shopName = computed(() => {
     const shopName = cartList[shopId]?.shopName || ''
     return shopName
   })
 
+  // calculations 计算属性依赖于 cartList[shopId]?.productList。当 cartList 或 shopId 变化时，calculations 会重新计算。
   const calculations = computed(() => {
     const productList = cartList[shopId]?.productList
     const result = { total: 0, price: 0, allChecked: true}

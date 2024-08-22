@@ -1,6 +1,7 @@
 <template>
   <div class="content">
     <div class="category">
+      <!-- :class用于绑定类名，true表示添加，false表示不添加 -->
       <div
         :class="{'category__item': true, 'category__item--active': currentTab === item.tab}"
         v-for="item in categories"
@@ -68,12 +69,15 @@ const useCurrentListEffect = (currentTab, shopId) => {
   const content = reactive({ list: [] })
   const getContentData = async () => {
     const result = await get(`/api/shop/${shopId}/products`, {
+      // currentTab是一个ref对象，会被watchEffect自动监听
       tab: currentTab.value
     })
     if(result?.errno === 0 && result?.data?.length) {
       content.list = result.data;
     }
   }
+
+  // watchEffect 会在组件挂载时执行一次，之后每次 currentTab 变化都会执行
   watchEffect(() => { getContentData() })
   const { list } = toRefs(content)
   return { list }
@@ -86,6 +90,8 @@ const useCartEffect = () => {
   const changeShopName = (shopId, shopName) => {
     store.commit('changeShopName', { shopId, shopName })
   }
+
+  // 修改购物车商品数量
   const changeCartItem = (shopId, productId, item, num, shopName) => {
     changeCartItemInfo(shopId, productId, item, num)
     changeShopName(shopId, shopName)
@@ -125,7 +131,7 @@ export default {
   bottom: .5rem;
 }
 .category {
-  overflow-y: scroll;
+  overflow-y: scroll; // y轴滚动
   height: 100%;
   width: .76rem;
   background: $search-bgColor;

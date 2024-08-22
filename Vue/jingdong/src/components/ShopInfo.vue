@@ -18,6 +18,7 @@
 <script>
 export default {
   name: 'ShopInfo',
+  // 接受父组件传递的数据
   props: ['item', 'hideBorder']
 }
 </script>

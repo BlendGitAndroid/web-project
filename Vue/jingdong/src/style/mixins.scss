@@ -1,5 +1,6 @@
+// 混用：混合宏（mixin）是 Sass 中的一种功能，允许你定义一组样式，然后在多个地方重用这些样式，从而提高代码的可维护性和可重用性。
 @mixin ellipsis {
   overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
+  white-space: nowrap;  // 不换行
+  text-overflow: ellipsis;  // 超出部分显示省略号
 }

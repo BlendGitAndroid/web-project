@@ -1,5 +1,6 @@
 import Vuex from 'vuex'
 
+// 保存购物车数据到本地
 const setLocalCartList = (state) => {
   const { cartList } = state
   const cartListString = JSON.stringify(cartList)
@@ -17,12 +18,16 @@ const getLocaCartList = () => {
 
 export default Vuex.createStore({
   state: {
+    // 定义在state中的数据，是响应式的，当数据发生变化时，会自动更新视图
+    // 使用的时候，一般通过计算属性来获取，或者通过mutations来修改
     cartList: getLocaCartList(),
     addressList: [],
   },
   mutations: {
     changeCartItemInfo(state, payload) {
       const { shopId, productId, productInfo } = payload
+
+      // 如果没有当前商铺的购物车数据，初始化一个
       let shopInfo = state.cartList[shopId] || {
         shopName: '', productList:{}
       }

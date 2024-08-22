@@ -59,7 +59,7 @@ export default {
   padding: .16rem .24rem .16rem 0;
   line-height: .22rem;
   font-size: .16rem;
-  @include ellipsis;
+  @include ellipsis;  // mixin引入ellipsis
   .position__icon {
     position: relative;
     top: .01rem;
@@ -84,11 +84,15 @@ export default {
     padding: 0 .08rem 0 .16rem;
     font-size: .16rem;
   }
+  // &__text是search__text的简写，&表示父元素
   &__text {
     display: inline-block;
     font-size: .14rem;
   }
 }
+
+// 通过设置高度为 0 和使用百分比内边距来控制宽高比，并确保其内部的图片 .banner__img 能够适应容器的宽度。
+// 这种方法在创建响应式设计时非常实用，能够确保布局在不同设备上的一致性。
 .banner {
   height: 0;
   overflow: hidden;
@@ -117,7 +121,7 @@ export default {
   }
 }
 .gap {
-  margin: 0 -.18rem;
+  margin: 0 -.18rem;  // 为了撑开页面
   height: .1rem;
   background: $content-bgColor;
 }

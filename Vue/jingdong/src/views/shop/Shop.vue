@@ -28,6 +28,7 @@ import Cart from './Cart'
 
 // 获取当前商铺信息
 const useShopInfoEffect = () => {
+  // 获取当前路由，能够获取到当前路由的参数
   const route = useRoute()
   const data = reactive({ item: {} })
   const getItemData = async () => {

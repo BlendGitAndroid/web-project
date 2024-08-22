@@ -5,6 +5,7 @@
 <script>
 import { reactive, toRefs } from 'vue'
 
+// 定义Toast组件
 export default {
   props: ['message']
 }

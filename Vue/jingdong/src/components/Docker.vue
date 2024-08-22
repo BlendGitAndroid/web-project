@@ -16,6 +16,7 @@
 <script>
 export default {
   name: 'Docker',
+  // 接收父组件传递过来的currentIndex，每一个页面都包含一个docker组件，currentIndex表示当前页面的索引
   props: ['currentIndex'],
   setup() {
     const dockerList = [
@@ -44,6 +45,7 @@ export default {
   &__item {
     flex: 1;
     text-align: center;
+    // router-link其实是一个a标签
     a {
       color: $content-fontcolor;
       text-decoration: none;

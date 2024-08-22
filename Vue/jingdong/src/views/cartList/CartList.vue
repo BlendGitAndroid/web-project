@@ -45,6 +45,7 @@
       </div>
     </div>
   </div>
+  <!-- 设置currentIndex = 1 -->
   <Docker :currentIndex="1"/>
 </template>
 
@@ -53,10 +54,12 @@ import { computed } from 'vue'
 import { useStore } from 'vuex'
 import Docker from '../../components/Docker'
 
+// 获取购物车列表
 const useCartEffect = () => {
   const store = useStore()
   const cartList = store.state.cartList;
   
+  // 当cartList数据发生变化时，重新计算购物车列表
   const cartListWithProducts = computed(() => {
     const newCartList = {};
     for(let shopId in cartList) {
@@ -67,7 +70,7 @@ const useCartEffect = () => {
         total += (product.count || 0)
       }
       if(total > 0) {
-        newCartList[shopId] = cartList[shopId]
+        newCartList[shopId] = cartList[shopId]  // 将购物车列表中的商品添加到newCartList中
       }
     }
     return newCartList;

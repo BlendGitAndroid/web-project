@@ -42,7 +42,7 @@ const useLoginEffect = (showToast) => {
       })
       if (result?.errno === 0) {
         localStorage.isLogin = true
-        router.push({ name: 'Home' })
+        router.push({ name: 'Home' }) // 登陆成功跳转到首页
       } else {
         showToast('登陆失败')
       }
@@ -69,7 +69,7 @@ export default {
   components: { Toast },
   // 职责就是告诉你，代码执行的一个流程
   setup () {
-    const { show, toastMessage, showToast } = useToastEffect()
+    const { show, toastMessage, showToast } = useToastEffect()  // 从
     const { username, password, handleLogin } = useLoginEffect(showToast)
     const { handleRegisterClick } = useRegisterEffect()
 
