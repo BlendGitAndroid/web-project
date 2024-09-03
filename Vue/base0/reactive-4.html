@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">reactive 模块</div>
+</body>
+
+<script>
+    // 每一个变量通常都有两个行为：
+    // getter 行为：访问变量的值时就会触发getter行为。比如：const name = person.name，那么此时就会触发person的 getter 行为。
+    // setter 行为：为变量赋值时就会触发setter行为。比如person.name = '张三'，那么此时就会触发person 的 setter 行为。
+
+    // 而我们想要实现一个响应性，则必须要从这两个行为入手。
+    // 通过 proxy 可以监听对象的 getter 和 setter 行为。
+    // 咱们需要在：
+    // getter 行为时，保存被执行的effect 回调函数，以便在setter（数据改变） 行为时重新执行。这个过程被叫做：依赖收集。
+    // setter 行为时，执行保存的 effect 回调函数，以便修改视图。这个过程被叫做：触发依赖。
+
+    // 这两步就是响应性的核心逻辑。
+
+    // 其主要是使用WekHashMap来实现的，结果是：WeakMap<target, Map<key, Set<activeEffect>>>，其中：
+    // target：被代理的对象，也就是 reactive 函数的参数
+    // key：对象的属性，也就是对象的属性名
+    // activeEffect：effect 回调函数，也就是 reactive 函数的参数
+    // 第二个Map是为了存储多个属性的依赖，Set 是为了存储多个 effect 回调函数。
+    // 当不同对象的不同属性发生变化时，就会触发不同的 effect 回调函数。
+
+    // Proxy + Reflect的作用是：监听对象的 getter 和 setter 行为。Proxy用于监听对象，Reflect用于执行对象的行为。
+
+
+    function reactive(target) {
+        const proxy = new Proxy(target, {
+
+            // Proxy的get方法用于拦截某个属性的读取操作，返回值就是该属性的值。
+            get: (target, key, receiver) => {
+                // 利用 Reflect 得到返回值，该代码可以简单理解为：target.key
+                // receiver 是代理对象，也就是 proxy 实例
+                const res = Reflect.get(target, key, receiver)  // 这是一个可选参数，如果目标对象的属性是一个 getter 方法，那么 receiver 将作为 this 值传递给这个 getter 方法。
+                // 收集依赖
+                track(target, key)  // 利用WeaKMap对activeEffect进行了保存。
+                return res
+            },
+
+            // Proxy的set方法用来拦截某个属性的赋值操作，返回一个布尔值。
+            set: (target, key, value, receiver) => {
+                // 利用 Reflect.set 设置新值，该代码可以简单理解为：target.key = value
+                const result = Reflect.set(target, key, value, receiver)
+                // 触发依赖
+                trigger(target, key)    // 通过WeakMap找到activeEffect，然后执行activeEffect的run方法。
+                return result
+            }
+        })
+        return proxy
+    }
+
+    const obj = reactive({
+        name: '张三'
+    })
+
+    console.log(obj) // proxy 实例
+
+</script>
+
+</html>

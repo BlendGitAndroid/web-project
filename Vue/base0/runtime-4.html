@@ -1,0 +1,77 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">组件的设计与渲染</div>
+</body>
+
+<script>
+    // 组件的渲染，其本质就是组件中render函数的执行
+    // 组件的本质也是一个对象，因此也可以通过 h 函数来创建组件的 VNode 对象。
+    // 以下是组件的设计与渲染的原理：
+    // 1. 创建组件对象：首先，我们需要创建一个组件对象，该对象包含了组件的渲染函数。
+    // 2. 使用 h 函数创建 VNode：然后，我们可以使用 h 函数创建组件的 VNode 对象。
+    // 3. 挂载组件：最后，我们可以通过 render 函数将组件的 VNode 对象挂载到指定的容器中。
+
+    // 有状态组件和无状态组件的设计与渲染的区别：
+    // 1. 有状态组件：有状态组件是指具有响应式数据的组件，它的渲染函数会根据数据的变化而重新执行。
+    // 2. 无状态组件：无状态组件是指没有响应式数据的组件，它的渲染函数只会执行一次。
+
+
+    const { render, h } = Vue
+
+    // 创建一个组件对象
+    const component = {
+        render() {
+            const vnode1 = h('div', '这是一个 stateless component')
+            return vnode1
+        }
+    }
+    // 使用 h 函数创建组件的 VNode 对象
+    const vnode = h(component)
+
+    // 挂载
+    render(vnode, document.querySelector('#app'))
+
+    // 有状态组件，下面的写法是options API的写法，其实就是一个对象
+    const componentState = {
+
+        // 这里的data数据，在底层会被处理成响应式数据，即会被转化为proxy对象
+        data() {
+            return {
+                msg: 'hello stateful component'
+            }
+        },
+
+        render() {
+            // 这里的this是一个Proxy对象，代理了data中的数据
+            return h('div', this.msg)
+        },
+
+        // 生命周期钩子函数的原理就是在创建组件对象的时候，会将这些函数挂载到组件对象上，在解析组件对象时解构出来
+        // 然后在挂载组件的时候，会执行这些函数
+
+        // 组件实例处理完所有与状态相关的选项之后
+        created() {
+            console.log('created', this.msg);
+            setTimeout(() => {
+
+                // 由于msg是响应式数据，所以这里的修改会触发重新渲染
+                // 当setter被触发时，会触发render函数的执行
+                this.msg = '你好，世界'
+            }, 2000);
+        },
+
+        // 组件被挂载之后
+        mounted() {
+            console.log('mounted', this.msg);
+        },
+    }
+
+    const vnodeState = h(componentState)
+    // 挂载
+    render(vnodeState, document.querySelector('#app'))
+</script>

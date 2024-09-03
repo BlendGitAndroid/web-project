@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">watch 模块</div>
+</body>
+
+<script>
+
+    const { reactive, watch } = Vue
+
+    const obj = reactive({
+        name: '张三'
+    })
+
+
+    watch(obj, (value, oldValue) => {
+        console.log('watch 监听被触发');
+        console.log('value', value);
+    })
+
+    setTimeout(() => {
+        obj.name = '李四'
+    }, 2000);
+
+    // watch 的实现和 computed`有一些相似的地方，但是作用却与 computed 大有不同。 watch 可以监听响应式数据的变化，从而触发指定的函数
+    // 首先是 watch 监听依赖 || 触发依赖的机制
+    // watch 的监听和触发也是依赖的 setter 和 getter 行为。 这里的 setter 行为触发是比较明确的，
+    // 本质上就是监听的响应式数据触发 setter 行为。 而 getter 行为的触发是依赖于内部的 traverse 方法进行的。traverse 方法就是 依次遍历数据，
+    // 分别触发 getter 行为。 至于懒执行本质上就是通过 options 中的 immediate 参数，逻辑比较简单。
+    // 因为 watch 内部通过 job 的方法来触发 callback（回调函数），如果 immediate 为 true 那么就主动触发一次 job 就可以了。
+    // traverse 方法的作用是遍历数据，触发 getter 行为。这个方法是在 watch 内部的 getter 行为触发时调用的。
+
+</script>
+
+</html>

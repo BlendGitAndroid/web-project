@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button>点我</button>
+</body>
+<script>
+
+    // 深入事件更新：vue event invokers
+    const btnEle = document.querySelector('button')
+
+    const invoker = () => {
+        invoker.value()
+    }
+
+    // invoker.value 就是为 invoker 函数添加了一个名为 value 的属性。
+    invoker.value = () => {
+        alert('hello')
+    }
+
+    // 在 JavaScript 中，console.log 打印函数时不会显示函数的自定义属性。
+    // 尽管 invoker 函数确实有一个 value 属性，但 console.log 默认只显示函数的代码部分，而不显示其附加的属性。
+    console.log(invoker)
+    console.log(invoker.value)
+
+    console.dir(invoker); // 显示 invoker 函数的所有属性，包括 value
+
+    btnEle.addEventListener('click', invoker)
+
+    setTimeout(() => {
+        invoker.value = () => {
+            alert('你好')
+        }
+    }, 2000)
+
+</script>
+
+</html>

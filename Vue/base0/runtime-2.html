@@ -1,0 +1,48 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+    <style>
+        .red {
+            color: red;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="app">Array等其它的渲染</div>
+</body>
+
+<script>
+    // vue还对style和class做了增强，可以传入对象和数组
+
+    const { h, render, Text, Comment, Fragment } = Vue
+
+    // 创建数组类型的 VNode 对象
+    const vnode = h('div', {
+        class: 'test'
+    }, [
+        h('p', 'p1'),
+        h('p', 'p2'),
+        h('p', 'p3')
+    ])
+
+    console.log(JSON.stringify(vnode));
+
+    const vnodeText = h(Text, '这是一个 Text')
+    console.log(vnodeText);
+
+    const vnodeComment = h(Comment, '这是一个 Comment')
+    console.log(vnodeComment);
+
+    const vnodeFragment = h(Fragment, '这是一个 Fragment')
+    console.log(vnodeFragment);
+
+    const vnodeClass = h('div', {
+        class: {
+            'red': true
+        }
+    }, '增强的 class')
+
+</script>

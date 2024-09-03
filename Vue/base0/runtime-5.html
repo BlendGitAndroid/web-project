@@ -1,0 +1,40 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">setup函数</div>
+</body>
+
+<script>
+    // 初始化组件实例：在组件实例创建时，Vue 会调用 setup 函数。
+    // 响应式数据：在 setup 函数中，可以使用 Vue 的响应式 API（如 reactive、ref 等）来创建响应式数据。
+    // 返回值处理：setup 函数可以返回一个对象或函数。如果返回对象，这些对象的属性将被合并到组件的上下文中；如果返回函数，该函数将作为组件的渲染函数。
+    // 依赖注入：setup 函数还可以通过 provide 和 inject API 实现依赖注入。
+
+    const { reactive, h, render } = Vue
+
+    const component = {
+
+        // 如果返回的是函数，那么返回的是一个render函数
+        setup() {
+
+            // 这里的obj是一个响应式对象
+            const obj = reactive({
+                name: '张三'
+            })
+
+            setTimeout(() => {
+                obj.name = '李四'
+            }, 2000);
+
+            return () => h('div', obj.name)
+        }
+    }
+
+    const vnode = h(component)
+    // 挂载
+    render(vnode, document.querySelector('#app'))
+</script>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">effect模块</div>
+</body>
+
+<script>
+    // 当前需要执行的 effect
+    let activeEffect
+
+    /**
+     * 2. 看完 effect 方法之后再看这里
+     * 响应性触发依赖时的执行类
+     */
+    class ReactiveEffect {
+        constructor(fn) {
+            this.fn = fn
+        }
+
+        run() {
+            // 为 activeEffect 赋值
+            activeEffect = this
+
+            // 执行 fn 函数
+            return this.fn()
+        }
+    }
+
+    /**
+     * 1. 代码先看这里
+     * effect 函数
+     * @param fn 执行方法
+     * @returns 以 ReactiveEffect 实例为 this 的执行函数
+     */
+    function effect(fn) {
+        // 生成 ReactiveEffect 实例
+        const _effect = new ReactiveEffect(fn)
+
+        // 执行 run 函数
+        _effect.run()
+    }
+
+
+    // 目前，咱们已经创建好了effect模块，并且利用effect做了两件事情：
+    // 1. effect 函数接收回调函数
+    // 2. ReactiveEffect 实例可以调用run函数，从而：为 activeEffect 变量赋值，执行回调函数
+    // 也就是说，effect 模块已经可以实现依赖收集和触发依赖的功能。把依赖收集和触发依赖的功能封装到了 effect 模块中。
+
+    // 使用 effect 模块
+    effect(() => {
+        document.querySelector('#app').innerText = name
+    })
+
+</script>
+
+</html>

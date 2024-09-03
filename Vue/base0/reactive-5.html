@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">ref 模块</div>
+</body>
+
+<script>
+    // proxy 只能监听复杂数据类型的 getter 和 setter 行为
+    // proxy 无法监听简单数据类型的 getter 和 setter
+    // ref 可以监听简单数据类型的 getter 和 setter 行为
+
+    // ref针对复杂数据类型，会返回一个 proxy 实例
+    // 1. 对于 ref函数，会返回 RefImpl 类型的实例
+    // 2. 在该实例中，会根据传入的数据类型进行分开处理
+    //      1.复杂数据类型:转化为 reactive返回的 proxy 实例
+    //      2. 简单数据类型：不做处理
+    // 3.无论我们执行obj.value.name还是 obj.value.name = xxx本质上都是触发了 get value
+    // 4.之所以会进行 响应性 是因为 obj.value 是一个 reactive 函数生成的 proxy
+
+    // ref针对简单数据类型
+    // 1. 对于 ref函数，会返回 RefImpl 类型的实例
+
+    // 2. 先看 ref 方法，再看这里
+
+
+    // 1. 问题一： ref 函数是如何进行实现的呢？
+    //      ref函数本质上是生成了一个RefImpl类型的实例对象,通过get和set标记处理了value 函数
+    // 2. 问题二： ref 可以构建简单数据类型的响应性吗？
+    //      是的。ref可以构建简单数据类型的响应性
+    // 3.问题三:为什么 ref类型的数据，必须要通过.value访问值呢?
+    //      因为 ref 需要处理简单数据类型的响应性,但是对于简单数据类型而言,它无法通过proxy 建立代理。
+    //      所以vue通过 get value()和 set value () 定义了两个属性函数，通过主动触发这两个函数（属性调用）的形式来进行 
+    //      依赖收集 和 触发依赖。所以我们必须通过.value来保证响应性。
+
+
+
+    class RefImpl {
+        _value
+        dep
+
+        constructor(value) {
+            this._value = value
+        }
+
+        /**
+         * get 语法将对象属性绑定到：查询该属性时，将被调用的函数。
+         * 即：xxx.value 时触发该函数
+         */
+        get value() {
+            // 收集依赖
+            // activeEffect 通常是一个全局变量，表示当前正在执行的副作用函数（effect）。
+            // 副作用函数是那些在数据变化时需要重新执行的函数，例如模板渲染或计算属性。
+            if (activeEffect) {
+                const dep = ref.dep || (ref.dep = new Set())
+                dep.add(activeEffect)
+            }
+            return this._value
+        }
+
+        /**
+         * set 语法将对象属性绑定到：赋值该属性时，将被调用的函数。
+         * 即：xxx.value = xxx 时触发该函数
+         */
+        set value(newVal) {
+            // 更新数据
+            this._value = newVal
+            // 触发依赖
+            if (ref.dep) {
+                triggerEffects(ref.dep)
+            }
+        }
+    }
+
+    /**
+     * 1. 先看这里~~~~~~~~~~~~~~~~~~~
+     * ref 函数
+     * @param value unknown
+     */
+    function ref(value) {
+        return new RefImpl(value)
+    }
+
+    const name = ref('张三')
+    console.log(name) // RefImpl 实例
+
+    name.value = '李四'
+
+
+    // -----------------------------------------------------------------------------------------
+
+    const person = {
+        _firstName: 'John',
+        _lastName: 'Doe',
+        _age: 30,
+
+        get firstName() {
+            return this._firstName;
+        },
+        set firstName(value) {
+            console.log(`Setting firstName to ${value}`);
+            this._firstName = value;
+        },
+
+        get lastName() {
+            return this._lastName;
+        },
+        set lastName(value) {
+            console.log(`Setting lastName to ${value}`);
+            this._lastName = value;
+        },
+
+        get age() {
+            return this._age;
+        },
+        set age(value) {
+            if (value < 0) {
+                console.log('Age cannot be negative');
+            } else {
+                console.log(`Setting age to ${value}`);
+                this._age = value;
+            }
+        }
+    };
+
+    // 使用 getter 和 setter
+    console.log(person.firstName); // 输出: John
+    person.firstName = 'Jane'; // 输出: Setting firstName to Jane
+    console.log(person.firstName); // 输出: Jane
+
+    console.log(person.age); // 输出: 30
+    person.age = -5; // 输出: Age cannot be negative
+    person.age = 25; // 输出: Setting age to 25
+    console.log(person.age); // 输出: 25
+
+</script>
+
+</html>

@@ -1,0 +1,192 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">diff算法</div>
+    <div id="app1">自前向后的对比</div>
+    <div id="app2">自后向前的对比</div>
+    <div id="app3">新节点多余旧节点时的对比</div>
+    <div id="app4">旧节点多于新节点时的对比</div>
+    <div id="app5">乱序对比</div>
+</body>
+
+<script>
+    // 在 Vue 3 中，虚拟 DOM 的 diff 算法用于高效地更新真实 DOM。diff 算法通过对比新旧虚拟节点树，找出最小的变化集，并进行相应的 DOM 更新。
+
+    // diff 算法的主要对比逻辑：
+    // 1. 同层对比：Vue 只会对比同一层级的节点，不会跨层级对比。
+    // 2. 节点类型对比：如果新旧节点类型不同，直接替换旧节点。
+    // 3. 节点属性对比：如果新旧节点类型相同，对比节点属性并更新不同的属性。
+    // 4. 子节点对比：对子节点进行递归对比，找出最小的变化集。
+
+    // vue的diff对比，前后两个虚拟节点vnode是放在数组中的。
+
+    // Diff 算法的具体步骤，涉及添加、删除、打补丁、移动节点等操作：
+    // 1. 自前向后对比：从头开始对比新旧节点，直到遇到不同的节点。
+    // 2. 自后向前对比：从尾开始对比新旧节点，直到遇到不同的节点。
+    // 3. 新节点多余旧节点：如果新节点比旧节点多，直接将多出的节点插入到 DOM 中。
+    // 4. 旧节点多余新节点：如果旧节点比新节点多，直接将多余的节点从 DOM 中移除。
+    // 5. 乱序对比：如果新旧节点顺序不同，使用最长递增子序列算法找到最小的移动操作集，全部涉及添加、删除、打补丁、移动节点。
+
+    const { h, render } = Vue
+
+    const vnode11 = h('ul', [
+        h('li', {
+            key: 1
+        }, 'a'),
+        h('li', {
+            key: 2
+        }, 'b'),
+        h('li', {
+            key: 3
+        }, 'c'),
+    ])
+    // 挂载
+    render(vnode11, document.querySelector('#app1'))
+
+    // 延迟两秒，生成新的 vnode，进行更新操作
+    setTimeout(() => {
+        const vnode12 = h('ul', [
+            h('li', {
+                key: 1
+            }, 'a'),
+            h('li', {
+                key: 2
+            }, 'b'),
+            h('li', {
+                key: 3
+            }, 'd') // 这里只是内容改变了，所以在从前向后遍历过程中，就会直接更新内容，内容更新后继续遍历
+        ])
+        render(vnode12, document.querySelector('#app1'))
+    }, 2000);
+
+
+    const vnode21 = h('ul', [
+        h('li', {
+            key: 1
+        }, 'a'),
+        h('li', {
+            key: 2
+        }, 'b'),
+        h('li', {
+            key: 3
+        }, 'c'),
+    ])
+    // 挂载
+    render(vnode21, document.querySelector('#app2'))
+
+    // 延迟两秒，生成新的 vnode，进行更新操作
+    setTimeout(() => {
+        const vnode22 = h('ul', [
+            h('li', {
+                key: 4  // 这里的key值改变了，所以会先删除旧节点，再插入新节点
+            }, 'a'),
+            h('li', {
+                key: 2
+            }, 'b'),
+            h('li', {
+                key: 3
+            }, 'd') // 这里只是内容改变了，所以在从前向后遍历过程中，就会直接更新内容，内容更新后继续遍历
+        ])
+        render(vnode22, document.querySelector('#app2'))
+    }, 2000);
+
+    const vnode3 = h('ul', [
+        h('li', {
+            key: 1
+        }, 'a'),
+        h('li', {
+            key: 2
+        }, 'b'),
+    ])
+    // 挂载
+    render(vnode3, document.querySelector('#app3'))
+
+    // 延迟两秒，生成新的 vnode，进行更新操作
+    setTimeout(() => {
+        const vnode32 = h('ul', [
+            h('li', {
+                key: 3
+            }, 'c'),
+            h('li', {
+                key: 1
+            }, 'a'),
+            h('li', {
+                key: 2
+            }, 'b'),
+        ])
+        render(vnode32, document.querySelector('#app3'))
+    }, 2000);
+
+    const vnode4 = h('ul', [
+        h('li', {
+            key: 3
+        }, 'c'),
+        h('li', {
+            key: 1
+        }, 'a'),
+        h('li', {
+            key: 2
+        }, 'b'),
+    ])
+    // 挂载
+    render(vnode4, document.querySelector('#app4'))
+
+    // 延迟两秒，生成新的 vnode，进行更新操作
+    setTimeout(() => {
+        const vnode42 = h('ul', [
+            h('li', {
+                key: 1
+            }, 'a'),
+            h('li', {
+                key: 2
+            }, 'b'),
+        ])
+        render(vnode42, document.querySelector('#app4'))
+    }, 2000);
+
+    const vnode5 = h('ul', [
+        h('li', {
+            key: 1
+        }, 'a'),
+        h('li', {
+            key: 2
+        }, 'b'),
+        h('li', {
+            key: 3
+        }, 'c'),
+        h('li', {
+            key: 4
+        }, 'd'),
+        h('li', {
+            key: 5
+        }, 'e')
+    ])
+    // 挂载
+    render(vnode5, document.querySelector('#app5'))
+
+    // 延迟两秒，生成新的 vnode，进行更新操作
+    setTimeout(() => {
+        const vnode52 = h('ul', [
+            h('li', {
+                key: 1
+            }, 'new-a'),
+            h('li', {
+                key: 3
+            }, 'new-c'),
+            h('li', {
+                key: 2
+            }, 'new-b'),
+            h('li', {
+                key: 6
+            }, 'new-f'),
+            h('li', {
+                key: 5
+            }, 'new-e'),
+        ])
+        render(vnode52, document.querySelector('#app5'))
+    }, 2000);
+</script>

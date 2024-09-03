@@ -28,6 +28,11 @@
         name: 'dell', englishName: 'lee'
       })
 
+      // watch 侦听器
+      watch(nameObj, (curNameObj, prevNameObj) => {
+        console.log('watch', curNameObj, prevNameObj);
+      })
+
       // 具备一定的惰性 lazy
       // 参数可以拿到原始和当前值
       // 可以侦听多个数据的变化，用一个侦听器承载
@@ -38,7 +43,7 @@
         console.log('watch', curName, prevName, '---', curEng, preEng);
 
         setTimeout(() => {
-          stop1(); // 停止侦听
+          stop1(); // 停止侦听，返回值是一个函数，调用这个函数可以停止侦听
         }, 3000)
       }, { immediate: true })
 

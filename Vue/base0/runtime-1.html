@@ -1,0 +1,67 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">h和render函数</div>
+</body>
+
+<script>
+    // 蕴拟 DOM (Virtual DOM，简称 VDOM) 是一种编程概念，意为将目标所需的 UI 通过数据结构“虚拟”地表示出来，保存在内存中，
+    // 然后将真实的 DOM 与之保持同步。这个概念是由React率先开拓，随后在许多不同的框架中都有不同的实现，当然也包括 Vue。
+    // 虚拟 DOM 是一种理念。
+    // 在运行时 runtime ,渲染器 renderer 会遍历整个虚拟 DOM 树,并据此构建具头的 DOM 树,这个过程我们可以把它叫做 挂载 mount。
+    // 当这个 VNode 对象发生变化时，那么我们会对比 旧的 VNode 和 新的 VNode 之间的区别，找出它们之间的区别，并应用这其中的变
+    // 化到真实的 DOM 上。这个过程被称为更新 patch。
+
+    // 从高层面的视角看，Vue 组件挂载后发生了如下这几件事：
+    // 1.编译: Vue模板被编译为了渲染函数:即用来返回虚拟DOM树的函数。这一步骤可以通过构建步骤提前完成，也可以通过使用运行时编译器即时完成。
+    // 2.挂载:运行时渲染器调用渲染函数,遍历返回的虚拟DOM树,并基于它创建实际的DOM节点。这一步会作为响应式副作用执行，因此它会追踪其中
+    // 所用到的所有响应式依赖。
+    // 3.更新:当一个依赖发生变化后，副作用会重新运行，这时候会创建一个更新后的虚拟DOM树。运行时渲染器遍历这棵新树，将它与旧树进行比较，
+    // 然后将必要的更新应用到真实 DOM上去。
+
+
+    // 在 Vue 3 中，h 函数是用于创建虚拟 DOM 节点（VNode）的一个辅助函数。它的底层实现是通过调用 createVNode 函数生成 VNode 对象。
+    // 以下是 h 函数的底层原理和实现步骤：
+    // 参数解析：h 函数接受三个参数：标签名或组件、属性对象和子节点。根据传入的参数类型，h 函数会进行不同的处理。
+    // 调用 createVNode：h 函数会调用 createVNode 函数来生成 VNode 对象。createVNode 函数会根据传入的参数类型生成不同类型的 VNode 对象。
+    // 这里的参数类型包括标签名、属性对象和子节点，组件等。
+    // 返回 VNode：h 函数最终返回生成的 VNode 对象。
+
+
+    // 运行时指的是：可以利用 render 把 vnode 渲染成真实 dom 节点。 的代码逻辑。
+    const { render, h } = Vue
+    // 生成 VNode，即虚拟 DOM 节点
+    // h函数的底层实现是通过调用 createVNode 函数生成 VNode 对象，根据不同的参数类型，createVNode 函数会生成不同类型的 VNode 对象。
+    const vnode = h('div', {
+        class: 'test'
+    }, 'hello render')
+
+    // 承载的容器
+    const container = document.querySelector('#app')
+
+    console.log(vnode)
+
+    // 渲染函数, 把 vnode 渲染成真实 dom 节点
+    render(vnode, container)
+
+    // 首先，vnode 是一个虚拟 DOM 节点（virtual DOM node）的缩写。虚拟 DOM 是一种轻量级的 JavaScript 对象，
+    // 它表示了真实 DOM 的结构。通过使用虚拟 DOM，可以在内存中高效地进行 DOM 操作，然后将最终的变化应用到实际
+    // 的 DOM 中，从而提高性能。
+
+    // 其次，container 是一个实际的 DOM 元素，表示渲染目标的容器。这个容器通常是一个 HTML 元素，例如 <div> 或 <span>，
+    // 它将包含渲染后的内容。
+
+    // render(vnode, container) 函数的工作流程通常如下：
+
+    // 创建虚拟 DOM：首先，根据应用的状态和逻辑创建虚拟 DOM 节点。
+    // 比较虚拟 DOM：将新的虚拟 DOM 与之前的虚拟 DOM 进行比较，找出变化的部分。这一步通常称为“diffing”。
+    // 更新实际 DOM：根据比较的结果，最小化地更新实际的 DOM 元素，以反映虚拟 DOM 的变化。
+    // 通过这种方式，前端框架可以高效地管理和更新用户界面，避免了直接操作实际 DOM 所带来的性能问题。
+
+    // 总结来说，render(vnode, container) 函数是虚拟 DOM 渲染过程的核心部分，它将虚拟 DOM 节点渲染到指定的 DOM 容器中，
+    // 从而实现高效的界面更新和管理。
+</script>

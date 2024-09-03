@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3.2.36/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">computed 模块</div>
+</body>
+
+<script>
+    const { reactive, computed, effect } = Vue
+
+    const obj = reactive({
+        name: '张三'
+    })
+
+    // 创建一个计算属性
+    const computedObj = computed(() => {
+        return '姓名：' + obj.name
+    })
+
+    effect(() => {
+        document.querySelector('#app').innerHTML = computedObj.value
+    })
+
+    setTimeout(() => {
+        // 修改 obj.name 的值
+        obj.name = '李四'
+    }, 2000);
+
+    // computed的执行逻辑：
+    // 1. computedObj 是一个计算属性，它的值是一个函数，这个函数返回了一个字符串
+    // 2. computedObj.value 是一个 getter 函数，它的执行逻辑是：执行计算属性的函数，返回计算属性的值
+    // 3. 当 obj.name 的值发生变化时，会触发 computedObj.value 的 getter 函数，从而重新执行计算属性的函数，返回计算属性的值
+    // 4. 当计算属性的值发生变化时，会触发 effect 的回调函数，从而重新渲染视图
+    // 5. 通过这种方式，我们实现了计算属性的响应式
+
+    // computed 和 ref 的实现是有一些类似的，比如：
+
+    // 它们本质上都是一个类（ComputedRefImpl）
+    // 都是通过 get value 和 set value 监听 getter 和 setter 行为的
+    // 但是因为 computed 的计算属性特性（依赖的响应式数据发生变化时，才会重新计算），
+    // 所以在源码的实现上有一些区别，这个区别主要体现在两个地方：
+    // 调度器：scheduler
+    // 执行检查（脏状态）：_dirty
+
+    // 首先是调度器 scheduler 。 它是作为 ReactiveEffect 的第二个参数存在的回调函数。当触发依赖的时候，
+    // 会直接执行这个回调函数。 在这个回调函数中，会根据当前的脏值状态来决定是否需要触发依赖。
+    // 然后是 _dirty。 它其实就是一个 boolean 的变量。
+
+    // true：表示需要获取 计算之后 的最新数据
+    // false：表示当前数据就是最新的，不需要重新计算
+
+    // 在每次去触发 get value （computed.value）的时候，都会根据这个 _dirty 的值来判断计算的触发。
+    // 总的来说，计算属性的核心还是体现在 是否需要重新计算 这里。判断的方式就是通过 _dirty 进行的。
+    // 而 scheduler 主要提供了函数的作用，在函数内部还是需要依赖 _dirty 来决定触发依赖的时机。
+
+    // 接下来我们来总结一下计算属性实现的重点：
+    // 1. 计算属性的实例,本质上是一个ComputedRefImpl的实例
+    // 2. ComputedRefImpl中通过dirty变量来控制run的执行和triggerRefValue的触发
+    // 3. 想要访问计算属性的值，必须通过 .value ，因为它内部和 ref 一样是通过 get value 来进行实现的
+    // 4. 每次 .value 时都会触发 trackRefValue 即：收集依赖
+    // 5. 在依赖触发时，需要谨记，先触发 computed 的 effect ，再触发非 computed 的 effect，避免出现死循环
+
+
+</script>
+
+</html>

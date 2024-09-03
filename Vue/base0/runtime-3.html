@@ -1,0 +1,197 @@
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+
+<body>
+    <div id="app">render渲染函数</div>
+</body>
+
+<script>
+    // 在 Vue 3 中，render 函数的底层原理是将虚拟 DOM (VNode) 转换为真实 DOM，并将其挂载到指定的容器中。以下是 render 函数的底层实现步骤：
+    // 1. 创建 VNode：通过调用 h 函数或 JSX 语法创建虚拟 DOM 节点。
+    // 2. 创建渲染器：Vue 3 使用 createRenderer 函数创建一个渲染器实例，该实例包含了将 VNode 转换为真实 DOM 的逻辑。
+    // 3. 挂载 VNode：通过调用渲染器的 render 方法，将 VNode 挂载到指定的容器中。
+    // 4. 更新 VNode：当响应式数据发生变化时，渲染器会对比新旧 VNode 树，并进行最小化的 DOM 更新。
+
+    // 导入 createRenderer 函数，用于创建渲染器
+    // createRenderer 函数是 Vue 3 中用于创建自定义渲染器的核心函数。这个函数允许你根据不同的环境（如浏览器、服务器、原生移动应用等）定制渲染器。
+    // 它允许开发者定义如何将虚拟 DOM (VNode) 转换为平台特定的真实 DOM。
+
+    // `createRenderer` 的核心思想是将渲染逻辑与平台相关的操作分离开来。通过传入一组“渲染接口” (renderer interface)，
+    // Vue 可以在不同的环境中进行渲染，而不需要修改核心逻辑。
+
+    const { createRenderer } = Vue
+
+
+    // 定义平台特定的操作函数，用于创建、插入、设置和删除 DOM 元素
+    const rendererOptions = {
+        createElement(tag) {
+            return document.createElement(tag);
+        },
+        insert(el, parent, anchor = null) {
+            parent.insertBefore(el, anchor);
+        },
+        setElementText(el, text) {
+            el.textContent = text;
+        },
+        patchProp(el, key, prevValue, nextValue) {
+            if (key === 'class') {
+                el.className = nextValue;
+            } else {
+                el.setAttribute(key, nextValue);
+            }
+        },
+        remove(el) {
+            const parent = el.parentNode;
+            if (parent) {
+                parent.removeChild(el);
+            }
+        }
+    };
+
+    // 创建渲染器
+    const { render } = createRenderer(rendererOptions);
+
+    // 创建 VNode
+    const vnode = {
+        type: 'div',
+        props: { class: 'container' },
+        children: [
+            {
+                type: 'span',
+                props: null,
+                children: 'Hello, world!'
+            }
+        ]
+    };
+
+    // 挂载 VNode 到容器
+    const container = document.getElementById('app');
+    render(vnode, container);
+
+    // 以下是一个简化版的 `createRenderer` 实现，展示了其核心结构和逻辑：
+    function createRenderer(options) {
+        const {
+            createElement,
+            patchProp,
+            insert,
+            remove,
+            createText,
+            setElementText,
+            setText,
+            createComment,
+            // 其他需要的接口...
+        } = options;
+
+        // 更新节点函数
+        const patch = (n1, n2, container, anchor = null) => {
+            if (!n1) {
+                // 如果没有旧节点，表示是新节点
+                mountElement(n2, container, anchor);
+            } else {
+                // 如果有旧节点，需要进行更新操作
+                updateElement(n1, n2);
+            }
+        };
+
+        // 挂载新节点
+        const mountElement = (vnode, container, anchor) => {
+            const el = (vnode.el = createElement(vnode.type));
+            // 设置属性
+            for (const key in vnode.props) {
+                patchProp(el, key, null, vnode.props[key]);
+            }
+            // 处理子节点
+            if (typeof vnode.children === 'string') {
+                setElementText(el, vnode.children);
+            } else if (Array.isArray(vnode.children)) {
+                for (const child of vnode.children) {
+                    patch(null, child, el);
+                }
+            }
+            insert(el, container, anchor);
+        };
+
+        // 更新现有节点
+        const updateElement = (n1, n2) => {
+            const el = (n2.el = n1.el);
+            const oldProps = n1.props || {};
+            const newProps = n2.props || {};
+            // 更新属性
+            for (const key in newProps) {
+                const prev = oldProps[key];
+                const next = newProps[key];
+                if (prev !== next) {
+                    patchProp(el, key, prev, next);
+                }
+            }
+            // 移除旧属性
+            for (const key in oldProps) {
+                if (!(key in newProps)) {
+                    patchProp(el, key, oldProps[key], null);
+                }
+            }
+            // 更新子节点
+            patchChildren(n1, n2, el);
+        };
+
+        // 更新子节点函数
+        const patchChildren = (n1, n2, container) => {
+            const c1 = n1.children;
+            const c2 = n2.children;
+            if (typeof c2 === 'string') {
+                if (Array.isArray(c1)) {
+                    // 如果旧子节点是数组，需要移除所有旧子节点
+                    for (const child of c1) {
+                        remove(child.el);
+                    }
+                }
+                setElementText(container, c2);
+            } else if (Array.isArray(c2)) {
+                // 处理新子节点是数组的情况
+                // 为简化，假设新旧子节点都是数组，需要进行对比更新
+                const commonLength = Math.min(c1.length, c2.length);
+                for (let i = 0; i < commonLength; i++) {
+                    patch(c1[i], c2[i], container);
+                }
+                if (c2.length > c1.length) {
+                    // 添加新节点
+                    for (let i = commonLength; i < c2.length; i++) {
+                        patch(null, c2[i], container);
+                    }
+                } else if (c1.length > c2.length) {
+                    // 移除多余的旧节点
+                    for (let i = commonLength; i < c1.length; i++) {
+                        remove(c1[i].el);
+                    }
+                }
+            }
+        };
+
+        // 创建应用实例
+        const createApp = (rootComponent) => {
+            const app = {
+                mount(rootContainer) {
+                    const vnode = {
+                        type: rootComponent,
+                        props: {},
+                        children: null,
+                    };
+                    patch(null, vnode, rootContainer);
+                },
+            };
+            return app;
+        };
+
+        // 创建渲染函数
+        const render = (vnode, container) => {
+            patch(null, vnode, container);
+        };
+
+        return { render, createApp };
+    }
+
+    export { createRenderer };
+</script>
