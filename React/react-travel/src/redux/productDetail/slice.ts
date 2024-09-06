@@ -35,6 +35,9 @@ export const getProductDetail = createAsyncThunk(
  * 在createSlice的配置对象中，有一个extraReducers字段，用于处理异步action。在这个字段中，我们可以使用方括号语法，
  * 将一个action type映射到一个reducer函数。这个action type就是createAsyncThunk创建的异步action的三个状态：pending、fulfilled和rejected。
  * 当异步action的状态发生变化时，对应的reducer函数就会被调用，从而更新state。
+ * 
+ * 出现slice的原因是因为Redux Toolkit的createSlice函数会自动处理immer，所以不需要再使用展开运算符。
+ * 之前因为：这个数据不可变性亦是被很多初学者吐槽，觉得学习成本比较高，因此现在一些周边库也支持在React 中实现直接修改数据，比如Immer。
  */
 export const productDetailSlice = createSlice({
   name: "productDetail",  // slice的名称, 用于在Redux store中标识这个slice

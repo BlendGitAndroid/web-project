@@ -1,0 +1,6 @@
+.border {
+    border: 1px solid peru;
+    /* 这里定义了边框样式 */
+    padding: 10px;
+    color: blue;
+}

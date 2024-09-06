@@ -30,3 +30,14 @@
     "src"
   ]
 }
+// 在大型项目中，会配置路径映射，以便在项目中引用其他文件时更容易。这是一个 tsconfig.json 文件的例子，其中包含了路径映射：
+// {
+//   "compilerOptions": {
+//     "baseUrl": ".",
+//     "paths": {
+//       "components/*": ["src/components/*"],
+//       "utils/*": ["src/utils/*"],
+//       "styles/*": ["src/styles/*"]
+//     }
+//   }
+// }

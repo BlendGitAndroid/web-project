@@ -9,3 +9,5 @@ css module插件：npm install typescript-plugin-css-modules --save-dev
 网络请求：axios
 jwt解析插件：jwt_decode
 持久化：react-persist
+
+redux是单向数据流框架，而mbox是响应式框架

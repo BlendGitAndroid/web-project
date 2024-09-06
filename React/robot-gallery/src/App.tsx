@@ -5,6 +5,7 @@ import Robot from "./components/Robot";
 import RobotDiscount from "./components/RobotDiscount";
 import styles from "./App.module.css";
 import ShoppingCart from "./components/ShoppingCart";
+import { OptimizingPage } from "./optimizing/OptimizingPage";
 
 interface Props {
 
@@ -60,6 +61,11 @@ const App: React.FC<Props> = (props) => {
             <div className={styles.appHeader}>
                 <img src={logo} className={styles.appLogo} alt="logo" />
                 <h1>罗伯特机器人炫酷吊炸天online购物平台的名字要长</h1>
+            </div>
+
+            <div>
+                {console.log("OptimizingPage")}
+                <OptimizingPage />
             </div>
 
             <button

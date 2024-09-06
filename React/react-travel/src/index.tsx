@@ -16,6 +16,7 @@ axios.defaults.headers["x-icode"] = "FB80558A73FA658E";
 // 注意看上面，使用i18n的时候，我们需要引入i18n的配置文件，然后在index.tsx中引入i18n的配置文件，这样就可以初始化i18n了。
 
 ReactDOM.render(
+  // 可以开启一些额外的，仅用于开发环境的检测，帮助你更早地发现 bug。
   <React.StrictMode>
     {/* 使用Provider包裹App，使App组件中的所有子组件都能访问到store */}
     <Provider store={rootStore.store}>

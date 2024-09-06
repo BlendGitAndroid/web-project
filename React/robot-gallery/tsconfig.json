@@ -24,9 +24,10 @@
       {
         "name": "typescript-plugin-css-modules"
       }
-    ]
+    ],
+    "baseUrl": "."
   },
   "include": [
-    "src"
+    "src/**/*"
   ]
 }
