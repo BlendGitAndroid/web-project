@@ -1,0 +1,46 @@
+@import './assets/iconfont/iconfont.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-size: 14px;
+  background-color: #ebebeb;
+}
+
+
+/* @layer utilities {
+  .html-font-size {
+    font-size: 4.266667vw;
+  }
+} */
+
+/* @layer base {
+  .test1 {
+    background: red;
+  }
+}
+@layer components {
+  .test2 {
+    background: red;
+  }
+} */
+/* 
+@layer base {
+  .test {
+    background: red;
+  }
+}
+@layer components {
+  .test {
+    background: yellow;
+  }
+  .btn-primary {
+    @apply border rounded-full px-2 py-1 text-white bg-cyan-400 hover:bg-cyan-600 active:bg-cyan-950
+  }
+}
+@layer utilities {
+  .test {
+    background: blue;
+  }
+} */
