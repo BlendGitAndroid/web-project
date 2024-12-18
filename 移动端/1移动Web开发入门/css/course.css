@@ -1,6 +1,6 @@
 /* course */
 .course {
-  /* 清除浮动 */
+  /* 清除浮动，形成BFC，默认是overflow:visible */
   overflow: auto;
   font-size: 14px;
 }

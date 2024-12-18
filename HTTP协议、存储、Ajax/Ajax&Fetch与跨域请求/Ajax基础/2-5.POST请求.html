@@ -41,8 +41,11 @@
       // });
       // [object Object]
 
-      // 2.数据编码
-      xhr.send(`username=${encodeURIComponent('张三')}&age=18`);
+      // 2.数据编码，这里的post的编码方式是text/plain;charset=UTF-8
+      // 也就是content-type: text/plain;charset=UTF-8
+      xhr.send(`username=${encodeURIComponent('张三')}&age=18`); // username=%E5%BC%A0%E4%B8%89&age=18
+      // xhr.send(`username='张三'&age=18`); // 这个直接发送的就是 username='张三'&age=18
+      // get请求是不存在content-type的，post请求是存在content-type的
     </script>
   </body>
 </html>

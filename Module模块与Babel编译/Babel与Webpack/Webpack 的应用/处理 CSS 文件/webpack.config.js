@@ -20,13 +20,13 @@ module.exports = (env, argv) => {
     // 1. 代码分离，多入口打包
     entry: {
       index: './src/index.js',
-      about: './src/about.js'
+      about: './src/about.js',
     },
 
     // 缓存：2. 文件资源缓存，浏览器将从服务器获取的资源（如 HTML、CSS、JavaScript 文件等）存储在本地，以便在后续请求中直接
     // 从本地读取这些资源，而不需要再次从服务器获取。这样可以减少网络请求，提高页面加载速度。
     // 缓存机制是通过设置文件名的方式实现的，如果文件内容不变，那么文件名也不变，浏览器就会从缓存中读取文件。
-    // 但是Http的头部信息中，有一个Cache-Control/Expires/RTag字段，可以设置缓存的时间，如果缓存时间到了，那么浏览器会重新请求服务器
+    // 但是Http的头部信息中，有一个Cache-Control/Expires/ETag字段，可以设置缓存的时间，如果缓存时间到了，那么浏览器会重新请求服务器
     // 1. hash: 每次构建时，会生成一个唯一的hash值
     // 2. chunkhash: 根据chunk生成hash值，如果打包来源于同一个chunk，那么hash值就一样
     // 3. contenthash: 根据文件内容生成hash值，只要文件内容不变，那么contenthash值就不变
@@ -36,15 +36,14 @@ module.exports = (env, argv) => {
     },
 
     // devtool默认值在生产环境下，也就是mode为production，值是false。在开发环境下也就是mode为development，值是eval。
-    // Tree Shaking 仅支持 source-map | inline-source-map | hidden-source-map | nosources-source-map
+    // Tree Shaking 仅支持 source-map | inline-source-map | hidden-source-map| nosources-source-map
     devtool: 'source-map',
 
     // 优化策略
     optimization: {
-
-
       // Tree Shaking依赖于ES6模块化的静态引入方式，生产模式下默认开启
-      // Tree Shaking与Source Map存在兼容性问题，只支持souce-map/inline-source-map/hidden-source-map/nosources-source-map
+      // Tree Shaking与Source Map存在兼容性问题，只支持
+      // souce-map/inline-source-map/hidden-source-map/nosources-source-map
       // eval模式将js输出为eval包裹的字符串，不支持Tree Shaking
       // Tree Shaking 1. optimization.usedExports方法
       // 标记未被使用的代码
@@ -60,8 +59,8 @@ module.exports = (env, argv) => {
 
       // 2. 代码分离，优化策略，提取公共代码
       splitChunks: {
-        chunks: 'all'
-      }
+        chunks: 'all',
+      },
     },
 
     // 模块的解析规则，resolve是从path中解析出来的
@@ -69,7 +68,7 @@ module.exports = (env, argv) => {
       // 配置模块加载的路径别名
       alias: {
         // 指定路径的别名
-        '@': resolve('src') // 指定src目录的别名为@
+        '@': resolve('src'), // 指定src目录的别名为@
       },
       // 指定引入文件的后缀名（指定之后，在引入文件时，后缀名可以省略）
       // 默认是 ['.js', '.json']
@@ -109,8 +108,8 @@ module.exports = (env, argv) => {
             'css-loader',
 
             // 1. 通过 postcss-loader 给样式属性添加浏览器前缀
-            'postcss-loader'
-          ]
+            'postcss-loader',
+          ],
         },
 
         {
@@ -406,15 +405,18 @@ module.exports = (env, argv) => {
 
 
 // 在Webpack中，loader和plugin都是用来扩展Webpack功能的，但它们的工作方式和使用场景有所不同。
-// Loader：主要用于转换应用程序的源代码。Webpack本身只能处理JavaScript，但是loader可以将其他类型的文件转换为有效的模块，然后可以添加到依赖图中。
+// Loader：主要用于转换应用程序的源代码。Webpack本身只能处理JavaScript，但是loader可以将其他类型的文件转换为有效的模块，
+// 然后可以添加到依赖图中。
 // 例如，babel-loader可以将ES6代码转换为ES5代码，css-loader可以将CSS转换为JavaScript模块。
 // Plugin：用于执行范围更广的任务。插件的范围包括从打包优化和压缩，到重新定义环境中的变量。插件接口可以用来处理各种各样的任务。
 // 总结一下，loader主要用于加载和转换文件，而plugin则用于执行各种各样的任务，包括打包优化、资源管理和环境变量注入等。
+// 插件的本质是其实是利用 webpack 提供的钩子机制，实现对打包过程的干预
 
 /**
  * css-loader的作用是用来处理css文件，将css文件转换为js模块，以便在js中引入css文件。
  * 如果不使用css-loader，webpack默认只能处理js文件，无法识别css文件，所以需要使用css-loader来处理css文件。
- * 那css-loader是如何将css文件转换为js模块的呢？css-loader内部实现了css文件的解析，将css文件解析为js对象，然后通过js对象的方式引入css文件。
+ * 那css-loader是如何将css文件转换为js模块的呢？css-loader内部实现了css文件的解析，将css文件解析为js对象，
+ * 然后通过js对象的方式引入css文件。
  * 原始CSS文件：styles.css
  *  .title {
  *  color: red;

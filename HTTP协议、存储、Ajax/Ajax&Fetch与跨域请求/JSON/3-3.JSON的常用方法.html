@@ -20,7 +20,7 @@
         console.log(xhr.responseText);
         console.log(typeof xhr.responseText);
 
-        console.log(JSON.parse(xhr.responseText));
+        console.log(JSON.parse(xhr.responseText));  // 将json转换成JS对象
         console.log(JSON.parse(xhr.responseText).data);
         console.log(JSON.parse(xhr.responseText).data[0].word); // 解析出xhr.responseText的数据
       }

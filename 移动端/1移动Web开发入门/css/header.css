@@ -31,9 +31,12 @@
   background-color: #363636;
   border-radius: 2px;
 }
+
+/* 紧接着在指定元素后的第一个元素 */
 .header-toggle-bar + .header-toggle-bar {
   margin-top: 4px;
 }
+
 .header-toggle-active {
   background-color: #f1f1f1;
 }

@@ -7,7 +7,7 @@
   <body>
     <script type="module">
       // 之前的方式是通过回调函数来处理异步请求的结果，现在使用 Promise 来改造，只要是回调地域的代码都可以使用 Promise 来改造
-      import { ajax, get, getJSON, post } from './ajax/index.js';
+      import { ajax, get, getJSON, post } from './ajax';
 
       const url = 'https://www.imooc.com/api/http/search/suggest?words=js';
       // const url = 'https://www.iimooc.com/api/http/search/suggest?words=js';

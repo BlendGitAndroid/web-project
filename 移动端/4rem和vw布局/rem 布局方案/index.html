@@ -44,13 +44,15 @@
       //   当屏幕变化的时候修改 html 的字体大小
 
       // 1rem = html 字体大小
-      // 设 1rem = 10px
+      // 假设 1rem = 10px
 
       // 375px / 48px
 
-      //rem的原理是根据html的font-size来计算的，所以我们需要根据屏幕的宽度来动态的设置html的font-size
+      // rem的原理是根据html的font-size来计算的，所以我们需要根据屏幕的宽度来动态的设置html的font-size
       // viewWidth / 750px = ? / 10px
       // ? = viewWidth * 10px / 750px = viewWidth / 75
+      // 所以当设计稿的宽度为750px时，1rem = 10px
+      // 那在设置Html的font-size时，只需要设置 10px 即可
 
       // 为什么是 75？
       // 为了将屏幕宽度转换为rem单位，以实现响应式设计。基于 750px 的设计稿，1rem = 10px，在css中写宽高时，

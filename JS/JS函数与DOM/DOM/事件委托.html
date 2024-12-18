@@ -25,10 +25,11 @@
         var oList = document.getElementById('list');
         var oBtn = document.getElementById('btn');
 
+        // 事件委托其实是将事件监听器加到父元素上，然后通过事件冒泡的原理，将事件触发到父元素上，然后根据触发的子元素来执行相应的效果。
         oList.onclick = function (e) {
             // e.target表示用户真正点击的那个元素
             // 要是获取ul元素，可以用e.currentTarget
-            console.log(e.currentTarget);   // 获取的是事件监听器所在的元素
+            console.log(e.currentTarget);   // 获取的是事件监听器所在的元素，也就是父元素
             console.log(e.target);          // 获取的点击事件的元素
             e.target.style.color = 'red';
         };

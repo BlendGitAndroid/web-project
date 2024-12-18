@@ -42,7 +42,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './search.html',
       filename: 'search.html',
-      chunks: ['search']
+      chunks: ['search'] // 指定要包含的 chunks
     })
   ]
 };
@@ -56,6 +56,7 @@ module.exports = {
  * <script src="search.js"></script>
  * 即在 index.html 中会引入 index.js，而在 search.html 中会引入 search.js。
  * 这样在写html模板时，就不需要手动引入多个入口文件了。
+ * 也就是说，chunks是用于给html文件设置相应的js入口文件的。
  */
 
 /**

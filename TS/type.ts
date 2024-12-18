@@ -30,8 +30,11 @@
 
     //-----------------------------------------------------------------------------
 
+    // @ts-ignore
     const sym1 = Symbol("hello");
+    // @ts-ignore
     const sym2 = Symbol("hello");
+    // @ts-ignore
     console.log(Symbol("hello") === Symbol("hello"));
 
     //-----------------------------------------------------------------------------

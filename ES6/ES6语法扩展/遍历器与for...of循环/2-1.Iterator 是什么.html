@@ -10,9 +10,11 @@
   <script>
     // JS中的遍历方法一共有三种：for循环、forEach、for...in
     // for循环：可以遍历数组、字符串、类数组对象
-    // forEach：只能遍历数组
+    // forEach：只能遍历数组,和鸿蒙中的ForEach方法不同
     // for...in：只能遍历对象，遍历对象的属性名
     // for...of：ES6新增的遍历方法，可以遍历数组、字符串、类数组对象、Set、Map、arguments、DOM集合等可迭代对象
+    // 注意：for...of 不能遍历对象，只能遍历可迭代对象，不能遍历普通对象
+    // 遍历对象只能用for...in遍历
     // 列子：
     for (let i = 0; i < 5; i++) {
       console.log(i); // 0 1 2 3 4

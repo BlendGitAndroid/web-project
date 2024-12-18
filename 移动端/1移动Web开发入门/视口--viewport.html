@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8"/>
     <title>视口--viewport</title>
     <!-- <meta name="viewport" content="width=375" /> -->
     <!-- <meta name="viewport" content="width=device-width" /> -->
@@ -26,58 +26,64 @@
     /> -->
 
     <!-- 设置视口，如果改变了scale，则要重新点击浏览器的切换，否则不生效 -->
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
 
     <!-- 如果禁止缩放，这个属性在手机上可以，但是在桌面端不行 -->
     <!-- <meta
       name="viewport"
       content="width=device-width, initial-scale=1, user-scalable=no, maximum-scale=1, minimum-scale=1"
     /> -->
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/layout.css" />
-    <link rel="stylesheet" href="./css/header.css" />
-    <link rel="stylesheet" href="./css/slider.css" />
-    <link rel="stylesheet" href="./css/course.css" />
-    <link rel="stylesheet" href="./icons/iconfont.css" />
-    <link rel="stylesheet" href="./css/tabbar.css" />
-  </head>
-  <body>
-    <!-- 头部 -->
+    <link rel="stylesheet" href="./css/reset.css"/>
+    <link rel="stylesheet" href="./css/layout.css"/>
+    <link rel="stylesheet" href="./css/header.css"/>
+    <link rel="stylesheet" href="./css/slider.css"/>
+    <link rel="stylesheet" href="./css/course.css"/>
+    <link rel="stylesheet" href="./icons/iconfont.css"/>
+    <link rel="stylesheet" href="./css/tabbar.css"/>
+</head>
+<body>
+    <!-- 头部，固定定位，脱离标准流 -->
     <header class="header-layout">
-      <div class="header">
-        <a href="./index.html" class="header-logo"
-          ><img src="./images/logo.png" alt="logo" class="header-logo-img"
-        /></a>
+        <div class="header">
+            <!-- 使用左浮动来达到靠左边 -->
+            <a href="./index.html" class="header-logo">
+                <img src="./images/logo.png" alt="logo" class="header-logo-img"/>
+            </a>
 
-        <button type="button" id="header-toggle" class="header-toggle">
-          <span class="header-toggle-bar"></span>
-          <span class="header-toggle-bar"></span>
-          <span class="header-toggle-bar"></span>
-        </button>
+            <!--- `type` 属性的主要功能是定义按钮在表单中的行为。
+                - 使用 `type="button"` 时，按钮不会提交表单，适合用于添加交互操作，默认是button。
+                - 使用 `type="submit"` 时，将表单数据提交到服务器。
+                - 使用 `type="reset"` 时，重置表单中的输入字段-->
+            <button type="button" id="header-toggle" class="header-toggle">
+                <!--使用三个横线来表示-->
+                <span class="header-toggle-bar"></span>
+                <span class="header-toggle-bar"></span>
+                <span class="header-toggle-bar"></span>
+            </button>
 
-        <!-- 导航 -->
-        <nav id="nav" class="nav-layout">
-          <ul class="nav-list">
-            <li><a href="./index.html" class="nav-link">首页</a></li>
-            <li>
-              <a href="javascript:;" class="nav-link">免费课程</a>
-            </li>
-            <li>
-              <a href="javascript:;" class="nav-link">实战课程&amp;金职位</a>
-            </li>
-            <li><a href="javascript:;" class="nav-link">专栏/手记/猿问</a></li>
-            <li><a href="javascript:;" class="nav-link">慕课教程</a></li>
-          </ul>
-        </nav>
-      </div>
+            <!-- 导航，使用绝对定位，并且定位点是父的固定定位，使用transition来进行动画的展示 -->
+            <nav id="nav" class="nav-layout">
+                <ul class="nav-list">
+                    <li><a href="./index.html" class="nav-link">首页</a></li>
+                    <li>
+                        <a href="javascript:;" class="nav-link">免费课程</a>
+                    </li>
+                    <li>
+                        <a href="javascript:;" class="nav-link">实战课程&amp;金职位</a>
+                    </li>
+                    <li><a href="javascript:;" class="nav-link">专栏/手记/猿问</a></li>
+                    <li><a href="javascript:;" class="nav-link">慕课教程</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <!-- 主体部分 -->
+    <!-- 主体部分，因为头部和底部是固定定位，脱离了标准流，所以这里要paddingTop和paddingBottom下 -->
     <div class="main-layout">
-      <!-- 幻灯片 -->
-      <div class="slider-layout">
-        <img src="./images/slider/1.jpg" alt="" />
-      </div>
+        <!-- 幻灯片 -->
+        <div class="slider-layout">
+            <img src="./images/slider/1.jpg" alt=""/>
+        </div>
 
       <!-- 免费课程 -->
       <div class="course-layout">
@@ -224,49 +230,49 @@
       </div>
     </div>
 
-    <!-- 标签栏 -->
+    <!-- 底部标签栏，固定定位，脱离标准流 -->
     <div class="tabbar-layout">
-      <div class="tabbar">
-        <a href="./index.html" class="tabbar-item tabbar-item-active">
-          <i class="iconfont icon-home"></i>
-          <span>首页</span>
-        </a>
-        <a href="javascript:;" class="tabbar-item"
-          ><i class="iconfont icon-search"></i> <span>搜索</span></a
-        >
-        <a href="javascript:;" class="tabbar-item"
-          ><i class="iconfont icon-personal"></i> <span>我的</span></a
-        >
-      </div>
+        <div class="tabbar">
+            <a href="./index.html" class="tabbar-item tabbar-item-active">
+                <i class="iconfont icon-home"></i>
+                <span>首页</span>
+            </a>
+            <a href="javascript:;" class="tabbar-item"
+            ><i class="iconfont icon-search"></i> <span>搜索</span></a
+            >
+            <a href="javascript:;" class="tabbar-item"
+            ><i class="iconfont icon-personal"></i> <span>我的</span></a
+            >
+        </div>
     </div>
 
     <script>
-      // 点击切换按钮，展开或收起导航菜单
-      {
-        const $toggleBtn = document.getElementById('header-toggle');
-        const $nav = document.getElementById('nav');
-        const navExtendedClassName = 'nav-layout-extended';
-        const toggleBtnExtendedClassName = 'header-toggle-active';
+        // 点击切换按钮，展开或收起导航菜单
+        {
+            const $toggleBtn = document.getElementById('header-toggle');
+            const $nav = document.getElementById('nav');
+            const navExtendedClassName = 'nav-layout-extended';
+            const toggleBtnExtendedClassName = 'header-toggle-active';
 
-        $toggleBtn.addEventListener(
-          'click',
-          function () {
-            $nav.classList.toggle(navExtendedClassName);
-            this.classList.toggle(toggleBtnExtendedClassName);
-          },
-          false
-        );
-      }
+            $toggleBtn.addEventListener(
+                'click',
+                function () {
+                    $nav.classList.toggle(navExtendedClassName);
+                    this.classList.toggle(toggleBtnExtendedClassName);
+                },
+                false
+            );
+        }
     </script>
 
     <script>
-      // 获取的是布局视口宽度
-      console.log(document.documentElement.clientWidth);
-      console.log(document.documentElement.getBoundingClientRect().width);
+        // 获取的是布局视口宽度
+        console.log(document.documentElement.clientWidth);
+        console.log(document.documentElement.getBoundingClientRect().width);
 
-      // 获取屏幕尺寸，或者获取屏幕的分辨率
-      // 不推荐使用，有兼容性问题
-      console.log(screen.width);
+        // 获取屏幕尺寸，或者获取屏幕的分辨率
+        // 不推荐使用，有兼容性问题
+        console.log(screen.width);
     </script>
-  </body>
+</body>
 </html>

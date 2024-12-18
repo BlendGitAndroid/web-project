@@ -13,7 +13,7 @@
     const xhr = new XMLHttpRequest();
 
     xhr.onreadystatechange = () => {
-      if (xhr.readyState != 4) return;
+      if (xhr.readyState !== 4) return;
 
       if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
         // 文本形式的响应内容

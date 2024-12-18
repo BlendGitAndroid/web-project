@@ -12,12 +12,12 @@
           this.name = name;
           this.sex = sex;
 
-          this.say = function () {
+          this.say = function () {  // 实例方法
             console.log('say');
           };
         }
 
-        speak() {
+        speak() { // 原型方法
           console.log('speak');
         }
 
@@ -68,6 +68,7 @@
       Programmer.version = '2.0';
 
       const zs = new Programmer('zs', '男', '秃头');
+      console.log(zs);
       console.log(zs.name);
       console.log(zs.sex);
       console.log(zs.feature);

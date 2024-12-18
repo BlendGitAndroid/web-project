@@ -31,6 +31,10 @@ img {
 .slider {
   overflow: hidden;
 }
+.slider-content {
+  background-color: red;
+  padding: 16px;
+}
 .slider-item {
   float: left;
 }

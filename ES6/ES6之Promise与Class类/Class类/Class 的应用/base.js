@@ -24,21 +24,21 @@ class BaseSlider {
         };
 
         const slider = el;
-        const sliderContent = slider.querySelector('.slider-content');
+        const sliderContent = slider.querySelector('.slider-content');  // 通过slider获取 slider-content
         // 获取所有的 slider-item
-        const sliderItems = sliderContent.querySelectorAll('.slider-item');
+        const sliderItems = sliderContent.querySelectorAll('.slider-item'); // 通过sliderContent获取所有的slider-item
 
         // 添加到 this 上，为了在方法中使用
-        this.slider = slider;
-        this.sliderContent = sliderContent;
-        this.sliderItems = sliderItems;
+        this.slider = slider;   // 主要是设置overflow: hidden;
+        this.sliderContent = sliderContent; // 最外面的div
+        this.sliderItems = sliderItems; //  每一个图片的div,设置了float: left;
 
         this.minIndex = 0;
         this.maxIndex = sliderItems.length - 1;
         this.currIndex = this.getCorrectedIndex(this.options.initialIndex);
 
         // 每个 slider-item 的宽度（每次移动的距离）
-        this.itemWidth = sliderItems[0].offsetWidth;
+        this.itemWidth = sliderItems[0].offsetWidth;    // 获取第一个图片的宽度, 每个图片的宽度都一样
         console.log(this.itemWidth)
 
         this.init();
@@ -107,7 +107,7 @@ class BaseSlider {
         // classList 属性返回元素的类名，作为 DOMTokenList 对象。
         console.log(typeof this.sliderContent.classList);
         console.log(this.sliderContent.classList)
-        this.sliderContent.classList.add(SLIDER_ANIMATION_CLASSNAME);   // 添加类名
+        this.sliderContent.classList.add(SLIDER_ANIMATION_CLASSNAME);   // 通过classList添加slider-animation
     }
 
     // 关闭动画

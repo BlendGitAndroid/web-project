@@ -2,61 +2,70 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>GET 请求</title>
+    <meta charset="UTF-8"/>
+    <title>GET 请求</title>
 </head>
 
 <body>
-  <!-- 如果数据是中文，会进行urlencoder转码，字符串参数 -->
-  <form action="https://www.imooc.com/api/http/search/suggest" method="get">
-    <input type="text" name="username" />
-    <input type="text" name="words" />
-    <input type="password" name="password" />
-    <input type="submit" value="提交" />
-  </form>
+    <!-- 如果数据是中文，会进行urlencoder转码，字符串参数 -->
+    <form action="https://www.imooc.com/api/http/search/suggest" method="get">
+        <input type="text" name="username"/>
+        <input type="text" name="words"/>
+        <input type="password" name="password"/>
+        <input type="submit" value="提交"/>
+    </form>
 
-  <script>
-    // 1.携带数据
-    // GET 请求不能通过请求体携带数据，但可以通过请求头携带
-    // const url =
-    //   'https://www.imooc.com/api/http/search/suggest?words=js&username=alex&age=18';
-    // const xhr = new XMLHttpRequest();
+    <script>
+        // 1.携带数据
+        // GET 请求不能通过请求体携带数据，但可以通过请求头携带
+        // const url =
+        //     'https://www.imooc.com/api/http/search/suggest?words=js&username=alex&age=18';
+        // const xhr = new XMLHttpRequest();
+        //
+        // xhr.onreadystatechange = () => {
+        //     if (xhr.readyState !== 4) return;
+        //
+        //     if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+        //         console.log(xhr.responseText);
+        //     }
+        // };
+        //
+        // // 这三个参数的意思是：
+        // // 1.请求方式
+        // // 2.请求地址
+        // // 3.是否异步发送
+        // xhr.open('GET', url, true);
+        //
+        // xhr.send(null);
 
-    // xhr.onreadystatechange = () => {
-    //   if (xhr.readyState != 4) return;
+        // 不会报错，但不会发送数据
+        // xhr.send('sex=male');
 
-    //   if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-    //     console.log(xhr.responseText);
-    //   }
-    // };
+        // 2.数据编码
+        // 如果携带的数据是非英文字母的话，比如说汉字，就需要编码之后再发送给后端，不然会造成乱码问题
+        // 可以使用 encodeURIComponent() 编码
+        // https://www.imooc.com/api/http/search/suggest?words=%E5%89%8D%E7%AB%AF
+        // const url = `https://www.imooc.com/api/http/search/suggest?words=${encodeURIComponent(
+        //     '前端'
+        // )}`;
+        // https://www.imooc.com/api/http/search/suggest?words=%E5%89%8D%E7%AB%AF
+        // '前端'默认进行了UrlEncoder编码，及时不加encodeURIComponent也会进行UrlEncoder编码
+        // GET 参数的编码方式是无法人为干涉的，这导致了不同浏览器有不同的编码方式，google默认使用UrlEncoder编码
+        const url = `https://www.imooc.com/api/http/search/suggest?words=前端`;
+        const xhr = new XMLHttpRequest();
 
-    // xhr.open('GET', url, true);
+        xhr.onreadystatechange = () => {
+          if (xhr.readyState != 4) return;
 
-    // xhr.send(null);
+          if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
+            console.log(xhr.responseText);
+          }
+        };
 
-    // 不会报错，但不会发送数据
-    // xhr.send('sex=male');
+        xhr.open('GET', url, true);
 
-    // 2.数据编码
-    // 如果携带的数据是非英文字母的话，比如说汉字，就需要编码之后再发送给后端，不然会造成乱码问题
-    // 可以使用 encodeURIComponent() 编码
-    // const url = `https://www.imooc.com/api/http/search/suggest?words=${encodeURIComponent(
-    //   '前端'
-    // )}`;
-    // const xhr = new XMLHttpRequest();
-
-    // xhr.onreadystatechange = () => {
-    //   if (xhr.readyState != 4) return;
-
-    //   if ((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-    //     console.log(xhr.responseText);
-    //   }
-    // };
-
-    // xhr.open('GET', url, true);
-
-    // xhr.send(null);
-  </script>
+        xhr.send(null);
+    </script>
 </body>
 
 </html>

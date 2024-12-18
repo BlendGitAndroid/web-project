@@ -9,7 +9,7 @@
     <ul id="result"></ul>
 
     <script type="module">
-      import { getJSON } from './ajax/index.js';
+      import { getJSON } from './ajax';
 
       const searchInput = document.getElementById('search');
       const resultList = document.getElementById('result');
@@ -29,10 +29,6 @@
               }
 
               resultList.innerHTML = html;
-
-              resultList.style.display = '';
-
-              // resultList.innerHTML = '<li>jsp</li><li>js</li>';
             })
             .catch(err => {
               console.log(err);

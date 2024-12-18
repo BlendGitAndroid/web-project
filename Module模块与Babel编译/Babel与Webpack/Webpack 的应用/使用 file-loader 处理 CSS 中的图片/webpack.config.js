@@ -4,7 +4,7 @@ const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.js',
+  entry: './src/index.js', // 输出文件名为[name].js,如果没有指定entry中的key,则默认为main.js
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js'

@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        div{
+        div {
             width: 200px;
             height: 200px;
             background-color: #333;
@@ -19,32 +19,40 @@
         <button id="btn">按我</button>
     </div>
     <script>
+        // stopPropagation 方法是 JavaScript 中事件对象的一个方法，它的作用是阻止事件在 DOM 树中继续传播，
+        // 即阻止事件的冒泡或捕获阶段的传播。
+        // e.stopPropagation0；这行代码用于阻止按钮点击事件的传播。当用户点击按钮时，按钮的点击事件会触发。
+        // 如果不阻止事件传播，这个点击事件会从按钮（子元素）向上冒泡到父元素（盒子），从而触发盒子的点击事件。
+        // 但是，由于在按钮的点击事件处理函数中调用了 e.stopPropagation0；所以事件传播被阻止，盒子的点击事件不会被触发。
+        // 总结一下，stopPropagation 的作用是防止事件在 DOM 树中继续传播，从而避免不必要的事件处理。在你的代码中，
+        // 它用于确保只有按钮的点击事件被处理，而盒子的点击事件不会被触发。
+
         var oBox = document.getElementById('box');
         var oBtn = document.getElementById('btn');
 
-        // oBox.onclick = function () {
-        //     console.log('我是盒子');
-        // };
+        oBox.onclick = function () {
+            console.log('我是盒子');
+        };
 
-        // oBtn.onclick = function (e) {
-        //     // 阻止事件继续传播，因为onclick是在冒泡阶段触发的，所以这里阻止冒泡，就不会触发盒子的点击事件
-        //     e.stopPropagation();
-        //     console.log('我是按钮');
-        // };
+        oBtn.onclick = function (e) {
+            // 阻止事件继续传播，因为onclick是在冒泡阶段触发的，所以这里阻止冒泡，就不会触发盒子的点击事件
+            e.stopPropagation();
+            console.log('我是按钮');
+        };
 
         // 点击盒子，打印盒子
-        oBox.addEventListener('click', function(e) {
-            // 阻止事件继续传播，在捕获阶段触发，所以btn的捕获阶段不会触发
-            e.stopPropagation();    // 阻止事件继续传播
-            console.log('我是盒子');
-        }, true);   // 捕获阶段
-
-        // 如果盒子不阻止冒泡，那么点击按钮，会打印盒子和按钮
-        // 如果盒子加了阻止冒泡，那么点击按钮，只会打印盒子
-        oBtn.addEventListener('click', function() {
-            // 这里的log不会被打印
-            console.log('我是按钮');
-        }, true);
+        // oBox.addEventListener('click', function(e) {
+        //     // 阻止事件继续传播，在捕获阶段触发，所以btn的捕获阶段不会触发
+        //     e.stopPropagation();    // 阻止事件继续传播
+        //     console.log('我是盒子');
+        // }, true);   // 捕获阶段
+        //
+        // // 如果盒子不阻止冒泡，那么点击按钮，会打印盒子和按钮
+        // // 如果盒子加了阻止冒泡，那么点击按钮，只会打印盒子
+        // oBtn.addEventListener('click', function() {
+        //     // 这里的log不会被打印
+        //     console.log('我是按钮');
+        // }, true);
     </script>
 </body>
 

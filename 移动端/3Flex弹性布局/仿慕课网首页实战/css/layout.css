@@ -17,7 +17,7 @@ body {
 
 .main-layout {
   overflow: auto; /* 使得内容区域可以滚动 */
-  flex-grow: 1; /* 使得内容区域可以滚动 */
+  flex-grow: 1; /* 占满剩余空间 */
   /* padding: 48px 0 48px 0; */
 }
 

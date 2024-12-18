@@ -51,7 +51,25 @@
       // // console.log(ls.speak);
       // console.log(zs.speak === ls.speak);
 
+      /*在 JavaScript 中，Class 与构造函数之间存在着密切的关系。实际上，Class是 JavaScript 中实现面向对象编程的一种语法糖，
+      它的底层机制仍然是基于构造函数和原型链的。
+      以下是 Class 与构造函数之间的主要关系：
+      1. 构造函数是 Class的基础: Class 实际上是通过构造函数来实现的。当你定义一个Class 时，JavaScript 会在后台创建一个构造函数，
+      将属性添加在实例上,并将 Class 中的方法添加到这个构造函数的原型上。原型就是构造函数的prototype属性。
+      2. Class 提供了更简洁的语法：相比传统的构造函数，Class 提供了一种更清晰、更简洁的方式来定义对象的结构和行为。例如，你可以
+      在Class 中直接定义方法，而不需要将它们添加到构造函数的原型上。
+      3. Class 中的 constructor 方法对应构造函数：在 Class 中constructor 方法是一个特殊的方法，它在创建 Class 的实例时
+      被调用。这个方法的作用类似于传统构造函数，用于初始化实例的属性。
+      4. Class 的实例通过 new 关键字创建：与构造函数一样，Class 的实例也是通过 new 关键字来创建的。当你调用
+      new ClassName(...) 时，JavaScript 会执行 Class 的 constructor 方法，并返回一个新的实例。
+      5. Class 继承基于原型链：Class 之间的继承也是通过原型链来实现的。你可以使用 extends 关键字来创建一个子类，这个子类会继承
+      父类的所有属性和方法。
+      6.Class 可以看作是构造函数的语法糖：虽然 Class 提供了更简洁的语法，但它并没有引入新的面向对象编程概念。从本质上讲，Class
+      只是一种更方便的方式来使用构造函数和原型链。*/
+
       // 3.Class 与构造函数
+      // Class与构造函数的关系是什么
+      // 类本质上是构造函数,类的所有方法都定义在类的prototype属性上面
       class Person {
         constructor(name, age) {
           this.name = name;
@@ -66,7 +84,15 @@
 
         // run(){}
       }
+
+      // 类的所有方法都定义在类的prototype属性上面
+      // 并且也支持原型链的写法
       Person.prototype.run = function () {};
+
+      const newPerson = new Person();
+      console.log(newPerson);
+      console.log(newPerson.hasOwnProperty('name'));  //  定义在实例上
+      console.log(newPerson.hasOwnProperty('speak')); //  定义在原型上
 
       console.log(typeof Person); // function, 类本质上是函数
       // console.log(Person.prototype.speak);

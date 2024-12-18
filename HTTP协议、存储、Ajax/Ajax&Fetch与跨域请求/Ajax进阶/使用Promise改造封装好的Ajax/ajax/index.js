@@ -11,6 +11,7 @@ import {
   ERROR_ABORT_TEXT
 } from './constants.js';
 
+// 下面的只是用Promise进行了回调的封装，原始的真正代码是没有改变的
 const ajax = (url, options) => {
   // return new Ajax(url, options).getXHR();
   let xhr;
@@ -49,6 +50,7 @@ const ajax = (url, options) => {
     }).getXHR();
   });
 
+  // 给promise对象添加 下面的属性
   p.xhr = xhr;  // 给 promise 对象添加 xhr 属性
   p.ERROR_HTTP_CODE = ERROR_HTTP_CODE;  // 给 promise 对象添加错误类型常量
   p.ERROR_REQUEST = ERROR_REQUEST;

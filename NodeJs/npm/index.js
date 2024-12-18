@@ -62,7 +62,7 @@ console.log(_.chunk(array, 2)) // [ [ 'a', 'b' ], [ 'c', 'd' ] ]
 // 如 node npm，先去查找package.json，会执行 npm 文件夹下的 index.js 文件。
 
 // 模块查找规则
-// 一：在指定了查找路径的情况下
+// 一：在指定了查找路径的情况下，先查找文件，再查找文件夹
 // require("./server")
 // 1. 查找 server.js
 // 2. 查找 server.json

@@ -15,26 +15,27 @@
     // new Person();
 
     // 2.需要 this 指向调用对象的时候
-    // document.onclick = function () {
-    //   console.log(this);
-    // };
-    // document.addEventListener(
-    //   'click',
-    //   () => {
-    //     console.log(this); //window
-    //   },
-    //   false
-    // );
+    document.onclick = function () {
+      console.log(this);
+    };
+    document.addEventListener(
+            'click',
+            () => {
+              console.log(this); //window
+            },
+            false
+    );
 
     // 3.需要使用 arguments 的时候
     // 箭头函数中没有 arguments
-    // function add() {
-    //   console.log(arguments);
-    // }
-    // add(1, 2,3,4,5);
+    function add() {
+      console.log(arguments);
+    }
 
-    // const add = () => console.log(arguments);
-    // add();
+    add(1, 2, 3, 4, 5);
+
+    const add1 = () => console.log(arguments);
+    add1();
     // 剩余参数
   </script>
 </body>

@@ -35,8 +35,9 @@
       //     btn.addEventListener(
       //       'click',
       //       function () {
+      //         console.log(this);  // button
       //         setInterval(function () {
-      //           console.log(this);
+      //           console.log(this);  // window
       //           // this.time++;
       //           // result.innerHTML = this.time;
       //           that.time++;
@@ -53,16 +54,18 @@
         start: function () {
           // this
           btn.addEventListener(
-            'click',
-            () => {
-              // this
-              setInterval(() => {
-                console.log(this);
-                this.time++;
-                result.innerHTML = this.time;
-              }, 1000);
-            },
-            false
+                  'click',
+                  // 这是一个回调函数,使用箭头函数的话,this指向的是外层的this
+                  () => {
+                    // this
+                    console.log(this);  // timer
+                    setInterval(() => {
+                      console.log(this);  // timer
+                      this.time++;
+                      result.innerHTML = this.time;
+                    }, 1000);
+                  },
+                  false
           );
         }
       };

@@ -22,6 +22,8 @@
 
       // addEventListener的第一个参数不加 on，比如 readystatechange 事件，就是 readystatechange，而不是 onreadystatechange
       // xhr.addEventListener('readystatechange', () => {}, fasle);
+      // 这个规律在onclick等事件中也是一样的，btn.onclick是直接加on的，而btn.setEventListener('click', () => {}, false);
+      // 是不加on的
 
       // xhr.onreadystatechange = () => {
       //   if (xhr.readyState !== 4) return;

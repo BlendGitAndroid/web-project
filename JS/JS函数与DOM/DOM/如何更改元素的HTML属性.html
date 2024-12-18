@@ -6,6 +6,22 @@
     <title>Document</title>
 </head>
 <body>
+    <!--在 HTML 和 CSS 中，src 和 backgroundImage 是用于设置图像的两个不同属性，它们的主要区别在于它们的应用场景和功能：-->
+    <!--1. src 属性：-->
+    <!--src 属性通常用于 image 标签，用于指定要显示的图像文件的路径。-->
+    <!--它是一个 HTML 属性，直接在标签中设置。-->
+    <!--例如：-->
+    <!--2. backgroundImage 属性-->
+    <!--backgroundImage 属性通常用于 CSS 中，通过 background-image 样式规则来设置元素的背景图像。-->
+    <!--它是一个 CSS 属性，用于控制元素的背景图像。-->
+    <!--例如:#pic { background-image: url(images/2.jpg): }-->
+    <!--总结：-->
+    <!--src 属性用于 ￼ 标签，直接指定图像文件的路径。-->
+    <!--backgroundImage 属性用于 CSS 中，通过 background-image 样式规则来设置元素的背景图像。-->
+    <!--在你的代码示例中，oPic.src = 'images/2.jpg';这行代码使用了 src 属性来更改 ￼ 标签的图像源。
+    如果你想使用 backgroundImage 属性来设置背景图像，你需要在 CSS 中定义一个样式规则，
+    例如：#pic{background-image: url(images/2.jpg); }.-->
+
     <img src="images/1.jpg" id="pic">
     <a href="http://www.baidu.com" id="link">
         去百度
@@ -16,7 +32,7 @@
         var oLink = document.getElementById('link');
 
         oPic.src = 'images/2.jpg';
-        
+
         oLink.href = 'http://www.imooc.com';
         oLink.innerText = '去慕课网';
     </script>

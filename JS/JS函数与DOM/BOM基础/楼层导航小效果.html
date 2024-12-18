@@ -104,7 +104,7 @@
 
         list.onclick = function (e) {
             // tagName表示标签名，toLowerCase表示转换为小写
-            if (e.target.tagName.toLowerCase() == 'li') {
+            if (e.target.tagName.toLowerCase() === 'li') {
                 // getAttribute表示得到标签身上的某个属性值
                 var n = e.target.getAttribute('data-n');
 
@@ -154,14 +154,14 @@
             console.log("i:" + i);
 
             // 这里能使用i，是因为i是在for循环中声明的，并且他是var声明的，所以他是一个全局变量
-            if (nowfloor != i) {
+            if (nowfloor !== i) {
                 console.log(i);
                 // 让全局变量改变为这个楼层号
                 nowfloor = i;
 
                 // 设置下标为i的项有cur
                 for (var j = 0; j < lis.length; j++) {
-                    if (j == i) {
+                    if (j === i) {
                         lis[j].className = 'current';   //  className 属性设置或返回元素的 class 属性。
                     } else {
                         lis[j].className = '';

@@ -1,63 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>视口演示</title>
     <style>
-      * {
-        box-sizing: border-box;
-        padding: 0;
-        margin: 0;
-      }
-      .layout {
-        overflow: auto;
-        position: relative;
-        width: 375px;
-        height: 667px;
-        margin: 50px 0 0 400px;
-        border: 10px solid #000;
-      }
-      .viewport {
-        position: absolute;
-        left: 0;
-        top: 0;
-        width: 100%;
-        height: 100%;
-        /* border: 10px solid #000; */
-      }
-      .layout-img {
-        width: 980px;
-        transition: all 0.5s;
-      }
-      .layout-img-scale {
-        width: 100%;
-      }
+        * {
+            box-sizing: border-box;
+            padding: 0;
+            margin: 0;
+        }
+
+        /*以下是 overflow 属性的几个可能值及其含义：*/
+        /*visible：内容会显示在元素的边界之外，这是默认值。*/
+        /*hidden：内容会被裁剪，超出元素边界的部分将不可见。*/
+        /*scroll：内容会被裁剪，并且浏览器会始终显示滚动条，即使内容没有溢出。*/
+        /*auto：内容会被裁剪，并且浏览器会根据内容是否溢出自动显示滚动条。*/
+        .layout {
+            /* 当内容超出容器时，显示滚动条，默认是visible */
+            overflow: auto;
+            position: relative;
+            width: 375px;
+            height: 667px;
+            margin: 50px 0 0 400px;
+            border: 10px solid #000;
+        }
+
+        .viewport {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            /* border: 10px solid #000; */
+        }
+
+        .layout-img {
+            width: 980px;
+            transition: all 0.5s;
+        }
+
+        .layout-img-scale {
+            width: 100%;
+        }
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="layout">
-      <img
-        src="./images/viewport.png"
-        alt=""
-        id="layout-img"
-        class="layout-img"
-      />
-      <div class="viewport"></div>
+        <img src="./images/viewport.png" alt="" id="layout-img" class="layout-img"/>
     </div>
 
     <script>
-      const $img = document.getElementById('layout-img');
+        const $img = document.getElementById('layout-img');
 
-      document.addEventListener(
-        'click',
-        () => {
-          // toggle方法接受一个参数，即你想要切换的类名。在这个例子中，类名是'layout-img-scale'。
-          // 这个方法的工作原理是检查指定的元素是否已经包含了给定的类名。如果已经包含了，它就会移除这个类名，如果没有包含，则会添加这个类名。
-          $img.classList.toggle('layout-img-scale');
-        },
-        false
-      );
+        document.addEventListener(
+            'click',
+            () => {
+                // toggle方法接受一个参数，即你想要切换的类名。在这个例子中，类名是'layout-img-scale'。
+                // 这个方法的工作原理是检查指定的元素是否已经包含了给定的类名。如果已经包含了，它就会移除这个类名，如果没有包含，则会添加这个类名。
+                $img.classList.toggle('layout-img-scale');
+            },
+            false
+        );
     </script>
-  </body>
+</body>
 </html>

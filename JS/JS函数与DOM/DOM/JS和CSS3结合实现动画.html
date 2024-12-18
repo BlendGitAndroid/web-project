@@ -39,11 +39,11 @@
 
             // 把过渡加上
             box.style.transition = 'all 2s linear 0s';
-            if (pos == 1) {
+            if (pos === 1) {
                 // 瞬间移动，但是由于有过渡，所以是动画
                 box.style.left = '1100px';
                 pos = 2;
-            } else if (pos == 2) {
+            } else if (pos === 2) {
                 // 瞬间移动，但是由于有过渡，所以是动画
                 box.style.left = '100px';
                 pos = 1;

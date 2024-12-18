@@ -6,6 +6,7 @@ body {
 }
 
 .header-layout {
+  /* 保证不会压缩*/
   flex-shrink: 0;
 
   /* width: 100%;
