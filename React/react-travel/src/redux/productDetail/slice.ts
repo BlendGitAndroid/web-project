@@ -41,9 +41,13 @@ export const getProductDetail = createAsyncThunk(
  */
 export const productDetailSlice = createSlice({
   name: "productDetail",  // slice的名称, 用于在Redux store中标识这个slice
-  initialState, // 初始状态
+  initialState, // 初始状态,用于生成reducer的初始状态
   reducers: { // reducers是一个对象，包含了一组reducer函数，用于处理同步action
     // 下面的写法暂时没有用到，只是用于学习使用
+    // 调用的时候直接调用dispatch(productDetailSlice.actions.fetchStart())
+    // fetchStart是一个action creator，用于创建一个action，这个action的type是productDetail/fetchStart
+    // createSlice中的reducers是怎么来的?是根据createSlice的第二个参数initialState的属性来的
+    // 当dispatch一个action时，会根据action的type来匹配reducers中的函数，然后执行这个函数，更新state
     fetchStart: (state) => {
       // return { ...state, loading: true }; // 之前的写法，就是这样写的
       state.loading = true; // 这是新的写法，这是因为createSlice函数会自动处理immer，所以不需要再使用展开运算符
@@ -59,7 +63,7 @@ export const productDetailSlice = createSlice({
       state.error = action.payload;
     }
   },
-  extraReducers: {  // extraReducers是一个对象，包含了一组reducer函数，用于处理异步action
+  extraReducers: {  // extraReducers是一个对象，包含了一组reducer函数，用于处理异步action，功能类似于redux-thunk
     // 使用方括号语法，将一个action type映射到一个reducer函数
     [getProductDetail.pending.type]: (state) => {
       state.loading = true;

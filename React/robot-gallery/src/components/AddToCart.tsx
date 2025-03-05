@@ -14,10 +14,13 @@ export const withAddToCart = (ChildComponent: React.ComponentType<RobotProps>) =
 
         const addToCart = (id: number, name: string) => {
             if (setState) {
+                // 首先，setState 方法接收一个函数作为参数，这个函数的参数是当前的状态 state。这种函数式更新方式确保了在
+                // 状态更新过程中，能够正确地获取到最新的状态，避免了由于异步更新导致的状态不一致问题。
+                // 注意这里的函数式组件的state和类组件的state的更新是不一样的
                 setState(state => {
                     return {
-                        ...state,
-                        shoppingCart: {
+                        ...state,   // 这里是浅拷贝，只拷贝了state的第一层,保存之前的状态
+                        shoppingCart: { // 新的值覆盖之前的值
                             items: [...state.shoppingCart.items, { id, name }]
                         }
                     }

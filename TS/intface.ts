@@ -41,6 +41,9 @@
     interface discount {
         (price: number): number;
     }
+
+    // 虽然定义的时候,是一个接口,但是这里使用的时候是函数
+    // 函数类型的接口
     let cost: discount = function (price11: number): number {
         return price11 * 0.8;
     };
@@ -67,6 +70,7 @@
     // 实际上，在大多数的情况下使用接口类型和类型别名的效果等价，但是在某些特定的场景下这两者还是存在很大区别。
     // 1.基础数据类型 与接口不同，类型别名还可以用于其他类型，如基本类型（原始值）、联合类型、元组
     // 2.重复定义，接口可以定义多次 会被自动合并为单个接口 类型别名不可以重复定义
+    // 还有写法不同,interface后面直接跟{},而type后面跟的是=
     interface Point {
         x: number;
     }

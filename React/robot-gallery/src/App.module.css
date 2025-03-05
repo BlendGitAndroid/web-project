@@ -19,9 +19,22 @@
     pointer-events: none;
 }
 
-@media (prefers-reduced-motion:no-preference) {
+/*这个媒体查询检查用户是否设置偏好减少动画。如果用户没有设置减少动画的偏好，则应用内部的样式规则。*/
+@media (prefers-reduced-motion: no-preference) {
     .appLogo {
-        animation: App-logo-spin infinite 20s linear;
+        /*这行代码为 .appLogo 元素应用了一个名为 App-logo-spin 的动画。动画将无限次循环，每次持续 20 秒，
+        并以线性方式进行。这意味着动画的速度在整个过程中保持一致。*/
+        animation: App-logo-spin_gallery infinite 20s linear;
+    }
+}
+
+@keyframes App-logo-spin_gallery {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
     }
 }
 

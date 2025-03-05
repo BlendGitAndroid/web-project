@@ -18,16 +18,16 @@ const initialState: ProductSearchState = {
 export const searchProduct = createAsyncThunk(
   "productSearch/searchProduct",
   async (
-    paramaters: { // 这里的paramaters是一个对象，并同时定义了它的类型
+    parameters: { // 这里的paramaters是一个对象，并同时定义了它的类型
       keywords: string;
       nextPage: number | string;
       pageSize: number | string;
     },
     thunkAPI
   ) => {
-    let url = `http://82.157.43.234:8080/api/touristRoutes?pageNumber=${paramaters.nextPage}&pageSize=${paramaters.pageSize}`;
-    if (paramaters.keywords) {
-      url += `&keyword=${paramaters.keywords}`;
+    let url = `http://82.157.43.234:8080/api/touristRoutes?pageNumber=${parameters.nextPage}&pageSize=${parameters.pageSize}`;
+    if (parameters.keywords) {
+      url += `&keyword=${parameters.keywords}`;
     }
     const response = await axios.get(url);
     return {

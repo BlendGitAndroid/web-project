@@ -35,6 +35,7 @@ export const userSlice = createSlice({
   name: "user",
   initialState,
   reducers: {
+    // 这里直接调用同步的action,调用的时候直接调用dispatch(userSlice.actions.logOut())
     logOut: (state) => {
       state.token = null;
       state.error = null;

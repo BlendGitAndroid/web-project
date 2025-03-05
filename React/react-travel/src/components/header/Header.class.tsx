@@ -43,7 +43,8 @@ type PropsType = RouteComponentProps & // react-router 路由props类型
   ReturnType<typeof mapDispatchToProps>; // redux dispatch 映射类型 
 
 // 将Header函数式组件改为类组件，将路由hook改为withRouter高阶组件
-class HeaderComponnet extends React.Component<PropsType> {
+// 在类组件中,将store中的state和dispatch映射到组件的props中,而在函数式组件中,则是通过hooks来实现
+class HeaderComponent extends React.Component<PropsType> {
 
   constructor(props) {
     super(props);
@@ -69,18 +70,19 @@ class HeaderComponnet extends React.Component<PropsType> {
 
     // ******最简单的redux使用方式，使用store直接dispatch action，然后store会自动调用reducer进行state更新
     // dispatch的作用是将action传递给reducer，reducer会根据action的type，更新state
-    // const action = {
-    //   type: "change_language",
-    //   payload: e.key,
-    // };
-    // store.store.dispatch(action);
+    // 从这里就能看出,action的本质就是一个对象,这个对象中必须有一个type属性,用于标识这个action的类型
+    // 在reducer中,根据action的type来判断如何处理state
+    const action1 = {
+      type: "change_language",
+      payload: e.key,
+    };
+    store.store.dispatch(action1);
     
     
     // 添加ts类型约束
-    // const action = changeLanguageActionCreator(e.key);
-    // store.store.dispatch(action);
-
-
+    // 与action1相比,action2就是将返回的类型定义成了一个接口,这样写的好处是将action的类型约束在了一起,方便维护
+    const action2 = changeLanguageActionCreator(e.key);
+    store.store.dispatch(action2);
   };
 
   render() {
@@ -161,5 +163,5 @@ class HeaderComponnet extends React.Component<PropsType> {
 // withTranslation()高阶组件，来给HomePageComponent组件传递t函数，用于国际化
 // connect(mapStateToProps, mapDispatchToProps)是一个高阶组件，用于连接redux和组件
 export const Header = connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(withRouter(HeaderComponnet))
+  withTranslation()(withRouter(HeaderComponent))
 );

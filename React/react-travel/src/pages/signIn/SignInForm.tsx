@@ -24,6 +24,8 @@ export const SignInForm = () => {
   const history = useHistory();
 
   // 如果token不为空，说明用户已经登录，跳转到首页
+  // 这里监听jwt,当调用signIn接口后,会生成token,token会被存储到store中,则useSelector会监听到jwt的变化
+  // 再次执行useEffect,然后跳转到首页
   useEffect(()=>{ 
     if(jwt !== null) {
       history.push("/");

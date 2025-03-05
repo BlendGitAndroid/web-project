@@ -40,15 +40,15 @@ export const Header: React.FC = () => {
   // 获取当前路由匹配信息
   const match = useRouteMatch();
 
-  // 引入redux的钩子函数，获取store中的state
+  // 引入redux的钩子函数，获取store中的state，与类组件中的mapStateToProps相对应
   const language = useSelector((state) => state.language.language);
   const languageList = useSelector((state) => state.language.languageList);
 
-  // 引入redux的钩子函数，获取dispatch
+  // 引入redux的钩子函数，获取dispatch,从store.store中获取dispatch
   const dispatch = useDispatch();
   // const dispatch = useDispatch<Dispatch<LanguageActionTypes>>(); // 引入dispatch并指定dispatch的类型
 
-  // 引入国际化钩子函数
+  // 函数式组件引入国际化钩子函数,与类组件相对应的是withTranslation高阶组件
   const { t } = useTranslation();
 
   const jwt = useSelector(s => s.user.token)  // 获取到jwt的token
@@ -68,7 +68,7 @@ export const Header: React.FC = () => {
   const menuClickHandler = (e) => {
     console.log(e);
     if (e.key === "new") {
-      // 处理新语言添加action
+      // 处理新语言添加action,dispatch的是一个对象
       dispatch(addLanguageActionCreator("新语言", "new_lang"));
     } else {
       dispatch(changeLanguageActionCreator(e.key));
@@ -80,8 +80,10 @@ export const Header: React.FC = () => {
     history.push("/")
   }
 
-  // items: MenuProps['items'] 是 TypeScript 中的一种类型注解语法，属于索引访问类型。它表示 items 这个属性的类型是 MenuProps 
-  // 接口中 items 属性的类型。
+  // 类型注解就是给变量、函数、参数等添加类型的过程，可以帮助我们在编码过程中发现错误，提高代码的健壮性。
+  // items: MenuProps['items'] 是 TypeScript 中的一种类型注解语法，属于索引访问类型。
+  // TypeScript 中的索引访问类型（Index Access Types）允许你通过对象类型的属性名来引用对象中的某个属性类型。
+  // 它表示 items 这个属性的类型是 MenuProps 接口中 items 属性的类型。
   // map方法返回一个新的数组，数组中的元素是原始数组中的每个元素调用一个提供的函数后的返回值。
   const items: MenuProps['items'] = languageList.map((l) => {
     return {
@@ -93,6 +95,7 @@ export const Header: React.FC = () => {
   items.push({ key: "new", label: t("header.add_new_language") });
 
   return (
+    // styles是一个对象,["app-header"]是对象的属性,是方括号语法
     <div className={styles["app-header"]}>
       {/* top-header */}
       <div className={styles["top-header"]}>

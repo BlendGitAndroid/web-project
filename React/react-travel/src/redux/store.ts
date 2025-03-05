@@ -13,13 +13,13 @@ import { shoppingCartSlice } from "./shoppingCart/slice";
 import { orderSlice } from "./order/slice";
 
 
-// Reduct的store
+// Redux的store
 
 // 持久化配置
 const persistConfig = {
-  key: "root",
+  key: "root",  // 用于在localStorage中存储数据的key,值是"persist:root"
   storage,  // 使用localStorage作为持久化存储
-  whitelist: ["user"] // 白名单，只有rootReducer中user的数据会被持久化
+  whitelist: ["user"] // 白名单，只有rootReducer中user的数据会被持久化,其实就是UserState的数据,值是{"user":"{\"loading\":false,\"token\":\"xxx",\"error\":null}","_persist":"{\"version\":-1,\"rehydrated\":true}"}
 }
 
 // 2. 创建reducer，将所有的reducer合并成一个reducer

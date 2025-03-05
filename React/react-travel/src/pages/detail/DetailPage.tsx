@@ -23,6 +23,8 @@ import { addShoppingCartItem } from "../../redux/shoppingCart/slice";
 
 const { RangePicker } = DatePicker;
 
+
+// 路由参数,接收上一个页面传递过来的参数
 interface MatchParams {
   touristRouteId: string;
 }

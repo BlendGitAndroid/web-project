@@ -36,20 +36,27 @@ export function OptimizingPage(props) {
                 修改数组
             </button>
 
-            {/* {arr.map((item, index) => {
-                return <Child key={"Child" + item} item={item} />;
-            })} */}
 
-            {arr.map((item, index) => {
-                return <ChildMemo key={"Child" + item} item={item} />;
-            })}
+            {/*{arr.map((item, index) => {*/}
+            {/*    return <Child key={"Child" + item} item={item}/>;*/}
+            {/*})}*/}
+
+            {/*{arr.map((item, index) => {*/}
+            {/*    return <ChildMemo key={"Child" + item} item={item}/>;*/}
+            {/*})}*/}
+
+            {
+                arr.map((item, index) => {
+                    return <ChildUseMemo key={"Child" + item} item={item}/>
+                })
+            }
         </div>
     );
 }
 
 
 // 在下面这个例子中，由于Key是一样的，所以组件被复用了，但是由于父组件的状态发生了变化，render函数被调用，所以组件的内容被重新渲染了。
-function Child({ item }) {
+function Child({item}) {
     useEffect(() => {
         return () => {
             console.log("destroy"); //sy-log
@@ -57,14 +64,21 @@ function Child({ item }) {
     }, []);
 
     console.log("Child", item); //sy-log
-    return <div className={styles.border}>{item}</div>;
+    return (<div className={styles.border}>
+        {item}
+    </div>);
 }
 
+// 而用memo包裹的组件，只有在props改变时，才会重新渲染
 const ChildMemo = memo(Child, (prev, next) => {
-    console.log("prev", prev.item, next.item); // 这里的item是一样的，所以不会触发重新渲染
+    // console.log("prev", prev.item, next.item); // 这里的item是一样的，所以不会触发重新渲染
     return prev.item === next.item;
 });
 
+
+function ChildUseMemo({item}) {
+    return useMemo(() => <Child item={item}/>, [item]);    // 这里的[]表示只有item改变时，才会重新渲染
+}
 
 class ChildShouldComponentUpdate extends Component {
 
@@ -74,7 +88,7 @@ class ChildShouldComponentUpdate extends Component {
     }
 
     render() {
-        console.log("ChildComponent", this.props.item); //sy-log
+        console.log("ChildComponent", this.props.item);
         return (
             <div className={styles.border}>
                 <p>{this.props.item}</p>
@@ -95,11 +109,6 @@ class ChildPureComponent extends PureComponent {
     }
 }
 
-
-function ChildUseMemo({ item }) {
-    return useMemo(() => <Child item={item} />, []);    // 这里的[]表示只有item改变时，才会重新渲染
-}
-
 // 组件重新render 会导致组件进入协调，协调的核心就是我们常说的vdom diff，所以
 // 协调本身就是比较耗时的算法，因此如果能够减少协调，复用旧的fiber 节点，那么
 // 肯定会加快渲染完成的速度。组件如果没有进入协调阶段，我们称为进入 bailout 阶
@@ -111,5 +120,5 @@ function ChildUseMemo({ item }) {
 // 4. 使用useMemo，一个 React Hook，它在每次重新渲染的时候能够缓存计算的结果。
 // 5. 使用useCallback，一个 React Hook，它在每次重新渲染的时候能够缓存函数的引用。
 
-// Context 本身就是一旦Provider 传递的value 变化，所有消费这个value 的后代组件都要更新，
+// Context 本身就是一个Provider 传递的value 变化，所有消费这个value 的后代组件都要更新，
 // 因此应该尽量精简使用 Context。Context 使用场景：当祖先组件想要和后代组件快速通信。

@@ -69,13 +69,16 @@ export const giveMeDataActionCreator = (): ThunkAction<
     );
     dispatch(fetchRecommendProductSuccessActionCreator(data));
   } catch (error: any) {
+
     dispatch(fetchRecommendProductFailActionCreator(error.message));
   }
 };
 
 /**
  * redux-thunk的源码
- * 如果没有redux-thunk，那么redux只能处理普通的action，即一个js对象。
+ * 如果没有redux-thunk，那么redux只能处理同步的action，即一个js对象。
+ * 对于异步的action,怎么处理?放在Reducer中?不合适。因为Reducer是一个纯函数，只能处理原始状态和根据action返回新的状态。
+ * 所以就得需要一个中间件来处理异步action,拦截异步action并处理,在这个异步action中派发同步的action。
  * dispatch后的action会被redux-thunk拦截，如果action是一个函数，那么redux-thunk会执行这个函数，并传入dispatch和getState作为参数。
  * 
  * function createThunkMiddleware(extraArgs) {

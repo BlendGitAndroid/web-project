@@ -20,8 +20,10 @@ const main = () => {
 
 main();
 
+// @ts-ignore
 const delay = (ms: number) => new Promise((res) => setTimeout(res, ms));
 
+// @ts-ignore
 const mainAsync = async () => {
   await delay(1000);
   console.log("第一秒");

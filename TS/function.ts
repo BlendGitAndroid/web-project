@@ -5,6 +5,7 @@
     }
     helloFunc("hahaha");
 
+    // 使用type进行类型定义
     // 函数表达式，使用type定义函数类型，其接受两个number类型的参数，返回值为number类型
     type SumFunc = (x: number, y: number) => number;
     // 使用函数表达式定义函数

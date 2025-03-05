@@ -15,11 +15,13 @@ export interface RobotProps {
 const Robot: React.FC<RobotProps> = ({ id, name, email, addToCart }) => {
 
     // useContext是appContext.Consumer的替代方案，用来获取appContext.Provider的value
+    // useContext是一个React的hook，用来获取全局状态
+    // 而appContext.Consumer是一个React组件，用来获取全局状态
     const value = useContext(appContext)
 
     return (
         <div className={styles.cardContainer}>
-            <img alt="robot" src={`https://robohash.org/${id}`} />
+            <img src={`https://robohash.org/${id}`} alt="robot"/>
             <h2>{name}</h2>
             <p>{email}</p>
             <p>作者：{value.username}</p>
