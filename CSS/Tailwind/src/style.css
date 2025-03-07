@@ -1,7 +1,13 @@
 @import './assets/iconfont/iconfont.css';
+/*引入tailwind样式 */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/*html {*/
+/*  !* 可以通过修改这里显示rem的字体大小，但是如果不指定，默认就是16 *!*/
+/*   font-size: 10px;*/
+/*}*/
 
 body {
   font-size: 14px;

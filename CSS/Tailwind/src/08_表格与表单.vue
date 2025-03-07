@@ -34,7 +34,8 @@
     </table> -->
     <input type="checkbox" checked class="accent-red-500">
     <input type="radio" checked class="accent-red-500">
-    <input type="text" class="border caret-red-500">
+    <input type="text" class="border caret-red-500 text-red-500">
+    <!--    resize:可以定义用户是否可以通过拖动边缘或角落来改变元素的大小-->
     <textarea name="" id="" cols="30" rows="10" class="border resize"></textarea>
   </div>
 </template>

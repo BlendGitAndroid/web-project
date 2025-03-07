@@ -1,7 +1,7 @@
-# Vue 3 + Vite
+# TailWind
 
-This template should help get you started developing with Vue 3 in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
-
-## Recommended IDE Setup
-
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+- 常规的3种CSS样式
+    - CSS in JS:没有用过,暂时无法评价
+    - Atomic CSS:比如Tailwind CSS,使用比较便捷,能快速开发,且项目越大,由CSS样式导致的文件大小会越小,一个缺点就是类名会太长
+    - Pure CSS:CSS Modules,能够样式局部化
+- 主要是原子类,常用的都写成了原子类
